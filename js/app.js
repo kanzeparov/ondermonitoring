@@ -63,36 +63,36 @@ var cell4 = {
 }
 
 function handler(type, value) {
-  console.log("Receive new message %o", value)
+  //console.log("Receive new message %o", value)
   var date = new Date();
   var timestamp = date.getTime();
   let json_msg = value;
   try {
     json_msg = JSON.parse(value)
 
-    if (value.port == 'enode1') {
-      console.log("cell json %o", value)
-      cell1.value = value.value;
-      cell1.time = value.time;
-  console.log("cell %o", cell1)
+    if (json_msg.port == 'enode1') {
+    console.log("cell json %o", value)
+      cell1.value = json_msg.value;
+      cell1.time = json_msg.time;
+      console.log("cell %o", cell1)
     }
     if (json_msg.port == 'enode2') {
-      console.log("cell json %o", value)
-      cell2.value = value.value;
-      cell2.time = value.time;
-  console.log("cell %o", cell2)
+      console.log("cell json %o", json_msg.value)
+      cell2.value = json_msg.value;
+      cell2.time = json_msg.time;
+      console.log("cell %o", cell2)
     }
     if (json_msg.port == 'enode3') {
       console.log("cell json %o", value)
-      cell3.value = value.value;
-      cell3.time = value.time;
-  console.log("cell %o", cell3)
+      cell3.value = json_msg.value;
+      cell3.time = json_msg.time;
+      console.log("cell %o", cell3)
     }
     if (json_msg.port == 'enode4') {
       console.log("cell json %o", value)
-      cell4.value = value.value;
-      cell4.time = value.time;
-  console.log("cell %o", cell4)
+      cell4.value = json_msg.value;
+      cell4.time = json_msg.time;
+      console.log("cell %o", cell4)
     }
 
     //TOPICS WHICH CONNECT WITH GRAPH
@@ -106,7 +106,7 @@ function handler(type, value) {
       });
 
       ref.once("value", function(snapshot) {
-          console.log(snapshot.numChildren());
+          //console.log(snapshot.numChildren());
           snapshot.forEach((child) => {
             var date = new Date();
             var timestamp = date.getTime();
@@ -129,7 +129,7 @@ function handler(type, value) {
 
 
 app.ws('/cells', function(ws, req) {
-  const mqttDATACells= new mqtt_cl.ClientMQTTCells()
+  const mqttDATACells = new mqtt_cl.ClientMQTTCells()
   mqttDATACells.add_handler(handlerDATACells)
   mqttDATACells.start()
   ws.send(JSON.stringify(cell1))
@@ -138,7 +138,7 @@ app.ws('/cells', function(ws, req) {
   ws.send(JSON.stringify(cell4))
 
   function handlerDATACells(type, value) {
-    console.log("Receive new message %o", value)
+    //console.log("Receive new message %o", value)
     try {
       json_msg = JSON.parse(value)
       if (json_msg.port == 'enode1') {
