@@ -70,29 +70,29 @@ function handler(type, value) {
   try {
     json_msg = JSON.parse(value)
 
-    if (json_msg.port == 'enode1') {
-      console.log("cell json %o", json_msg)
-      cell1.value = json_msg.value;
-      cell1.time = json.time;
+    if (value.port == 'enode1') {
+      console.log("cell json %o", value)
+      cell1.value = value.value;
+      cell1.time = value.time;
   console.log("cell %o", cell1)
     }
     if (json_msg.port == 'enode2') {
-      console.log("cell json %o", json_msg)
-      cell2.value = json_msg.value;
-      cell2.time = json.time;
+      console.log("cell json %o", value)
+      cell2.value = value.value;
+      cell2.time = value.time;
   console.log("cell %o", cell2)
     }
     if (json_msg.port == 'enode3') {
-      console.log("cell json %o", json_msg)
-      cell3.value = json_msg.value;
-      cell3.time = json.time;
-    console.log("cell %o", cell3)
+      console.log("cell json %o", value)
+      cell3.value = value.value;
+      cell3.time = value.time;
+  console.log("cell %o", cell3)
     }
     if (json_msg.port == 'enode4') {
-      console.log("cell json %o", json_msg)
-      cell4.value = json_msg.value;
-      cell4.time = json.time;
-      console.log("cell %o", cell4)
+      console.log("cell json %o", value)
+      cell4.value = value.value;
+      cell4.time = value.time;
+  console.log("cell %o", cell4)
     }
 
     //TOPICS WHICH CONNECT WITH GRAPH
