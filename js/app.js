@@ -138,28 +138,32 @@ app.ws('/cells', function(ws, req) {
   ws.send(JSON.stringify(cell4))
 
   function handlerDATACells(type, value) {
-    //console.log("Receive new message %o", value)
+    console.log("Receive new message %o", value)
     try {
       json_msg = JSON.parse(value)
       if (json_msg.port == 'enode1') {
-        console.log("cell %o", json_msg)
+      console.log("cell json %o", value)
         cell1.value = json_msg.value;
-        cell1.time = json.time;
+        cell1.time = json_msg.time;
+        console.log("cell %o", cell1)
       }
       if (json_msg.port == 'enode2') {
-        console.log("cell %o", json_msg)
+        console.log("cell json %o", json_msg.value)
         cell2.value = json_msg.value;
-        cell2.time = json.time;
+        cell2.time = json_msg.time;
+        console.log("cell %o", cell2)
       }
       if (json_msg.port == 'enode3') {
-        console.log("cell %o", json_msg)
+        console.log("cell json %o", value)
         cell3.value = json_msg.value;
-        cell3.time = json.time;
+        cell3.time = json_msg.time;
+        console.log("cell %o", cell3)
       }
       if (json_msg.port == 'enode4') {
-        console.log("cell %o", json_msg)
+        console.log("cell json %o", value)
         cell4.value = json_msg.value;
-        cell4.time = json.time;
+        cell4.time = json_msg.time;
+        console.log("cell %o", cell4)
       }
       ws.send(JSON.stringify(cell1))
       ws.send(JSON.stringify(cell2))
