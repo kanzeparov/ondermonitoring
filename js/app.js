@@ -132,38 +132,39 @@ app.ws('/cells', function(ws, req) {
   const mqttDATACells = new mqtt_cl.ClientMQTT()
   mqttDATACells.add_handler(handlerDATACells)
   mqttDATACells.start()
+  ws.send("PUTIN HUILO")
   ws.send(JSON.stringify(cell1))
   ws.send(JSON.stringify(cell2))
   ws.send(JSON.stringify(cell3))
   ws.send(JSON.stringify(cell4))
 
   function handlerDATACells(type, value) {
-    console.log("Receive new message %o", value)
+    console.log(" handlerDATACells Receive new message %o", value)
     try {
       json_msg = JSON.parse(value)
       if (json_msg.port == 'enode1') {
-      console.log("cell json %o", value)
+      console.log(" handlerDATACells cell json %o", value)
         cell1.value = json_msg.value;
         cell1.time = json_msg.time;
-        console.log("cell %o", cell1)
+        console.log(" handlerDATACells cell %o", cell1)
       }
       if (json_msg.port == 'enode2') {
-        console.log("cell json %o", json_msg.value)
+        console.log(" handlerDATACells cell json %o", json_msg.value)
         cell2.value = json_msg.value;
         cell2.time = json_msg.time;
-        console.log("cell %o", cell2)
+        console.log(" handlerDATACells cell %o", cell2)
       }
       if (json_msg.port == 'enode3') {
-        console.log("cell json %o", value)
+        console.log(" handlerDATACells cell json %o", value)
         cell3.value = json_msg.value;
         cell3.time = json_msg.time;
-        console.log("cell %o", cell3)
+        console.log(" handlerDATACells cell %o", cell3)
       }
       if (json_msg.port == 'enode4') {
-        console.log("cell json %o", value)
+        console.log(" handlerDATACells cell json %o", value)
         cell4.value = json_msg.value;
         cell4.time = json_msg.time;
-        console.log("cell %o", cell4)
+        console.log(" handlerDATACells cell %o", cell4)
       }
       ws.send(JSON.stringify(cell1))
       ws.send(JSON.stringify(cell2))
@@ -173,6 +174,10 @@ app.ws('/cells', function(ws, req) {
       console.log(ex)
     }
   }
+
+  ws.on('message', function incoming(data) {
+  console.log(data);
+});
 
   ws.on('close', function() {
     mqttDATACells.stop();
