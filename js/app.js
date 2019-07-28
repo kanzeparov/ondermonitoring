@@ -129,7 +129,7 @@ function handler(type, value) {
 
 
 app.ws('/cells', function(ws, req) {
-  const mqttDATACells = new mqtt_cl.ClientMQTTCells()
+  const mqttDATACells = new mqtt_cl.ClientMQTT()
   mqttDATACells.add_handler(handlerDATACells)
   mqttDATACells.start()
   ws.send(JSON.stringify(cell1))
