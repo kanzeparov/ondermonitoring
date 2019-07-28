@@ -71,25 +71,25 @@ function handler(type, value) {
     json_msg = JSON.parse(value)
 
     if (json_msg.port == 'enode1') {
-      console.log("cell %o", json_msg)
+      console.log("cell json %o", json_msg)
       cell1.value = json_msg.value;
       cell1.time = json.time;
   console.log("cell %o", cell1)
     }
     if (json_msg.port == 'enode2') {
-      console.log("cell %o", json_msg)
+      console.log("cell json %o", json_msg)
       cell2.value = json_msg.value;
       cell2.time = json.time;
   console.log("cell %o", cell2)
     }
     if (json_msg.port == 'enode3') {
-      console.log("cell %o", json_msg)
+      console.log("cell json %o", json_msg)
       cell3.value = json_msg.value;
       cell3.time = json.time;
     console.log("cell %o", cell3)
     }
     if (json_msg.port == 'enode4') {
-      console.log("cell %o", json_msg)
+      console.log("cell json %o", json_msg)
       cell4.value = json_msg.value;
       cell4.time = json.time;
       console.log("cell %o", cell4)
@@ -129,15 +129,15 @@ function handler(type, value) {
 
 
 app.ws('/cells', function(ws, req) {
-  const mqttDATA = new mqtt_cl.ClientMQTT()
-  mqttDATA.add_handler(handlerDATA)
-  mqttDATA.start()
+  const mqttDATACells= new mqtt_cl.ClientMQTTCells()
+  mqttDATACells.add_handler(handlerDATACells)
+  mqttDATACells.start()
   ws.send(JSON.stringify(cell1))
   ws.send(JSON.stringify(cell2))
   ws.send(JSON.stringify(cell3))
   ws.send(JSON.stringify(cell4))
 
-  function handlerDATA(type, value) {
+  function handlerDATACells(type, value) {
     console.log("Receive new message %o", value)
     try {
       json_msg = JSON.parse(value)
@@ -171,7 +171,7 @@ app.ws('/cells', function(ws, req) {
   }
 
   ws.on('close', function() {
-    mqttDATA.stop();
+    mqttDATACells.stop();
     console.log('The connection was closed!');
   });
 });
