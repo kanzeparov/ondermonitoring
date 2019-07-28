@@ -209,7 +209,7 @@ class ClientMQTT {
     this.started = 1
     console.log("Connected to the broker!")
     //TODO change to topic, # for
-    this.Client.subscribe("#")
+    this.Client.subscribe("/testbed/+/finance")
     this.Client.on('message', this.topic_handler.bind(this))
   }
 
