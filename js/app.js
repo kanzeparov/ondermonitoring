@@ -42,23 +42,23 @@ mqtt.start()
 mqtt.publish77(1, true);
 
 var cell1 = {
-  time: 0,
-  value: 0,
+  time: "0",
+  value: "0",
   id: 1
 }
 var cell2 = {
-  time: 0,
-  value: 0,
+  time: "0",
+  value: "0",
   id: 2
 }
 var cell3 = {
-  time: 0,
-  value: 0,
+  time: "0",
+  value: "0",
   id: 3
 }
 var cell4 = {
-  time: 0,
-  value: 0,
+  time: "0",
+  value: "0",
   id: 4
 }
 
