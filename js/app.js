@@ -140,7 +140,7 @@ app.ws('/cells', function(ws, req) {
 
   function handlerDATACells(type, value) {
     console.log(" handlerDATACells Receive new message %o", value)
-      let json_msg = value;
+    var json_msg = value;
     try {
       json_msg = JSON.parse(value)
       if (json_msg.port == 'enode1') {
