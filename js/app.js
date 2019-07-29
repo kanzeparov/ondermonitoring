@@ -1373,7 +1373,8 @@ app.ws('/arrowdirections', function(ws, req) {
 });
 
 app.ws('/plot', function(ws, req) {
-
+var date = new Date()
+  let date_hour_min = date.getHours() + ":" + date.getMinutes()
   // const mqttDATA = new mqtt_cl.ClientMQTT()
   // mqttDATA.add_handler(handlerDATA)
   // mqttDATA.start()
@@ -1382,6 +1383,9 @@ app.ws('/plot', function(ws, req) {
   void async function() {
     let i = 1000;
     do {
+      plot1.time = date_hour_min
+      plot2.time = date_hour_min
+      plot3.time = date_hour_min
       console.log("plot1 %o", plot1)
       console.log("plot2 %o", plot2)
       console.log("plot3 %o", plot3)
