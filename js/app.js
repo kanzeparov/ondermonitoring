@@ -188,7 +188,7 @@ var arrow12 = {
   status: true
 }
 
-var allowDir1 = {
+var arrowDir1 = {
   time: "0",
   value: 0,
   id: 1,
@@ -196,7 +196,7 @@ var allowDir1 = {
   directionfrom: "enode1",
   directionto: "enode2"
 }
-var allowDir2 = {
+var arrowDir2 = {
   time: "0",
   value: 0,
   id: 2,
@@ -204,7 +204,7 @@ var allowDir2 = {
   directionfrom: "enode2",
   directionto: "enode4"
 }
-var allowDir3 = {
+var arrowDir3 = {
   time: "0",
   value: 0,
   id: 3,
@@ -212,7 +212,7 @@ var allowDir3 = {
   directionfrom: "enode3",
   directionto: "enode4"
 }
-var allowDir4 = {
+var arrowDir4 = {
   time: "0",
   value: 0,
   id: 4,
@@ -220,7 +220,7 @@ var allowDir4 = {
   directionfrom: "enode3",
   directionto: "enode1"
 }
-var allowDir5 = {
+var arrowDir5 = {
   time: "0",
   value: 0,
   id: 5,
@@ -228,7 +228,7 @@ var allowDir5 = {
   directionfrom: "enode3",
   directionto: "enode2"
 }
-var allowDir6 = {
+var arrowDir6 = {
   time: "0",
   value: 0,
   id: 6,
@@ -528,183 +528,183 @@ function handler(type, value) {
     //  /testbed/enodeX/portX/power
     if (json_msg.port == 'enode1' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
       console.log("allowDir json %o", value)
-      allowDir1.value = json_msg.value;
-      allowDir1.time = json_msg.time;
-      console.log("allowDir %o", allowDir1)
+      arrowDir1.value = json_msg.value;
+      arrowDir1.time = json_msg.time;
+      console.log("allowDir %o", arrowDir1)
     }
     if (json_msg.port == 'enode1' && json_msg.port2 == "port2" && json_msg.port3 == "power") {
       console.log("allowDir json %o", value)
-      allowDir6.value = json_msg.value;
-      allowDir6.time = json_msg.time;
-      console.log("allowDir %o", allowDir6)
+      arrowDir6.value = json_msg.value;
+      arrowDir6.time = json_msg.time;
+      console.log("allowDir %o", arrowDir6)
     }
     if (json_msg.port == 'enode1' && json_msg.port2 == "port3" && json_msg.port3 == "power") {
       console.log("allowDir json %o", value)
-      allowDir4.value = json_msg.value;
-      allowDir4.time = json_msg.time;
-      console.log("allowDir %o", allowDir4)
+      arrowDir4.value = json_msg.value;
+      arrowDir4.time = json_msg.time;
+      console.log("allowDir %o", arrowDir4)
     }
 
     if (json_msg.port == 'enode2' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
       console.log("allowDir json %o", value)
-      allowDir1.value = json_msg.value;
-      allowDir1.time = json_msg.time;
-      console.log("allowDir %o", allowDir1)
+      arrowDir1.value = json_msg.value;
+      arrowDir1.time = json_msg.time;
+      console.log("allowDir %o", arrowDir1)
     }
     if (json_msg.port == 'enode2' && json_msg.port2 == "port2" && json_msg.port3 == "power") {
       console.log("allowDir json %o", value)
-      allowDir5.value = json_msg.value;
-      allowDir5.time = json_msg.time;
-      console.log("allowDir %o", allowDir5)
+      arrowDir5.value = json_msg.value;
+      arrowDir5.time = json_msg.time;
+      console.log("allowDir %o", arrowDir5)
     }
     if (json_msg.port == 'enode2' && json_msg.port2 == "port3" && json_msg.port3 == "power") {
       console.log("allowDir json %o", value)
-      allowDir2.value = json_msg.value;
-      allowDir2.time = json_msg.time;
-      console.log("allowDir %o", allowDir2)
+      arrowDir2.value = json_msg.value;
+      arrowDir2.time = json_msg.time;
+      console.log("allowDir %o", arrowDir2)
     }
 
 
     if (json_msg.port == 'enode3' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
       console.log("allowDir json %o", value)
-      allowDir4.value = json_msg.value;
-      allowDir4.time = json_msg.time;
-      console.log("allowDir %o", allowDir4)
+      arrowDir4.value = json_msg.value;
+      arrowDir4.time = json_msg.time;
+      console.log("allowDir %o", arrowDir4)
     }
     if (json_msg.port == 'enode3' && json_msg.port2 == "port2" && json_msg.port3 == "power") {
       console.log("allowDir json %o", value)
-      allowDir5.value = json_msg.value;
-      allowDir5.time = json_msg.time;
-      console.log("allowDir %o", allowDir5)
+      arrowDir5.value = json_msg.value;
+      arrowDir5.time = json_msg.time;
+      console.log("allowDir %o", arrowDir5)
     }
     if (json_msg.port == 'enode3' && json_msg.port2 == "port3" && json_msg.port3 == "power") {
       console.log("allowDir json %o", value)
-      allowDir3.value = json_msg.value;
-      allowDir3.time = json_msg.time;
-      console.log("allowDir %o", allowDir3)
+      arrowDir3.value = json_msg.value;
+      arrowDir3.time = json_msg.time;
+      console.log("allowDir %o", arrowDir3)
     }
 
 
 
     if (json_msg.port == 'enode4' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
       console.log("allowDir json %o", value)
-      allowDir3.value = json_msg.value;
-      allowDir3.time = json_msg.time;
-      console.log("allowDir %o", allowDir3)
+      arrowDir3.value = json_msg.value;
+      arrowDir3.time = json_msg.time;
+      console.log("allowDir %o", arrowDir3)
     }
     if (json_msg.port == 'enode4' && json_msg.port2 == "port2" && json_msg.port3 == "power") {
       console.log("allowDir json %o", value)
-      allowDir6.value = json_msg.value;
-      allowDir6.time = json_msg.time;
-      console.log("allowDir %o", allowDir6)
+      arrowDir6.value = json_msg.value;
+      arrowDir6.time = json_msg.time;
+      console.log("allowDir %o", arrowDir6)
     }
     if (json_msg.port == 'enode4' && json_msg.port2 == "port3" && json_msg.port3 == "power") {
       console.log("allowDir json %o", value)
-      allowDir2.value = json_msg.value;
-      allowDir2.time = json_msg.time;
-      console.log("allowDir %o", allowDir2)
+      arrowDir2.value = json_msg.value;
+      arrowDir2.time = json_msg.time;
+      console.log("allowDir %o", arrowDir2)
     }
 
     if (json_msg.port == 'relay' && json_msg.port2 == "dc1" && json_msg.port3 == "status") {
       console.log("allowDir status json %o", value)
-      allowDir1.status = json_msg.value;
-      allowDir1.time = json_msg.time;
-      console.log("allowDir %o", allowDir1)
+      arrowDir1.status = json_msg.value;
+      arrowDir1.time = json_msg.time;
+      console.log("allowDir %o", arrowDir1)
     }
     if (json_msg.port == 'relay' && json_msg.port2 == "dc2" && json_msg.port3 == "status") {
       console.log("allowDir status json %o", value)
-      allowDir2.status = json_msg.value;
-      allowDir2.time = json_msg.time;
-      console.log("allowDir %o", allowDir2)
+      arrowDir2.status = json_msg.value;
+      arrowDir2.time = json_msg.time;
+      console.log("allowDir %o", arrowDir2)
     }
     if (json_msg.port == 'relay' && json_msg.port2 == "dc3" && json_msg.port3 == "status") {
       console.log("allowDir status json %o", value)
-      allowDir3.status = json_msg.value;
-      allowDir3.time = json_msg.time;
-      console.log("allowDir %o", allowDir3)
+      arrowDir3.status = json_msg.value;
+      arrowDir3.time = json_msg.time;
+      console.log("allowDir %o", arrowDir3)
     }
     if (json_msg.port == 'relay' && json_msg.port2 == "dc4" && json_msg.port3 == "status") {
       console.log("allowDir status json %o", value)
-      allowDir4.status = json_msg.value;
-      allowDir4.time = json_msg.time;
-      console.log("allowDir %o", allowDir4)
+      arrowDir4.status = json_msg.value;
+      arrowDir4.time = json_msg.time;
+      console.log("allowDir %o", arrowDir4)
     }
     if (json_msg.port == 'relay' && json_msg.port2 == "dc5" && json_msg.port3 == "status") {
       console.log("allowDir status json %o", value)
-      allowDir5.status = json_msg.value;
-      allowDir5.time = json_msg.time;
-      console.log("allowDir %o", allowDir5)
+      arrowDir5.status = json_msg.value;
+      arrowDir5.time = json_msg.time;
+      console.log("allowDir %o", arrowDir5)
     }
     if (json_msg.port == 'relay' && json_msg.port2 == "dc6" && json_msg.port3 == "status") {
       console.log("allowDir status json %o", value)
-      allowDir6.status = json_msg.value;
-      allowDir6.time = json_msg.time;
-      console.log("allowDir %o", allowDir6)
+      arrowDir6.status = json_msg.value;
+      arrowDir6.time = json_msg.time;
+      console.log("allowDir %o", arrowDir6)
     }
 
     if (json_msg.port == 'enode1' && json_msg.port2 == "contracts") {
       console.log("arrow direction json %o", value)
       if (json_msg.portX == 1) {
-        allowDir1.directionfrom = json_msg.seller;
-        allowDir1.directionto = json_msg.contragent;
+        arrowDir1.directionfrom = json_msg.seller;
+        arrowDir1.directionto = json_msg.contragent;
       }
       if (json_msg.portX == 2) {
-        allowDir6.directionfrom = json_msg.seller;
-        allowDir6.directionto = json_msg.contragent;
+        arrowDir6.directionfrom = json_msg.seller;
+        arrowDir6.directionto = json_msg.contragent;
       }
       if (json_msg.portX == 3) {
-        allowDir4.directionfrom = json_msg.seller;
-        allowDir4.directionto = json_msg.contragent;
+        arrowDir4.directionfrom = json_msg.seller;
+        arrowDir4.directionto = json_msg.contragent;
       }
-      console.log("arrow direction %o %o %o", allowDir1, allowDir6, allowDir4)
+      console.log("arrow direction %o %o %o", arrowDir1, arrowDir6, arrowDir4)
     }
     if (json_msg.port == 'enode2' && json_msg.port2 == "contracts") {
       console.log("arrow direction json %o", value)
       if (json_msg.portX == 1) {
-        allowDir1.directionfrom = json_msg.seller;
-        allowDir1.directionto = json_msg.contragent;
+        arrowDir1.directionfrom = json_msg.seller;
+        arrowDir1.directionto = json_msg.contragent;
       }
       if (json_msg.portX == 2) {
-        allowDir5.directionfrom = json_msg.seller;
-        allowDir5.directionto = json_msg.contragent;
+        arrowDir5.directionfrom = json_msg.seller;
+        arrowDir5.directionto = json_msg.contragent;
       }
       if (json_msg.portX == 3) {
-        allowDir2.directionfrom = json_msg.seller;
-        allowDir2.directionto = json_msg.contragent;
+        arrowDir2.directionfrom = json_msg.seller;
+        arrowDir2.directionto = json_msg.contragent;
       }
-      console.log("arrow direction %o %o %o", allowDir1, allowDir5, allowDir2)
+      console.log("arrow direction %o %o %o", arrowDir1, arrowDir5, arrowDir2)
     }
     if (json_msg.port == 'enode3' && json_msg.port2 == "contracts") {
       console.log("arrow direction json %o", value)
       if (json_msg.portX == 1) {
-        allowDir4.directionfrom = json_msg.seller;
-        allowDir4.directionto = json_msg.contragent;
+        arrowDir4.directionfrom = json_msg.seller;
+        arrowDir4.directionto = json_msg.contragent;
       }
       if (json_msg.portX == 2) {
-        allowDir5.directionfrom = json_msg.seller;
-        allowDir5.directionto = json_msg.contragent;
+        arrowDir5.directionfrom = json_msg.seller;
+        arrowDir5.directionto = json_msg.contragent;
       }
       if (json_msg.portX == 3) {
-        allowDir3.directionfrom = json_msg.seller;
-        allowDir3.directionto = json_msg.contragent;
+        arrowDir3.directionfrom = json_msg.seller;
+        arrowDir3.directionto = json_msg.contragent;
       }
-      console.log("arrow direction %o %o %o", allowDir4, allowDir5, allowDir3)
+      console.log("arrow direction %o %o %o", arrowDir4, arrowDir5, arrowDir3)
     }
     if (json_msg.port == 'enode4' && json_msg.port2 == "contracts") {
       console.log("arrow direction json %o", value)
       if (json_msg.portX == 1) {
-        allowDir3.directionfrom = json_msg.seller;
-        allowDir3.directionto = json_msg.contragent;
+        arrowDir3.directionfrom = json_msg.seller;
+        arrowDir3.directionto = json_msg.contragent;
       }
       if (json_msg.portX == 2) {
-        allowDir6.directionfrom = json_msg.seller;
-        allowDir6.directionto = json_msg.contragent;
+        arrowDir6.directionfrom = json_msg.seller;
+        arrowDir6.directionto = json_msg.contragent;
       }
       if (json_msg.portX == 3) {
-        allowDir2.directionfrom = json_msg.seller;
-        allowDir2.directionto = json_msg.contragent;
+        arrowDir2.directionfrom = json_msg.seller;
+        arrowDir2.directionto = json_msg.contragent;
       }
-      console.log("arrow direction %o %o %o", allowDir3, allowDir6, allowDir2)
+      console.log("arrow direction %o %o %o", arrowDir3, arrowDir6, arrowDir2)
     }
 
     if (json_msg.port == 'amigo' && json_msg.port2 == "set_price") {
@@ -819,8 +819,8 @@ app.ws('/preset', function(ws, req) {
   }
 
   ws.on('message', function incoming(data) {
-  console.log(data);
-});
+    console.log(data);
+  });
 
   ws.on('close', function() {
     mqttDATA.stop();
@@ -1123,8 +1123,8 @@ app.ws('/arrows', function(ws, req) {
     }
   }
   ws.on('message', function incoming(data) {
-  console.log(data);
-});
+    console.log(data);
+  });
   ws.on('close', function() {
     mqttDATA.stop();
     console.log('The connection was closed!');
@@ -1151,181 +1151,181 @@ app.ws('/arrowdirections', function(ws, req) {
       json_msg = JSON.parse(value)
       if (json_msg.port == 'enode1' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
         console.log("allowDir json %o", value)
-        allowDir1.value = json_msg.value;
-        allowDir1.time = json_msg.time;
-        console.log("allowDir %o", allowDir1)
+        arrowDir1.value = json_msg.value;
+        arrowDir1.time = json_msg.time;
+        console.log("allowDir %o", arrowDir1)
       }
       if (json_msg.port == 'enode1' && json_msg.port2 == "port2" && json_msg.port3 == "power") {
         console.log("allowDir json %o", value)
-        allowDir6.value = json_msg.value;
-        allowDir6.time = json_msg.time;
-        console.log("allowDir %o", allowDir6)
+        arrowDir6.value = json_msg.value;
+        arrowDir6.time = json_msg.time;
+        console.log("allowDir %o", arrowDir6)
       }
       if (json_msg.port == 'enode1' && json_msg.port2 == "port3" && json_msg.port3 == "power") {
         console.log("allowDir json %o", value)
-        allowDir4.value = json_msg.value;
-        allowDir4.time = json_msg.time;
-        console.log("allowDir %o", allowDir4)
+        arrowDir4.value = json_msg.value;
+        arrowDir4.time = json_msg.time;
+        console.log("allowDir %o", arrowDir4)
       }
 
       if (json_msg.port == 'enode2' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
         console.log("allowDir json %o", value)
-        allowDir1.value = json_msg.value;
-        allowDir1.time = json_msg.time;
-        console.log("allowDir %o", allowDir1)
+        arrowDir1.value = json_msg.value;
+        arrowDir1.time = json_msg.time;
+        console.log("allowDir %o", arrowDir1)
       }
       if (json_msg.port == 'enode2' && json_msg.port2 == "port2" && json_msg.port3 == "power") {
         console.log("allowDir json %o", value)
-        allowDir5.value = json_msg.value;
-        allowDir5.time = json_msg.time;
-        console.log("allowDir %o", allowDir5)
+        arrowDir5.value = json_msg.value;
+        arrowDir5.time = json_msg.time;
+        console.log("allowDir %o", arrowDir5)
       }
       if (json_msg.port == 'enode2' && json_msg.port2 == "port3" && json_msg.port3 == "power") {
         console.log("allowDir json %o", value)
-        allowDir2.value = json_msg.value;
-        allowDir2.time = json_msg.time;
-        console.log("allowDir %o", allowDir2)
+        arrowDir2.value = json_msg.value;
+        arrowDir2.time = json_msg.time;
+        console.log("allowDir %o", arrowDir2)
       }
 
 
       if (json_msg.port == 'enode3' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
         console.log("allowDir json %o", value)
-        allowDir4.value = json_msg.value;
-        allowDir4.time = json_msg.time;
-        console.log("allowDir %o", allowDir4)
+        arrowDir4.value = json_msg.value;
+        arrowDir4.time = json_msg.time;
+        console.log("allowDir %o", arrowDir4)
       }
       if (json_msg.port == 'enode3' && json_msg.port2 == "port2" && json_msg.port3 == "power") {
         console.log("allowDir json %o", value)
-        allowDir5.value = json_msg.value;
-        allowDir5.time = json_msg.time;
-        console.log("allowDir %o", allowDir5)
+        arrowDir5.value = json_msg.value;
+        arrowDir5.time = json_msg.time;
+        console.log("allowDir %o", arrowDir5)
       }
       if (json_msg.port == 'enode3' && json_msg.port2 == "port3" && json_msg.port3 == "power") {
         console.log("allowDir json %o", value)
-        allowDir3.value = json_msg.value;
-        allowDir3.time = json_msg.time;
-        console.log("allowDir %o", allowDir3)
+        arrowDir3.value = json_msg.value;
+        arrowDir3.time = json_msg.time;
+        console.log("allowDir %o", arrowDir3)
       }
 
 
 
       if (json_msg.port == 'enode4' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
         console.log("allowDir json %o", value)
-        allowDir3.value = json_msg.value;
-        allowDir3.time = json_msg.time;
-        console.log("allowDir %o", allowDir3)
+        arrowDir3.value = json_msg.value;
+        arrowDir3.time = json_msg.time;
+        console.log("allowDir %o", arrowDir3)
       }
       if (json_msg.port == 'enode4' && json_msg.port2 == "port2" && json_msg.port3 == "power") {
         console.log("allowDir json %o", value)
-        allowDir6.value = json_msg.value;
-        allowDir6.time = json_msg.time;
-        console.log("allowDir %o", allowDir6)
+        arrowDir6.value = json_msg.value;
+        arrowDir6.time = json_msg.time;
+        console.log("allowDir %o", arrowDir6)
       }
       if (json_msg.port == 'enode4' && json_msg.port2 == "port3" && json_msg.port3 == "power") {
         console.log("allowDir json %o", value)
-        allowDir2.value = json_msg.value;
-        allowDir2.time = json_msg.time;
-        console.log("allowDir %o", allowDir2)
+        arrowDir2.value = json_msg.value;
+        arrowDir2.time = json_msg.time;
+        console.log("allowDir %o", arrowDir2)
       }
       if (json_msg.port == 'relay' && json_msg.port2 == "dc1" && json_msg.port3 == "status") {
         console.log("allowDir status json %o", value)
-        allowDir1.status = json_msg.value;
-        allowDir1.time = json_msg.time;
-        console.log("allowDir %o", allowDir1)
+        arrowDir1.status = json_msg.value;
+        arrowDir1.time = json_msg.time;
+        console.log("allowDir %o", arrowDir1)
       }
       if (json_msg.port == 'relay' && json_msg.port2 == "dc2" && json_msg.port3 == "status") {
         console.log("allowDir status json %o", value)
-        allowDir2.status = json_msg.value;
-        allowDir2.time = json_msg.time;
-        console.log("allowDir %o", allowDir2)
+        arrowDir2.status = json_msg.value;
+        arrowDir2.time = json_msg.time;
+        console.log("allowDir %o", arrowDir2)
       }
       if (json_msg.port == 'relay' && json_msg.port2 == "dc3" && json_msg.port3 == "status") {
         console.log("allowDir status json %o", value)
-        allowDir3.status = json_msg.value;
-        allowDir3.time = json_msg.time;
-        console.log("allowDir %o", allowDir3)
+        arrowDir3.status = json_msg.value;
+        arrowDir3.time = json_msg.time;
+        console.log("allowDir %o", arrowDir3)
       }
       if (json_msg.port == 'relay' && json_msg.port2 == "dc4" && json_msg.port3 == "status") {
         console.log("allowDir status json %o", value)
-        allowDir4.status = json_msg.value;
-        allowDir4.time = json_msg.time;
-        console.log("allowDir %o", allowDir4)
+        arrowDir4.status = json_msg.value;
+        arrowDir4.time = json_msg.time;
+        console.log("allowDir %o", arrowDir4)
       }
       if (json_msg.port == 'relay' && json_msg.port2 == "dc5" && json_msg.port3 == "status") {
         console.log("allowDir status json %o", value)
-        allowDir5.status = json_msg.value;
-        allowDir5.time = json_msg.time;
-        console.log("allowDir %o", allowDir5)
+        arrowDir5.status = json_msg.value;
+        arrowDir5.time = json_msg.time;
+        console.log("allowDir %o", arrowDir5)
       }
       if (json_msg.port == 'relay' && json_msg.port2 == "dc6" && json_msg.port3 == "status") {
         console.log("allowDir status json %o", value)
-        allowDir6.status = json_msg.value;
-        allowDir6.time = json_msg.time;
-        console.log("allowDir %o", allowDir6)
+        arrowDir6.status = json_msg.value;
+        arrowDir6.time = json_msg.time;
+        console.log("allowDir %o", arrowDir6)
       }
       if (json_msg.port == 'enode1' && json_msg.port2 == "contracts") {
         console.log("arrow direction json %o", value)
         if (json_msg.portX == 1) {
-          allowDir1.directionfrom = json_msg.seller;
-          allowDir1.directionto = json_msg.contragent;
+          arrowDir1.directionfrom = json_msg.seller;
+          arrowDir1.directionto = json_msg.contragent;
         }
         if (json_msg.portX == 2) {
-          allowDir6.directionfrom = json_msg.seller;
-          allowDir6.directionto = json_msg.contragent;
+          arrowDir6.directionfrom = json_msg.seller;
+          arrowDir6.directionto = json_msg.contragent;
         }
         if (json_msg.portX == 3) {
-          allowDir4.directionfrom = json_msg.seller;
-          allowDir4.directionto = json_msg.contragent;
+          arrowDir4.directionfrom = json_msg.seller;
+          arrowDir4.directionto = json_msg.contragent;
         }
-        console.log("arrow direction %o %o %o", allowDir1, allowDir6, allowDir4)
+        console.log("arrow direction %o %o %o", arrowDir1, arrowDir6, arrowDir4)
       }
       if (json_msg.port == 'enode2' && json_msg.port2 == "contracts") {
         console.log("arrow direction json %o", value)
         if (json_msg.portX == 1) {
-          allowDir1.directionfrom = json_msg.seller;
-          allowDir1.directionto = json_msg.contragent;
+          arrowDir1.directionfrom = json_msg.seller;
+          arrowDir1.directionto = json_msg.contragent;
         }
         if (json_msg.portX == 2) {
-          allowDir5.directionfrom = json_msg.seller;
-          allowDir5.directionto = json_msg.contragent;
+          arrowDir5.directionfrom = json_msg.seller;
+          arrowDir5.directionto = json_msg.contragent;
         }
         if (json_msg.portX == 3) {
-          allowDir2.directionfrom = json_msg.seller;
-          allowDir2.directionto = json_msg.contragent;
+          arrowDir2.directionfrom = json_msg.seller;
+          arrowDir2.directionto = json_msg.contragent;
         }
-        console.log("arrow direction %o %o %o", allowDir1, allowDir5, allowDir2)
+        console.log("arrow direction %o %o %o", arrowDir1, arrowDir5, arrowDir2)
       }
       if (json_msg.port == 'enode3' && json_msg.port2 == "contracts") {
         console.log("arrow direction json %o", value)
         if (json_msg.portX == 1) {
-          allowDir4.directionfrom = json_msg.seller;
-          allowDir4.directionto = json_msg.contragent;
+          arrowDir4.directionfrom = json_msg.seller;
+          arrowDir4.directionto = json_msg.contragent;
         }
         if (json_msg.portX == 2) {
-          allowDir5.directionfrom = json_msg.seller;
-          allowDir5.directionto = json_msg.contragent;
+          arrowDir5.directionfrom = json_msg.seller;
+          arrowDir5.directionto = json_msg.contragent;
         }
         if (json_msg.portX == 3) {
-          allowDir3.directionfrom = json_msg.seller;
-          allowDir3.directionto = json_msg.contragent;
+          arrowDir3.directionfrom = json_msg.seller;
+          arrowDir3.directionto = json_msg.contragent;
         }
-        console.log("arrow direction %o %o %o", allowDir4, allowDir5, allowDir3)
+        console.log("arrow direction %o %o %o", arrowDir4, arrowDir5, arrowDir3)
       }
       if (json_msg.port == 'enode4' && json_msg.port2 == "contracts") {
         console.log("arrow direction json %o", value)
         if (json_msg.portX == 1) {
-          allowDir3.directionfrom = json_msg.seller;
-          allowDir3.directionto = json_msg.contragent;
+          arrowDir3.directionfrom = json_msg.seller;
+          arrowDir3.directionto = json_msg.contragent;
         }
         if (json_msg.portX == 2) {
-          allowDir6.directionfrom = json_msg.seller;
-          allowDir6.directionto = json_msg.contragent;
+          arrowDir6.directionfrom = json_msg.seller;
+          arrowDir6.directionto = json_msg.contragent;
         }
         if (json_msg.portX == 3) {
-          allowDir2.directionfrom = json_msg.seller;
-          allowDir2.directionto = json_msg.contragent;
+          arrowDir2.directionfrom = json_msg.seller;
+          arrowDir2.directionto = json_msg.contragent;
         }
-        console.log("arrow direction %o %o %o", allowDir3, allowDir6, allowDir2)
+        console.log("arrow direction %o %o %o", arrowDir3, arrowDir6, arrowDir2)
       }
       ws.send(JSON.stringify(arrowDir1))
       ws.send(JSON.stringify(arrowDir2))
@@ -1338,8 +1338,8 @@ app.ws('/arrowdirections', function(ws, req) {
     }
   }
   ws.on('message', function incoming(data) {
-  console.log(data);
-});
+    console.log(data);
+  });
   ws.on('close', function() {
     mqttDATA.stop();
     console.log('The connection was closed!');
