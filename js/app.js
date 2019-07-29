@@ -39,7 +39,6 @@ var ref = database.ref("plot/");
 const mqtt = new mqtt_cl.ClientMQTT()
 mqtt.add_handler(handler)
 mqtt.start()
-mqtt.publish77(1, true);
 
 var cell1 = {
   time: "0",
