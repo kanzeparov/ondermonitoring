@@ -1395,7 +1395,7 @@ app.ws('/plot', function(ws, req) {
   // }
 
   ws.on('close', function() {
-    mqttDATA.stop();
+    // mqttDATA.stop();
     console.log('The connection was closed!');
   });
 });
