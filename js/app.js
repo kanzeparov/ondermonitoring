@@ -1373,16 +1373,18 @@ app.ws('/arrowdirections', function(ws, req) {
 });
 
 app.ws('/plot', function(ws, req) {
-var date = new Date()
-  let date_hour_min = date.getHours() + ":" + date.getMinutes()
+
   // const mqttDATA = new mqtt_cl.ClientMQTT()
   // mqttDATA.add_handler(handlerDATA)
   // mqttDATA.start()
   //
   // function handlerDATA(type, value) {
   void async function() {
+
     let i = 1000;
     do {
+      var date = new Date()
+        let date_hour_min = date.getHours() + ":" + date.getMinutes()
       plot1.time = date_hour_min
       plot2.time = date_hour_min
       plot3.time = date_hour_min
