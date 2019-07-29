@@ -799,9 +799,7 @@ app.ws('/cells', function(ws, req) {
     }
   }
 
-  //   ws.on('message', function incoming(data) {
-  //   console.log(data);
-  // });
+
 
   ws.on('close', function() {
     mqttDATACells.stop();
@@ -819,6 +817,10 @@ app.ws('/preset', function(ws, req) {
     console.log("Receive new message %o", value)
     ws.send(JSON.stringify(value))
   }
+
+  ws.on('message', function incoming(data) {
+  console.log(data);
+});
 
   ws.on('close', function() {
     mqttDATA.stop();
@@ -1120,7 +1122,9 @@ app.ws('/arrows', function(ws, req) {
       console.log(ex)
     }
   }
-
+  ws.on('message', function incoming(data) {
+  console.log(data);
+});
   ws.on('close', function() {
     mqttDATA.stop();
     console.log('The connection was closed!');
@@ -1333,7 +1337,9 @@ app.ws('/arrowdirections', function(ws, req) {
       console.log(ex)
     }
   }
-
+  ws.on('message', function incoming(data) {
+  console.log(data);
+});
   ws.on('close', function() {
     mqttDATA.stop();
     console.log('The connection was closed!');
