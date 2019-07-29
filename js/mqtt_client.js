@@ -33,84 +33,80 @@ class ClientMQTT {
     var msg_type = topic.split('/')[3]
 
     //97,93
-    if (topicMas.length == 5) {
-      if (topic.split('/')[5] == 'status' && (topic.split('/')[4] == 'ac' ||
-          topic.split('/')[4] == 'der') &&
-        topic.split('/')[2].toString().includes('enode')) {
-        console.log("97,93 topic")
-        var power_value = {
+    if (topic.split('/')[5] == 'status' && (topic.split('/')[4] == 'ac' ||
+        topic.split('/')[4] == 'der') &&
+      topic.split('/')[2].toString().includes('enode')) {
+      console.log("97,93 topic")
+      var power_value = {
 
-          // For example, enodeX
-          node: topic.split('/')[1],
-          // For ex, portX
-          port1: topic.split('/')[2],
-          port2: topic.split('/')[3],
-          port3: topic.split('/')[4],
-          value: json_msg.value,
-          // power
-          timeStamp: json_msg.timeStamp
-        }
-        this.handler(msg_type, JSON.stringify(power_value))
+        // For example, enodeX
+        node: topic.split('/')[1],
+        // For ex, portX
+        port: topic.split('/')[2],
+        port2: topic.split('/')[3],
+        port3: topic.split('/')[4],
+        value: json_msg.value,
+        // power
+        timeStamp: json_msg.timeStamp
       }
+      this.handler(msg_type, JSON.stringify(power_value))
     }
 
-    //101  }
 
-    if (topicMas.length == 5) {
-      if (topic.split('/')[5] == 'status' && topic.split('/')[4].toString().includes('relay') &&
-        topic.split('/')[2].toString().includes('enode')) {
-        console.log("101 topic")
-        var power_value = {
+    //101 /testbed/enodeX/load/relayX/status
 
-          // For example, enodeX
-          node: topic.split('/')[1],
-          // For ex, portX
-          port1: topic.split('/')[2],
-          port2: topic.split('/')[3],
-          port3: topic.split('/')[4],
-          value: json_msg.value,
-          // power
-          timeStamp: json_msg.timeStamp
-        }
-        this.handler(msg_type, JSON.stringify(power_value))
+    if (topic.split('/')[5] == 'status' && topic.split('/')[4].toString().includes('relay') &&
+      topic.split('/')[2].toString().includes('enode')) {
+      console.log("101 topic")
+      var power_value = {
+
+        // For example, enodeX
+        node: topic.split('/')[1],
+        // For ex, portX
+        port: topic.split('/')[2],
+        port2: topic.split('/')[3],
+        port3: topic.split('/')[4],
+        value: json_msg.value,
+        // power
+        timeStamp: json_msg.timeStamp
       }
+      this.handler(msg_type, JSON.stringify(power_value))
     }
+
 
     //18
-    if (topicMas.length == 5) {
-      if (topic.split('/')[5] == 'init' && topic.split('/')[4] == 'contractID') {
-        console.log("18 topic")
-        var power_value = {
+    if (topic.split('/')[5] == 'init' && topic.split('/')[4] == 'contractID') {
+      console.log("18 topic")
+      var power_value = {
 
-          // For example, enodeX
-          node: topic.split('/')[1],
-          // For ex, portX
-          port1: topic.split('/')[2],
-          port2: topic.split('/')[3],
-          port3: topic.split('/')[4],
-          id: json_msg.id,
-          portX: json_msg.port,
-          mode: json_msg.mode,
-          amount: json_msg.amount,
-          seller: json_msg.seller,
-          contragent: json_msg.contragent,
-          const: json_msg.const,
-          // power
-          timeStamp: json_msg.timestamp
-        }
-        this.handler(msg_type, JSON.stringify(power_value))
+        // For example, enodeX
+        node: topic.split('/')[1],
+        // For ex, portX
+        port: topic.split('/')[2],
+        port2: topic.split('/')[3],
+        port3: topic.split('/')[4],
+        id: json_msg.id,
+        portX: json_msg.port,
+        mode: json_msg.mode,
+        amount: json_msg.amount,
+        seller: json_msg.seller,
+        contragent: json_msg.contragent,
+        const: json_msg.const,
+        // power
+        timeStamp: json_msg.timestamp
       }
+      this.handler(msg_type, JSON.stringify(power_value))
     }
 
+
     //87
-    if (topicMas.length == 4) {
-      if (topic.split('/')[4] == 'status' && topic.split('/')[4].toString().includes('dc'))
-        console.log("87 topic")
+    if (topic.split('/')[4] == 'status' && topic.split('/')[4].toString().includes('dc')) {
+      console.log("87 topic")
       var power_value = {
         // For example, enodeX
         node: topic.split('/')[1],
         // For ex, portX
-        port1: topic.split('/')[2],
+        port: topic.split('/')[2],
         port2: topic.split('/')[3],
         time: json_msg.timeStamp,
         // power
@@ -118,45 +114,46 @@ class ClientMQTT {
       }
       this.handler(msg_type, JSON.stringify(power_value))
     }
+
     //16, 6, 32,33,34,35
-    if (topicMas.length == 4) {
-      if (msg_type == 'ext_battery' ||
-        (topic.split('/')[2].toString().includes('enode') &&
-          topic.split('/')[3].toString().includes('port')) ||
-        (topic.split('/')[2].toString().includes('enode') &&
-          topic.split('/')[3].toString().includes('load') &&
-          topic.split('/')[4] == 'value')
-      ) {
-        if (topic.split('/')[4] == 'power') {
-          console.log("16, 6, 32,33,34,35 topic")
-          var power_value = {
-            // For example, enodeX
-            node: topic.split('/')[1],
-            // For ex, portX
-            port1: topic.split('/')[2],
-            port2: topic.split('/')[3],
-            time: json_msg.timeStamp,
-            // power
-            value: json_msg.value
-          }
-          this.handler(msg_type, JSON.stringify(power_value))
+    if (msg_type == 'ext_battery' ||
+      (topic.split('/')[2].toString().includes('enode') &&
+        topic.split('/')[3].toString().includes('port')) ||
+      (topic.split('/')[2].toString().includes('enode') &&
+        topic.split('/')[3].toString().includes('load') &&
+        topic.split('/')[4] == 'value')
+    ) {
+      if (topic.split('/')[4] == 'power') {
+        console.log("16, 6, 32,33,34,35 topic")
+        var power_value = {
+          // For example, enodeX
+          node: topic.split('/')[1],
+          // For ex, portX
+          port: topic.split('/')[2],
+          port2: topic.split('/')[3],
+          time: json_msg.timeStamp,
+          // power
+          value: json_msg.value
         }
+        this.handler(msg_type, JSON.stringify(power_value))
       }
     }
 
 
-    //113,107,57,23,random
+
+    //113,107,57,23,40,random
     if (msg_type == 'voltage' || msg_type == 'current' || msg_type == 'finance' ||
       msg_type == 'power' && topic.split('/')[2].toString().includes('emeter') ||
       msg_type == 'set_price' && topic.split('/')[2] == 'amigo' ||
       msg_type == 'setpower_out' && topic.split('/')[2] == 'erouter' ||
       msg_type == 'freq' || msg_type == 'power') {
-      console.log("113,107,57,23,random topic")
+      console.log("113,107,57,40,23,random topic")
       var power_value = {
         // For example, enodeX
         node: topic.split('/')[1],
         // For ex, portX
         port: topic.split('/')[2],
+        port2: topic.split('/')[3],
         time: json_msg.timeStamp,
         // power
         value: json_msg.value
@@ -197,7 +194,7 @@ class ClientMQTT {
 
   publish67(dc_num, value) {
     console.log("publish67 is hooked")
-    let topic = "/testbed/relay/dc" + String(dc_num) + "mode"
+    let topic = "/testbed/relay/dc" + String(dc_num) + "/mode"
     let payload = {
       value: value,
       timeStamp: new Date().toISOString()
@@ -210,6 +207,21 @@ class ClientMQTT {
     console.log("Connected to the broker!")
     //TODO change to topic, # for
     this.Client.subscribe("/testbed/+/finance")
+    this.Client.subscribe("/testbed/emeter1/power")
+    this.Client.subscribe("/testbed/emeter2/power")
+    this.Client.subscribe("/testbed/emeter3/power")
+    this.Client.subscribe("/testbed/emeter4/power")
+    this.Client.subscribe("/testbed/+/relay/+/status")
+    this.Client.subscribe("/testbed/+/ext_battery/power")
+    this.Client.subscribe("/testbed/+/load/+/status")
+    this.Client.subscribe("/testbed/+/+/value")
+    this.Client.subscribe("/testbed/relay/+/status")
+    this.Client.subscribe("/testbed/+/+/power")
+    this.Client.subscribe("/testbed/+/contracts/+/init")
+    this.Client.subscribe("/testbed/amigo/set_price")
+    this.Client.subscribe("/testbed/erouter/setpower_out")
+
+
     this.Client.on('message', this.topic_handler.bind(this))
   }
 
