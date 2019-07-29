@@ -32,14 +32,31 @@ app.use(express.urlencoded({
   extended: false
 }));
 const functions = require('firebase-functions');
-
+const msleep = time =>
+  new Promise(
+    resolve => setTimeout(_ => resolve(), time)
+  );
 var aWss = expressWs.getWss('/');
 var ref = database.ref("plot/");
 
 const mqtt = new mqtt_cl.ClientMQTT()
 mqtt.add_handler(handler)
 mqtt.start()
-
+var plot1 = {
+  time: "0",
+  value: 2,
+  id: 1
+}
+var plot2 = {
+  time: "0",
+  value: 3,
+  id: 2
+}
+var plot3 = {
+  time: "0",
+  value: 4,
+  id: 3
+}
 var cell1 = {
   time: "0",
   value: 0,
@@ -727,6 +744,16 @@ function handler(type, value) {
         time: date_hour_min,
         value: json_msg.value
       });
+      database.ref('plot/' + timestamp).set({
+        id: 2,
+        time: date_hour_min,
+        value: (json_msg.value + 0.2)
+      });
+      database.ref('plot/' + timestamp).set({
+        id: 3,
+        time: date_hour_min,
+        value: (json_msg.value + 0.3)
+      });
 
       ref.once("value", function(snapshot) {
           //console.log(snapshot.numChildren());
@@ -1347,14 +1374,25 @@ app.ws('/arrowdirections', function(ws, req) {
 
 app.ws('/plot', function(ws, req) {
 
-  const mqttDATA = new mqtt_cl.ClientMQTT()
-  mqttDATA.add_handler(handlerDATA)
-  mqttDATA.start()
-
-  function handlerDATA(type, value) {
-    console.log("Receive new message %o", value)
-    ws.send(JSON.stringify(value))
-  }
+  // const mqttDATA = new mqtt_cl.ClientMQTT()
+  // mqttDATA.add_handler(handlerDATA)
+  // mqttDATA.start()
+  //
+  // function handlerDATA(type, value) {
+  void async function() {
+    let i = 1000;
+    do {
+      console.log("plot1 %o", plot1)
+      console.log("plot2 %o", plot2)
+      console.log("plot3 %o", plot3)
+      ws.send(JSON.stringify(plot1))
+      ws.send(JSON.stringify(plot2))
+      ws.send(JSON.stringify(plot3))
+      await msleep(1000);
+    }
+    while (i-- > 0)
+  }();
+  // }
 
   ws.on('close', function() {
     mqttDATA.stop();
