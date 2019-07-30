@@ -1247,8 +1247,6 @@ app.ws('/arrows', function(ws, req) {
       }
 
 
-
-
       if (json_msg.port == 'enode3' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
         console.log("arrow912  json %o", value)
         arrow11pre.value1 = json_msg.value;
@@ -1841,7 +1839,8 @@ app.ws('/arrowdirections', function(ws, req) {
         powerSellEnode3 = powerSellEnode3 + arrowDir3.value
         pricePowerSellEnode3 = pricePowerSellEnode3 + arrowDir3.value * arrowDir3.balance
       }
-
+      var date = new Date()
+      let date_hour_min = date.getHours() + ":" + date.getMinutes()
       plot3.time = date_hour_min
       if (arrow11.value > 0) {
         plot3.value = (arrow9.value - arrow5.value - powerBuyEnode1) * rout.balance + arrow5.value * gen1.value + pricePowerBuyEnode1 - pricePowerSellEnode1 +
