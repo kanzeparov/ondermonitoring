@@ -140,7 +140,7 @@ var arrow5 = {
 var arrow6 = {
   time: "0",
   value: 0,
-  id: 6,
+  id: 9,
   status: true
 }
 ///testbed/enodeX/ext_battery/power
@@ -154,7 +154,7 @@ var arrow7 = {
 var arrow8 = {
   time: "0",
   value: 0,
-  id: 8,
+  id: 11,
   status: true
 }
 
@@ -163,7 +163,7 @@ var arrow9pre = {
   value1: 0,
   value2: 0,
   value3: 0,
-  id: 9,
+  id: 6,
   status1: true,
   status2: true,
   status3: true
@@ -183,7 +183,7 @@ var arrow11pre = {
   value1: 0,
   value2: 0,
   value3: 0,
-  id: 11,
+  id: 8,
   status1: true,
   status2: true,
   status3: true
@@ -202,7 +202,7 @@ var arrow12pre = {
 var arrow9 = {
   time: "0",
   value: 0,
-  id: 9,
+  id: 6,
   status: true
 }
 var arrow10 = {
@@ -214,7 +214,7 @@ var arrow10 = {
 var arrow11 = {
   time: "0",
   value: 0,
-  id: 11,
+  id: 8,
   status: true
 }
 var arrow12 = {
