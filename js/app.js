@@ -64,17 +64,17 @@ var gen4 = {
 }
 var plot1 = {
   time: "0",
-  value: 2,
+  value: 0,
   id: 1
 }
 var plot2 = {
   time: "0",
-  value: 3,
+  value: 0,
   id: 2
 }
 var plot3 = {
   time: "0",
-  value: 4,
+  value: 0,
   id: 3
 }
 var cell1 = {
@@ -958,7 +958,7 @@ function handler(type, value) {
       if((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
-        (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
+        (json_msg.port.toString().includes('enode')  && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
         let date_hour_min = date.getHours() + ":" + date.getMinutes()
         database.ref('plot/' + timestamp).set({
