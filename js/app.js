@@ -42,6 +42,26 @@ var ref = database.ref("plot/");
 const mqtt = new mqtt_cl.ClientMQTT()
 mqtt.add_handler(handler)
 mqtt.start()
+var gen1 = {
+  time: "0",
+  value: 0,
+  id: 1
+}
+var gen2 = {
+  time: "0",
+  value: 0,
+  id: 2
+}
+var gen3 = {
+  time: "0",
+  value: 0,
+  id: 3
+}
+var gen4 = {
+  time: "0",
+  value: 0,
+  id: 4
+}
 var plot1 = {
   time: "0",
   value: 2,
@@ -208,6 +228,7 @@ var arrowDir1 = {
   time: "0",
   value: 0,
   id: 1,
+  balance: 0,
   status: true,
   directionfrom: "enode1",
   directionto: "enode2"
@@ -216,6 +237,7 @@ var arrowDir2 = {
   time: "0",
   value: 0,
   id: 2,
+  balance: 0,
   status: true,
   directionfrom: "enode2",
   directionto: "enode4"
@@ -224,6 +246,7 @@ var arrowDir3 = {
   time: "0",
   value: 0,
   id: 3,
+  balance: 0,
   status: true,
   directionfrom: "enode3",
   directionto: "enode4"
@@ -232,6 +255,7 @@ var arrowDir4 = {
   time: "0",
   value: 0,
   id: 4,
+  balance: 0,
   status: true,
   directionfrom: "enode3",
   directionto: "enode1"
@@ -240,6 +264,7 @@ var arrowDir5 = {
   time: "0",
   value: 0,
   id: 5,
+  balance: 0,
   status: true,
   directionfrom: "enode3",
   directionto: "enode2"
@@ -248,6 +273,7 @@ var arrowDir6 = {
   time: "0",
   value: 0,
   id: 6,
+  balance: 0,
   status: true,
   directionfrom: "enode1",
   directionto: "enode4"
@@ -268,6 +294,31 @@ function handler(type, value) {
   try {
     json_msg = JSON.parse(value)
     console.log("handler %o", json_msg)
+
+    if (json_msg.port == 'enode1' && json_msg.port2 == "gen") {
+      console.log("gen price json %o", value)
+      gen1.value = json_msg.value;
+      gen1.time = json_msg.time;
+      console.log("gen %o", gen1)
+    }
+    if (json_msg.port == 'enode2' && json_msg.port2 == "gen") {
+      console.log("gen price json %o", value)
+      gen2.value = json_msg.value;
+      gen2.time = json_msg.time;
+      console.log("gen %o", gen2)
+    }
+    if (json_msg.port == 'enode3' && json_msg.port2 == "gen") {
+      console.log("gen price json %o", value)
+      gen3.value = json_msg.value;
+      gen3.time = json_msg.time;
+      console.log("gen %o", gen3)
+    }
+    if (json_msg.port == 'enode4' && json_msg.port2 == "gen") {
+      console.log("gen price json %o", value)
+      gen4.value = json_msg.value;
+      gen4.time = json_msg.time;
+      console.log("gen %o", gen4)
+    }
 
     if (json_msg.port == 'enode1' && json_msg.port2 == "finance") {
       console.log("cell json %o", value)
@@ -675,14 +726,17 @@ function handler(type, value) {
       if (json_msg.portX == 1) {
         arrowDir1.directionfrom = json_msg.seller;
         arrowDir1.directionto = json_msg.contragent;
+        arrowDir1.balance = json_msg.cost;
       }
       if (json_msg.portX == 2) {
         arrowDir6.directionfrom = json_msg.seller;
         arrowDir6.directionto = json_msg.contragent;
+        arrowDir6.balance = json_msg.cost;
       }
       if (json_msg.portX == 3) {
         arrowDir4.directionfrom = json_msg.seller;
         arrowDir4.directionto = json_msg.contragent;
+        arrowDir4.balance = json_msg.cost;
       }
       console.log("arrow direction %o %o %o", arrowDir1, arrowDir6, arrowDir4)
     }
@@ -691,14 +745,17 @@ function handler(type, value) {
       if (json_msg.portX == 1) {
         arrowDir1.directionfrom = json_msg.seller;
         arrowDir1.directionto = json_msg.contragent;
+        arrowDir1.balance = json_msg.cost;
       }
       if (json_msg.portX == 2) {
         arrowDir5.directionfrom = json_msg.seller;
         arrowDir5.directionto = json_msg.contragent;
+        arrowDir5.balance = json_msg.cost;
       }
       if (json_msg.portX == 3) {
         arrowDir2.directionfrom = json_msg.seller;
         arrowDir2.directionto = json_msg.contragent;
+        arrowDir2.balance = json_msg.cost;
       }
       console.log("arrow direction %o %o %o", arrowDir1, arrowDir5, arrowDir2)
     }
@@ -707,14 +764,17 @@ function handler(type, value) {
       if (json_msg.portX == 1) {
         arrowDir4.directionfrom = json_msg.seller;
         arrowDir4.directionto = json_msg.contragent;
+        arrowDir4.balance = json_msg.cost;
       }
       if (json_msg.portX == 2) {
         arrowDir5.directionfrom = json_msg.seller;
         arrowDir5.directionto = json_msg.contragent;
+        arrowDir5.balance = json_msg.cost;
       }
       if (json_msg.portX == 3) {
         arrowDir3.directionfrom = json_msg.seller;
         arrowDir3.directionto = json_msg.contragent;
+        arrowDir3.balance = json_msg.cost;
       }
       console.log("arrow direction %o %o %o", arrowDir4, arrowDir5, arrowDir3)
     }
@@ -723,14 +783,17 @@ function handler(type, value) {
       if (json_msg.portX == 1) {
         arrowDir3.directionfrom = json_msg.seller;
         arrowDir3.directionto = json_msg.contragent;
+        arrowDir3.balance = json_msg.cost;
       }
       if (json_msg.portX == 2) {
         arrowDir6.directionfrom = json_msg.seller;
         arrowDir6.directionto = json_msg.contragent;
+        arrowDir6.balance = json_msg.cost;
       }
       if (json_msg.portX == 3) {
         arrowDir2.directionfrom = json_msg.seller;
         arrowDir2.directionto = json_msg.contragent;
+        arrowDir2.balance = json_msg.cost;
       }
       console.log("arrow direction %o %o %o", arrowDir3, arrowDir6, arrowDir2)
     }
@@ -751,7 +814,132 @@ function handler(type, value) {
     let date_hour_min = date.getHours() + ":" + date.getMinutes()
     plot1.time = date_hour_min
     plot1.value = (arrow9.value + arrow10.value + arrow11.value + arrow12.value) * rout.balance
+
+    plot2.time = date_hour_min
+    if (arrow11.value > 0) {
+      plot2.value = (arrow9.value - arrow5.value) * rout.balance + arrow5.value * gen1.value +
+        (arrow10.value - arrow6.value) * rout.balance + arrow6.value * gen2.value +
+        (arrow11.value - arrow7.value) * rout.balance + arrow7.value * gen3.value +
+        (arrow12.value - arrow8.value) * rout.balance + arrow8.value * gen4.value
+    } else if (arrow11.value <= 0) {
+      plot2.value = (arrow9.value - arrow5.value) * rout.balance + arrow5.value * gen1.value +
+        (arrow10.value - arrow6.value) * rout.balance + arrow6.value * gen2.value +
+        (arrow11.value - arrow7.value) * rout.balance +
+        (arrow12.value - arrow8.value) * rout.balance + arrow8.value * gen4.value
+    }
+
+    var powerBuyEnode1 = 0
+    var pricePowerBuyEnode1 = 0
+    var powerSellEnode1 = 0
+    var pricePowerSellEnode1 = 0
+
+    var powerBuyEnode2 = 0
+    var pricePowerBuyEnode2 = 0
+    var powerSellEnode2 = 0
+    var pricePowerSellEnode2 = 0
+
+    var powerBuyEnode3 = 0
+    var pricePowerBuyEnode3 = 0
+    var powerSellEnode3 = 0
+    var pricePowerSellEnode3 = 0
+
+    var powerBuyEnode4 = 0
+    var pricePowerBuyEnode4 = 0
+    var powerSellEnode4 = 0
+    var pricePowerSellEnode4 = 0
+
+    if (arrowDir1.directionto == 'enode1') {
+      powerBuyEnode1 = powerBuyEnode1 + arrowDir1.value
+      pricePowerBuyEnode1 = pricePowerBuyEnode1 + arrowDir1.value * arrowDir1.balance
+      powerSellEnode2 = powerSellEnode2 + arrowDir1.value
+      pricePowerSellEnode2 = pricePowerSellEnode2 + arrowDir1.value * arrowDir1.balance
+    }
+    if (arrowDir6.directionto == 'enode1') {
+      powerBuyEnode1 = powerBuyEnode1 + arrowDir6.value
+      pricePowerBuyEnode1 = pricePowerBuyEnode1 + arrowDir6.value * arrowDir6.balance
+      powerSellEnode4 = powerSellEnode4 + arrowDir6.value
+      pricePowerSellEnode4 = pricePowerSellEnode4 + arrowDir6.value * arrowDir6.balance
+    }
+    if (arrowDir4.directionto == 'enode1') {
+      powerBuyEnode1 = powerBuyEnode1 + arrowDir4.value
+      pricePowerBuyEnode1 = pricePowerBuyEnode1 + arrowDir4.value * arrowDir4.balance
+      powerSellEnode3 = powerSellEnode3 + arrowDir4.value
+      pricePowerSellEnode3 = pricePowerSellEnode3 + arrowDir4.value * arrowDir4.balance
+    }
+
+    if (arrowDir1.directionto == 'enode2') {
+      powerBuyEnode2 = powerBuyEnode2 + arrowDir1.value
+      pricePowerBuyEnode2 = pricePowerBuyEnode2 + arrowDir1.value * arrowDir1.balance
+      powerSellEnode1 = powerSellEnode1 + arrowDir1.value
+      pricePowerSellEnode1 = pricePowerSellEnode1 + arrowDir1.value * arrowDir1.balance
+    }
+    if (arrowDir2.directionto == 'enode2') {
+      powerBuyEnode2 = powerBuyEnode2 + arrowDir2.value
+      pricePowerBuyEnode2 = pricePowerBuyEnode2 + arrowDir2.value * arrowDir2.balance
+      powerSellEnode4 = powerSellEnode4 + arrowDir2.value
+      pricePowerSellEnode4 = pricePowerSellEnode4 + arrowDir2.value * arrowDir2.balance
+    }
+    if (arrowDir5.directionto == 'enode2') {
+      powerBuyEnode2 = powerBuyEnode2 + arrowDir5.value
+      pricePowerBuyEnode2 = pricePowerBuyEnode2 + arrowDir5.value * arrowDir5.balance
+      powerSellEnode3 = powerSellEnode3 + arrowDir5.value
+      pricePowerSellEnode3 = pricePowerSellEnode3 + arrowDir5.value * arrowDir5.balance
+    }
+
+    if (arrowDir4.directionto == 'enode3') {
+      powerBuyEnode3 = powerBuyEnode3 + arrowDir4.value
+      pricePowerBuyEnode3 = pricePowerBuyEnode3 + arrowDir4.value * arrowDir4.balance
+      powerSellEnode1 = powerSellEnode1 + arrowDir4.value
+      pricePowerSellEnode1 = pricePowerSellEnode1 + arrowDir4.value * arrowDir4.balance
+    }
+
+    if (arrowDir5.directionto == 'enode3') {
+      powerBuyEnode3 = powerBuyEnode3 + arrowDir5.value
+      pricePowerBuyEnode3 = pricePowerBuyEnode3 + arrowDir5.value * arrowDir5.balance
+      powerSellEnode2 = powerSellEnode2 + arrowDir5.value
+      pricePowerSellEnode2 = pricePowerSellEnode2 + arrowDir5.value * arrowDir5.balance
+    }
+    if (arrowDir3.directionto == 'enode3') {
+      powerBuyEnode3 = powerBuyEnode3 + arrowDir3.value
+      pricePowerBuyEnode3 = pricePowerBuyEnode3 + arrowDir3.value * arrowDir3.balance
+      powerSellEnode4 = powerSellEnode4 + arrowDir3.value
+      pricePowerSellEnode4 = pricePowerSellEnode4 + arrowDir3.value * arrowDir3.balance
+    }
+
+    if (arrowDir2.directionto == 'enode4') {
+      powerBuyEnode4 = powerBuyEnode4 + arrowDir2.value
+      pricePowerBuyEnode4 = pricePowerBuyEnode4 + arrowDir2.value * arrowDir2.balance
+      powerSellEnode2 = powerSellEnode2 + arrowDir2.value
+      pricePowerSellEnode2 = pricePowerSellEnode2 + arrowDir2.value * arrowDir2.balance
+    }
+    if (arrowDir6.directionto == 'enode4') {
+      powerBuyEnode4 = powerBuyEnode4 + arrowDir6.value
+      pricePowerBuyEnode4 = pricePowerBuyEnode4 + arrowDir6.value * arrowDir6.balance
+      powerSellEnode1 = powerSellEnode1 + arrowDir6.value
+      pricePowerSellEnode1 = pricePowerSellEnode1 + arrowDir6.value * arrowDir6.balance
+    }
+    if (arrowDir3.directionto == 'enode4') {
+      powerBuyEnode4 = powerBuyEnode4 + arrowDir3.value
+      pricePowerBuyEnode4 = pricePowerBuyEnode4 + arrowDir3.value * arrowDir3.balance
+      powerSellEnode3 = powerSellEnode3 + arrowDir3.value
+      pricePowerSellEnode3 = pricePowerSellEnode3 + arrowDir3.value * arrowDir3.balance
+    }
+
+    plot3.time = date_hour_min
+    if (arrow11.value > 0) {
+      plot3.value = (arrow9.value - arrow5.value - powerBuyEnode1) * rout.balance + arrow5.value * gen1.value + pricePowerBuyEnode1 - pricePowerSellEnode1 +
+        (arrow10.value - arrow6.value - powerBuyEnode2) * rout.balance + arrow6.value * gen2.value + pricePowerBuyEnode2 - pricePowerSellEnode2 +
+        (arrow11.value - arrow7.value - powerBuyEnode3) * rout.balance + arrow7.value * gen3.value + pricePowerBuyEnode3 - pricePowerSellEnode3 +
+        (arrow12.value - arrow8.value - powerBuyEnode4) * rout.balance + arrow8.value * gen4.value + pricePowerBuyEnode4 - pricePowerSellEnode4
+    } else if (arrow11.value <= 0) {
+      plot3.value = (arrow9.value - arrow5.value - powerBuyEnode1) * rout.balance + arrow5.value * gen1.value + pricePowerBuyEnode1 - pricePowerSellEnode1 +
+        (arrow10.value - arrow6.value - powerBuyEnode2) * rout.balance + arrow6.value * gen2.value + pricePowerBuyEnode2 - pricePowerSellEnode2 +
+        (arrow11.value - arrow7.value - powerBuyEnode3) * rout.balance + pricePowerBuyEnode3 - pricePowerSellEnode3 +
+        (arrow12.value - arrow8.value - powerBuyEnode4) * rout.balance + arrow8.value * gen4.value + pricePowerBuyEnode4 - pricePowerSellEnode4
+    }
     console.log("plot1 %o", plot1)
+    console.log("plot2 %o", plot2)
+    console.log("plot3 %o", plot3)
     //TOPICS WHICH CONNECT WITH GRAPH
     if (true) {
 
@@ -767,21 +955,36 @@ function handler(type, value) {
         });
       }
 
+      if((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
+        (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
+      ) {
+        let date_hour_min = date.getHours() + ":" + date.getMinutes()
+        database.ref('plot/' + timestamp).set({
+          id: 2,
+          time: date_hour_min,
+          value: (plot2.value)
+        });
+      }
+      //115,
+      if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
+        (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
+        (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
+      ) {
+        let date_hour_min = date.getHours() + ":" + date.getMinutes()
+        database.ref('plot/' + timestamp).set({
+          id: 3,
+          time: date_hour_min,
+          value: (plot3.value)
+        });
+      }
 
 
-      // let date_hour_min = date.getHours() + ":" + date.getMinutes()
-      // database.ref('plot/' + timestamp).set({
-      //   id: 2,
-      //   time: date_hour_min,
-      //   value: (json_msg.value + 0.2)
-      // });
-      //
-      // date_hour_min = date.getHours() + ":" + date.getMinutes()
-      // database.ref('plot/' + timestamp).set({
-      //   id: 3,
-      //   time: date_hour_min,
-      //   value: (json_msg.value + 0.3)
-      // });
+
 
       ref.once("value", function(snapshot) {
           //console.log(snapshot.numChildren());
@@ -820,25 +1023,25 @@ app.ws('/cells', function(ws, req) {
     var json_msg = value;
     try {
       json_msg = JSON.parse(value)
-      if (json_msg.port == 'enode1') {
+      if (json_msg.port == 'enode1' && json_msg.port2 == 'finance') {
         console.log(" handlerDATACells cell json %o", value)
         cell1.value = json_msg.value;
         cell1.time = json_msg.time;
         console.log(" handlerDATACells cell %o", cell1)
       }
-      if (json_msg.port == 'enode2') {
+      if (json_msg.port == 'enode2' && json_msg.port2 == 'finance') {
         console.log(" handlerDATACells cell json %o", json_msg.value)
         cell2.value = json_msg.value;
         cell2.time = json_msg.time;
         console.log(" handlerDATACells cell %o", cell2)
       }
-      if (json_msg.port == 'enode3') {
+      if (json_msg.port == 'enode3' && json_msg.port2 == 'finance') {
         console.log(" handlerDATACells cell json %o", value)
         cell3.value = json_msg.value;
         cell3.time = json_msg.time;
         console.log(" handlerDATACells cell %o", cell3)
       }
-      if (json_msg.port == 'enode4') {
+      if (json_msg.port == 'enode4' && json_msg.port2 == 'finance') {
         console.log(" handlerDATACells cell json %o", value)
         cell4.value = json_msg.value;
         cell4.time = json_msg.time;
@@ -921,25 +1124,25 @@ app.ws('/arrows', function(ws, req) {
     var json_msg = value;
     try {
       json_msg = JSON.parse(value)
-      if (json_msg.port == 'emeter1') {
+      if (json_msg.port == 'emeter1' && json_msg.port2 == 'power') {
         console.log("arrow json %o", value)
         arrow1.value = json_msg.value;
         arrow1.time = json_msg.time;
         console.log("arrow %o", arrow1)
       }
-      if (json_msg.port == 'emeter2') {
+      if (json_msg.port == 'emeter2' && json_msg.port2 == 'power') {
         console.log("arrow json %o", value)
         arrow2.value = json_msg.value;
         arrow2.time = json_msg.time;
         console.log("arrow %o", arrow2)
       }
-      if (json_msg.port == 'emeter3') {
+      if (json_msg.port == 'emeter3' && json_msg.port2 == 'power') {
         console.log("arrow json %o", value)
         arrow3.value = json_msg.value;
         arrow3.time = json_msg.time;
         console.log("arrow %o", arrow3)
       }
-      if (json_msg.port == 'emeter4') {
+      if (json_msg.port == 'emeter4' && json_msg.port2 == 'power') {
         console.log("arrow json %o", value)
         arrow4.value = json_msg.value;
         arrow4.time = json_msg.time;
@@ -1174,6 +1377,127 @@ app.ws('/arrows', function(ws, req) {
       let date_hour_min = date.getHours() + ":" + date.getMinutes()
       plot1.time = date_hour_min
       plot1.value = (arrow9.value + arrow10.value + arrow11.value + arrow12.value) * rout.balance
+      plot2.time = date_hour_min
+      if (arrow11.value > 0) {
+        plot2.value = (arrow9.value - arrow5.value) * rout.balance + arrow5.value * gen1.value +
+          (arrow10.value - arrow6.value) * rout.balance + arrow6.value * gen2.value +
+          (arrow11.value - arrow7.value) * rout.balance + arrow7.value * gen3.value +
+          (arrow12.value - arrow8.value) * rout.balance + arrow8.value * gen4.value
+      } else if (arrow11.value <= 0) {
+        plot2.value = (arrow9.value - arrow5.value) * rout.balance + arrow5.value * gen1.value +
+          (arrow10.value - arrow6.value) * rout.balance + arrow6.value * gen2.value +
+          (arrow11.value - arrow7.value) * rout.balance +
+          (arrow12.value - arrow8.value) * rout.balance + arrow8.value * gen4.value
+      }
+      var powerBuyEnode1 = 0
+      var pricePowerBuyEnode1 = 0
+      var powerSellEnode1 = 0
+      var pricePowerSellEnode1 = 0
+
+      var powerBuyEnode2 = 0
+      var pricePowerBuyEnode2 = 0
+      var powerSellEnode2 = 0
+      var pricePowerSellEnode2 = 0
+
+      var powerBuyEnode3 = 0
+      var pricePowerBuyEnode3 = 0
+      var powerSellEnode3 = 0
+      var pricePowerSellEnode3 = 0
+
+      var powerBuyEnode4 = 0
+      var pricePowerBuyEnode4 = 0
+      var powerSellEnode4 = 0
+      var pricePowerSellEnode4 = 0
+
+      if (arrowDir1.directionto == 'enode1') {
+        powerBuyEnode1 = powerBuyEnode1 + arrowDir1.value
+        pricePowerBuyEnode1 = pricePowerBuyEnode1 + arrowDir1.value * arrowDir1.balance
+        powerSellEnode2 = powerSellEnode2 + arrowDir1.value
+        pricePowerSellEnode2 = pricePowerSellEnode2 + arrowDir1.value * arrowDir1.balance
+      }
+      if (arrowDir6.directionto == 'enode1') {
+        powerBuyEnode1 = powerBuyEnode1 + arrowDir6.value
+        pricePowerBuyEnode1 = pricePowerBuyEnode1 + arrowDir6.value * arrowDir6.balance
+        powerSellEnode4 = powerSellEnode4 + arrowDir6.value
+        pricePowerSellEnode4 = pricePowerSellEnode4 + arrowDir6.value * arrowDir6.balance
+      }
+      if (arrowDir4.directionto == 'enode1') {
+        powerBuyEnode1 = powerBuyEnode1 + arrowDir4.value
+        pricePowerBuyEnode1 = pricePowerBuyEnode1 + arrowDir4.value * arrowDir4.balance
+        powerSellEnode3 = powerSellEnode3 + arrowDir4.value
+        pricePowerSellEnode3 = pricePowerSellEnode3 + arrowDir4.value * arrowDir4.balance
+      }
+
+      if (arrowDir1.directionto == 'enode2') {
+        powerBuyEnode2 = powerBuyEnode2 + arrowDir1.value
+        pricePowerBuyEnode2 = pricePowerBuyEnode2 + arrowDir1.value * arrowDir1.balance
+        powerSellEnode1 = powerSellEnode1 + arrowDir1.value
+        pricePowerSellEnode1 = pricePowerSellEnode1 + arrowDir1.value * arrowDir1.balance
+      }
+      if (arrowDir2.directionto == 'enode2') {
+        powerBuyEnode2 = powerBuyEnode2 + arrowDir2.value
+        pricePowerBuyEnode2 = pricePowerBuyEnode2 + arrowDir2.value * arrowDir2.balance
+        powerSellEnode4 = powerSellEnode4 + arrowDir2.value
+        pricePowerSellEnode4 = pricePowerSellEnode4 + arrowDir2.value * arrowDir2.balance
+      }
+      if (arrowDir5.directionto == 'enode2') {
+        powerBuyEnode2 = powerBuyEnode2 + arrowDir5.value
+        pricePowerBuyEnode2 = pricePowerBuyEnode2 + arrowDir5.value * arrowDir5.balance
+        powerSellEnode3 = powerSellEnode3 + arrowDir5.value
+        pricePowerSellEnode3 = pricePowerSellEnode3 + arrowDir5.value * arrowDir5.balance
+      }
+
+      if (arrowDir4.directionto == 'enode3') {
+        powerBuyEnode3 = powerBuyEnode3 + arrowDir4.value
+        pricePowerBuyEnode3 = pricePowerBuyEnode3 + arrowDir4.value * arrowDir4.balance
+        powerSellEnode1 = powerSellEnode1 + arrowDir4.value
+        pricePowerSellEnode1 = pricePowerSellEnode1 + arrowDir4.value * arrowDir4.balance
+      }
+
+      if (arrowDir5.directionto == 'enode3') {
+        powerBuyEnode3 = powerBuyEnode3 + arrowDir5.value
+        pricePowerBuyEnode3 = pricePowerBuyEnode3 + arrowDir5.value * arrowDir5.balance
+        powerSellEnode2 = powerSellEnode2 + arrowDir5.value
+        pricePowerSellEnode2 = pricePowerSellEnode2 + arrowDir5.value * arrowDir5.balance
+      }
+      if (arrowDir3.directionto == 'enode3') {
+        powerBuyEnode3 = powerBuyEnode3 + arrowDir3.value
+        pricePowerBuyEnode3 = pricePowerBuyEnode3 + arrowDir3.value * arrowDir3.balance
+        powerSellEnode4 = powerSellEnode4 + arrowDir3.value
+        pricePowerSellEnode4 = pricePowerSellEnode4 + arrowDir3.value * arrowDir3.balance
+      }
+
+      if (arrowDir2.directionto == 'enode4') {
+        powerBuyEnode4 = powerBuyEnode4 + arrowDir2.value
+        pricePowerBuyEnode4 = pricePowerBuyEnode4 + arrowDir2.value * arrowDir2.balance
+        powerSellEnode2 = powerSellEnode2 + arrowDir2.value
+        pricePowerSellEnode2 = pricePowerSellEnode2 + arrowDir2.value * arrowDir2.balance
+      }
+      if (arrowDir6.directionto == 'enode4') {
+        powerBuyEnode4 = powerBuyEnode4 + arrowDir6.value
+        pricePowerBuyEnode4 = pricePowerBuyEnode4 + arrowDir6.value * arrowDir6.balance
+        powerSellEnode1 = powerSellEnode1 + arrowDir6.value
+        pricePowerSellEnode1 = pricePowerSellEnode1 + arrowDir6.value * arrowDir6.balance
+      }
+      if (arrowDir3.directionto == 'enode4') {
+        powerBuyEnode4 = powerBuyEnode4 + arrowDir3.value
+        pricePowerBuyEnode4 = pricePowerBuyEnode4 + arrowDir3.value * arrowDir3.balance
+        powerSellEnode3 = powerSellEnode3 + arrowDir3.value
+        pricePowerSellEnode3 = pricePowerSellEnode3 + arrowDir3.value * arrowDir3.balance
+      }
+
+      plot3.time = date_hour_min
+      if (arrow11.value > 0) {
+        plot3.value = (arrow9.value - arrow5.value - powerBuyEnode1) * rout.balance + arrow5.value * gen1.value + pricePowerBuyEnode1 - pricePowerSellEnode1 +
+          (arrow10.value - arrow6.value - powerBuyEnode2) * rout.balance + arrow6.value * gen2.value + pricePowerBuyEnode2 - pricePowerSellEnode2 +
+          (arrow11.value - arrow7.value - powerBuyEnode3) * rout.balance + arrow7.value * gen3.value + pricePowerBuyEnode3 - pricePowerSellEnode3 +
+          (arrow12.value - arrow8.value - powerBuyEnode4) * rout.balance + arrow8.value * gen4.value + pricePowerBuyEnode4 - pricePowerSellEnode4
+      } else if (arrow11.value <= 0) {
+        plot3.value = (arrow9.value - arrow5.value - powerBuyEnode1) * rout.balance + arrow5.value * gen1.value + pricePowerBuyEnode1 - pricePowerSellEnode1 +
+          (arrow10.value - arrow6.value - powerBuyEnode2) * rout.balance + arrow6.value * gen2.value + pricePowerBuyEnode2 - pricePowerSellEnode2 +
+          (arrow11.value - arrow7.value - powerBuyEnode3) * rout.balance + pricePowerBuyEnode3 - pricePowerSellEnode3 +
+          (arrow12.value - arrow8.value - powerBuyEnode4) * rout.balance + arrow8.value * gen4.value + pricePowerBuyEnode4 - pricePowerSellEnode4
+      }
       ws.send(JSON.stringify(arrow1))
       ws.send(JSON.stringify(arrow2))
       ws.send(JSON.stringify(arrow3))
@@ -1421,6 +1745,115 @@ app.ws('/arrowdirections', function(ws, req) {
         }
         console.log("arrow direction %o %o %o", arrowDir3, arrowDir6, arrowDir2)
       }
+      var powerBuyEnode1 = 0
+      var pricePowerBuyEnode1 = 0
+      var powerSellEnode1 = 0
+      var pricePowerSellEnode1 = 0
+
+      var powerBuyEnode2 = 0
+      var pricePowerBuyEnode2 = 0
+      var powerSellEnode2 = 0
+      var pricePowerSellEnode2 = 0
+
+      var powerBuyEnode3 = 0
+      var pricePowerBuyEnode3 = 0
+      var powerSellEnode3 = 0
+      var pricePowerSellEnode3 = 0
+
+      var powerBuyEnode4 = 0
+      var pricePowerBuyEnode4 = 0
+      var powerSellEnode4 = 0
+      var pricePowerSellEnode4 = 0
+
+      if (arrowDir1.directionto == 'enode1') {
+        powerBuyEnode1 = powerBuyEnode1 + arrowDir1.value
+        pricePowerBuyEnode1 = pricePowerBuyEnode1 + arrowDir1.value * arrowDir1.balance
+        powerSellEnode2 = powerSellEnode2 + arrowDir1.value
+        pricePowerSellEnode2 = pricePowerSellEnode2 + arrowDir1.value * arrowDir1.balance
+      }
+      if (arrowDir6.directionto == 'enode1') {
+        powerBuyEnode1 = powerBuyEnode1 + arrowDir6.value
+        pricePowerBuyEnode1 = pricePowerBuyEnode1 + arrowDir6.value * arrowDir6.balance
+        powerSellEnode4 = powerSellEnode4 + arrowDir6.value
+        pricePowerSellEnode4 = pricePowerSellEnode4 + arrowDir6.value * arrowDir6.balance
+      }
+      if (arrowDir4.directionto == 'enode1') {
+        powerBuyEnode1 = powerBuyEnode1 + arrowDir4.value
+        pricePowerBuyEnode1 = pricePowerBuyEnode1 + arrowDir4.value * arrowDir4.balance
+        powerSellEnode3 = powerSellEnode3 + arrowDir4.value
+        pricePowerSellEnode3 = pricePowerSellEnode3 + arrowDir4.value * arrowDir4.balance
+      }
+
+      if (arrowDir1.directionto == 'enode2') {
+        powerBuyEnode2 = powerBuyEnode2 + arrowDir1.value
+        pricePowerBuyEnode2 = pricePowerBuyEnode2 + arrowDir1.value * arrowDir1.balance
+        powerSellEnode1 = powerSellEnode1 + arrowDir1.value
+        pricePowerSellEnode1 = pricePowerSellEnode1 + arrowDir1.value * arrowDir1.balance
+      }
+      if (arrowDir2.directionto == 'enode2') {
+        powerBuyEnode2 = powerBuyEnode2 + arrowDir2.value
+        pricePowerBuyEnode2 = pricePowerBuyEnode2 + arrowDir2.value * arrowDir2.balance
+        powerSellEnode4 = powerSellEnode4 + arrowDir2.value
+        pricePowerSellEnode4 = pricePowerSellEnode4 + arrowDir2.value * arrowDir2.balance
+      }
+      if (arrowDir5.directionto == 'enode2') {
+        powerBuyEnode2 = powerBuyEnode2 + arrowDir5.value
+        pricePowerBuyEnode2 = pricePowerBuyEnode2 + arrowDir5.value * arrowDir5.balance
+        powerSellEnode3 = powerSellEnode3 + arrowDir5.value
+        pricePowerSellEnode3 = pricePowerSellEnode3 + arrowDir5.value * arrowDir5.balance
+      }
+
+      if (arrowDir4.directionto == 'enode3') {
+        powerBuyEnode3 = powerBuyEnode3 + arrowDir4.value
+        pricePowerBuyEnode3 = pricePowerBuyEnode3 + arrowDir4.value * arrowDir4.balance
+        powerSellEnode1 = powerSellEnode1 + arrowDir4.value
+        pricePowerSellEnode1 = pricePowerSellEnode1 + arrowDir4.value * arrowDir4.balance
+      }
+
+      if (arrowDir5.directionto == 'enode3') {
+        powerBuyEnode3 = powerBuyEnode3 + arrowDir5.value
+        pricePowerBuyEnode3 = pricePowerBuyEnode3 + arrowDir5.value * arrowDir5.balance
+        powerSellEnode2 = powerSellEnode2 + arrowDir5.value
+        pricePowerSellEnode2 = pricePowerSellEnode2 + arrowDir5.value * arrowDir5.balance
+      }
+      if (arrowDir3.directionto == 'enode3') {
+        powerBuyEnode3 = powerBuyEnode3 + arrowDir3.value
+        pricePowerBuyEnode3 = pricePowerBuyEnode3 + arrowDir3.value * arrowDir3.balance
+        powerSellEnode4 = powerSellEnode4 + arrowDir3.value
+        pricePowerSellEnode4 = pricePowerSellEnode4 + arrowDir3.value * arrowDir3.balance
+      }
+
+      if (arrowDir2.directionto == 'enode4') {
+        powerBuyEnode4 = powerBuyEnode4 + arrowDir2.value
+        pricePowerBuyEnode4 = pricePowerBuyEnode4 + arrowDir2.value * arrowDir2.balance
+        powerSellEnode2 = powerSellEnode2 + arrowDir2.value
+        pricePowerSellEnode2 = pricePowerSellEnode2 + arrowDir2.value * arrowDir2.balance
+      }
+      if (arrowDir6.directionto == 'enode4') {
+        powerBuyEnode4 = powerBuyEnode4 + arrowDir6.value
+        pricePowerBuyEnode4 = pricePowerBuyEnode4 + arrowDir6.value * arrowDir6.balance
+        powerSellEnode1 = powerSellEnode1 + arrowDir6.value
+        pricePowerSellEnode1 = pricePowerSellEnode1 + arrowDir6.value * arrowDir6.balance
+      }
+      if (arrowDir3.directionto == 'enode4') {
+        powerBuyEnode4 = powerBuyEnode4 + arrowDir3.value
+        pricePowerBuyEnode4 = pricePowerBuyEnode4 + arrowDir3.value * arrowDir3.balance
+        powerSellEnode3 = powerSellEnode3 + arrowDir3.value
+        pricePowerSellEnode3 = pricePowerSellEnode3 + arrowDir3.value * arrowDir3.balance
+      }
+
+      plot3.time = date_hour_min
+      if (arrow11.value > 0) {
+        plot3.value = (arrow9.value - arrow5.value - powerBuyEnode1) * rout.balance + arrow5.value * gen1.value + pricePowerBuyEnode1 - pricePowerSellEnode1 +
+          (arrow10.value - arrow6.value - powerBuyEnode2) * rout.balance + arrow6.value * gen2.value + pricePowerBuyEnode2 - pricePowerSellEnode2 +
+          (arrow11.value - arrow7.value - powerBuyEnode3) * rout.balance + arrow7.value * gen3.value + pricePowerBuyEnode3 - pricePowerSellEnode3 +
+          (arrow12.value - arrow8.value - powerBuyEnode4) * rout.balance + arrow8.value * gen4.value + pricePowerBuyEnode4 - pricePowerSellEnode4
+      } else if (arrow11.value <= 0) {
+        plot3.value = (arrow9.value - arrow5.value - powerBuyEnode1) * rout.balance + arrow5.value * gen1.value + pricePowerBuyEnode1 - pricePowerSellEnode1 +
+          (arrow10.value - arrow6.value - powerBuyEnode2) * rout.balance + arrow6.value * gen2.value + pricePowerBuyEnode2 - pricePowerSellEnode2 +
+          (arrow11.value - arrow7.value - powerBuyEnode3) * rout.balance + pricePowerBuyEnode3 - pricePowerSellEnode3 +
+          (arrow12.value - arrow8.value - powerBuyEnode4) * rout.balance + arrow8.value * gen4.value + pricePowerBuyEnode4 - pricePowerSellEnode4
+      }
       ws.send(JSON.stringify(arrowDir1))
       ws.send(JSON.stringify(arrowDir2))
       ws.send(JSON.stringify(arrowDir3))
@@ -1486,6 +1919,51 @@ app.ws('/plot', function(ws, req) {
       ws.send(JSON.stringify(plot1))
     }
 
+    if (json_msg.port == 'enode1' && json_msg.port2 == "gen") {
+      console.log("gen price json %o", value)
+      gen1.value = json_msg.value;
+      gen1.time = json_msg.time;
+      console.log("gen %o", gen1)
+    }
+    if (json_msg.port == 'enode2' && json_msg.port2 == "gen") {
+      console.log("gen price json %o", value)
+      gen2.value = json_msg.value;
+      gen2.time = json_msg.time;
+      console.log("gen %o", gen2)
+    }
+    if (json_msg.port == 'enode3' && json_msg.port2 == "gen") {
+      console.log("gen price json %o", value)
+      gen3.value = json_msg.value;
+      gen3.time = json_msg.time;
+      console.log("gen %o", gen3)
+    }
+    if (json_msg.port == 'enode4' && json_msg.port2 == "gen") {
+      console.log("gen price json %o", value)
+      gen4.value = json_msg.value;
+      gen4.time = json_msg.time;
+      console.log("gen %o", gen4)
+    }
+
+    if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+      (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
+      (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
+      (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
+    ) {
+      console.log("plot2 %o", plot2)
+      ws.send(JSON.stringify(plot2))
+    }
+
+    if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
+      (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
+      (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+      (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
+      (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
+      (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
+    ) {
+      console.log("plot3 %o", plot3)
+      ws.send(JSON.stringify(plot3))
+    }
+
 
   }
 
@@ -1521,7 +1999,8 @@ app.ws('/router', function(ws, req) {
         rout.time = json_msg.time;
         console.log("router energy %o", rout)
       }
-      if ((json_msg.port == 'emeter1' || json_msg.port == 'emeter2' || json_msg.port == 'emeter3' || json_msg.port == 'emeter4') && json_msg.port2 == "power") {
+      if ((json_msg.port == 'emeter1' || json_msg.port == 'emeter2' ||
+          json_msg.port == 'emeter3' || json_msg.port == 'emeter4') && json_msg.port2 == "power") {
         console.log("router json %o", value)
         rout.power = arrow1.value + arrow2.value + arrow3.value + arrow4.value
         rout.time = json_msg.time;

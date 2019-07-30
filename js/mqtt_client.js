@@ -98,6 +98,21 @@ class ClientMQTT {
       this.handler(msg_type, JSON.stringify(power_value))
     }
 
+//115
+if (topic.split('/')[4] == 'parameter0' && topic.split('/')[2].toString().includes('enode')) {
+  console.log("115 topic")
+  var power_value = {
+    // For example, enodeX
+    node: topic.split('/')[1],
+    // For ex, portX
+    port: topic.split('/')[2],
+    port2: topic.split('/')[3],
+    time: json_msg.timeStamp,
+    // power
+    value: json_msg.value
+  }
+  this.handler(msg_type, JSON.stringify(power_value))
+}
 
     //87
     if (topic.split('/')[4] == 'status' && topic.split('/')[4].toString().includes('dc')) {
@@ -221,7 +236,7 @@ class ClientMQTT {
     this.Client.subscribe("/testbed/+/contracts/+/init")
     this.Client.subscribe("/testbed/amigo/set_price")
     this.Client.subscribe("/testbed/erouter/setpower_out")
-
+this.Client.subscribe("/testbed/enodeX/gen/parameter0")
 
     this.Client.on('message', this.topic_handler.bind(this))
   }
