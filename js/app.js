@@ -1201,19 +1201,19 @@ app.ws('/arrows', function(ws, req) {
       }
       if (json_msg.id == 5) {
         mqttDATA.publish73(1, json_msg.status)
-        mqttDATA.publish73(1, json_msg.status)
+        mqttDATA.publish73(1, !json_msg.status)
       }
       if (json_msg.id == 7) {
         mqttDATA.publish73(3, json_msg.status)
-        mqttDATA.publish73(3, json_msg.status)
+        mqttDATA.publish73(3, !json_msg.status)
       }
       if (json_msg.id == 9) {
         mqttDATA.publish73(2, json_msg.status)
-        mqttDATA.publish73(2, json_msg.status)
+        mqttDATA.publish73(2, !json_msg.status)
       }
       if (json_msg.id == 11) {
         mqttDATA.publish73(4, json_msg.status)
-        mqttDATA.publish73(4, json_msg.status)
+        mqttDATA.publish73(4, !json_msg.status)
       }
     } catch (ex) {
       console.log(ex)
