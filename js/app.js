@@ -392,34 +392,34 @@ function handler(type, value) {
 
 
     if (json_msg.port == 'enode1' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
-      console.log("arrow912 status json %o", value)
-      arrow9pre.status1 = json_msg.value;
+      console.log("arrow912  json %o", value)
+      arrow9pre.value1 = json_msg.value;
       console.log("arrow912 %o", arrow9pre)
     }
     if (json_msg.port == 'enode1' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
-      console.log("arrow912 status json %o", value)
-      arrow9pre.status2 = json_msg.value;
+      console.log("arrow912  json %o", value)
+      arrow9pre.value2 = json_msg.value;
       console.log("arrow912 %o", arrow9pre)
     }
     if (json_msg.port == 'enode1' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
-      console.log("arrow912 status json %o", value)
-      arrow9pre.status3 = json_msg.value;
+      console.log("arrow912  json %o", value)
+      arrow9pre.value3 = json_msg.value;
       console.log("arrow912 %o", arrow9pre)
     }
 
     if (json_msg.port == 'enode2' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
-      console.log("arrow912 status json %o", value)
-      arrow10pre.status1 = json_msg.value;
+      console.log("arrow912  json %o", value)
+      arrow10pre.value1 = json_msg.value;
       console.log("arrow912 %o", arrow10pre)
     }
     if (json_msg.port == 'enode2' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
-      console.log("arrow912 status json %o", value)
-      arrow10pre.status2 = json_msg.value;
+      console.log("arrow912  json %o", value)
+      arrow10pre.value2 = json_msg.value;
       console.log("arrow912 %o", arrow10pre)
     }
     if (json_msg.port == 'enode2' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
-      console.log("arrow912 status json %o", value)
-      arrow10pre.status3 = json_msg.value;
+      console.log("arrow912  json %o", value)
+      arrow10pre.value3 = json_msg.value;
       console.log("arrow812 %o", arrow10pre)
     }
 
@@ -427,74 +427,74 @@ function handler(type, value) {
 
 
     if (json_msg.port == 'enode3' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
-      console.log("arrow912 status json %o", value)
-      arrow11pre.status1 = json_msg.value;
+      console.log("arrow912  json %o", value)
+      arrow11pre.value1 = json_msg.value;
       console.log("arrow912 %o", arrow11pre)
     }
     if (json_msg.port == 'enode3' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
-      console.log("arrow912 status json %o", value)
-      arrow11pre.status2 = json_msg.value;
+      console.log("arrow912  json %o", value)
+      arrow11pre.value2 = json_msg.value;
       console.log("arrow912 %o", arrow11pre)
     }
     if (json_msg.port == 'enode3' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
-      console.log("arrow912 status json %o", value)
-      arrow11pre.status3 = json_msg.value;
+      console.log("arrow912  json %o", value)
+      arrow11pre.value3 = json_msg.value;
       console.log("arrow812 %o", arrow11pre)
     }
 
 
 
     if (json_msg.port == 'enode4' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
-      console.log("arrow912 status json %o", value)
-      arrow12pre.status1 = json_msg.value;
+      console.log("arrow912  json %o", value)
+      arrow12pre.value1 = json_msg.value;
       console.log("arrow912 %o", arrow12pre)
     }
     if (json_msg.port == 'enode4' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
-      console.log("arrow912 status json %o", value)
-      arrow12pre.status2 = json_msg.value;
+      console.log("arrow912  json %o", value)
+      arrow12pre.value2 = json_msg.value;
       console.log("arrow912 %o", arrow12pre)
     }
     if (json_msg.port == 'enode4' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
-      console.log("arrow912 status json %o", value)
-      arrow12pre.status3 = json_msg.value;
+      console.log("arrow912  json %o", value)
+      arrow12pre.value3 = json_msg.value;
       console.log("arrow912 %o", arrow12pre)
     }
 
 
     if (json_msg.port == 'enode1' && json_msg.port2 == "load" && json_msg.port3 == "relay1") {
-      console.log("arrow912 json %o", value)
-      arrow9pre.value1 = json_msg.value;
+      console.log("arrow912 status json %o", value)
+      arrow9pre.status1 = json_msg.value;
       arrow9pre.time = json_msg.time;
       console.log("arrow912 %o", arrow9pre)
     }
     if (json_msg.port == 'enode1' && json_msg.port2 == "load" && json_msg.port3 == "relay2") {
-      console.log("arrow912 json %o", value)
-      arrow9pre.value2 = json_msg.value;
+      console.log("arrow912 status json %o", value)
+      arrow9pre.status2 = json_msg.value;
       arrow9pre.time = json_msg.time;
       console.log("arrow912 %o", arrow9pre)
     }
     if (json_msg.port == 'enode1' && json_msg.port2 == "load" && json_msg.port3 == "relay3") {
-      console.log("arrow912 json %o", value)
-      arrow9pre.value3 = json_msg.value;
+      console.log("arrow912 status json %o", value)
+      arrow9pre.status3 = json_msg.value;
       arrow9pre.time = json_msg.time;
       console.log("arrow912 %o", arrow9pre)
     }
 
     if (json_msg.port == 'enode2' && json_msg.port2 == "load" && json_msg.port3 == "relay1") {
-      console.log("arrow912 json %o", value)
-      arrow10pre.value1 = json_msg.value;
+      console.log("arrow912 status json %o", value)
+      arrow10pre.status1 = json_msg.value;
       arrow10pre.time = json_msg.time;
       console.log("arrow912 %o", arrow10pre)
     }
     if (json_msg.port == 'enode2' && json_msg.port2 == "load" && json_msg.port3 == "relay2") {
-      console.log("arrow912 json %o", value)
-      arrow10pre.value2 = json_msg.value;
+      console.log("arrow912 status json %o", value)
+      arrow10pre.status2 = json_msg.value;
       arrow10pre.time = json_msg.time;
       console.log("arrow912 %o", arrow10pre)
     }
     if (json_msg.port == 'enode2' && json_msg.port2 == "load" && json_msg.port3 == "relay3") {
-      console.log("arrow912 json %o", value)
-      arrow10pre.value3 = json_msg.value;
+      console.log("arrow912 status json %o", value)
+      arrow10pre.status3 = json_msg.value;
       arrow10pre.time = json_msg.time;
       console.log("arrow812 %o", arrow10pre)
     }
@@ -503,20 +503,20 @@ function handler(type, value) {
 
 
     if (json_msg.port == 'enode3' && json_msg.port2 == "load" && json_msg.port3 == "relay1") {
-      console.log("arrow912 json %o", value)
-      arrow11pre.value1 = json_msg.value;
+      console.log("arrow912 status json %o", value)
+      arrow11pre.status1 = json_msg.value;
       arrow11pre.time = json_msg.time;
       console.log("arrow912 %o", arrow11pre)
     }
     if (json_msg.port == 'enode3' && json_msg.port2 == "load" && json_msg.port3 == "relay2") {
-      console.log("arrow912 json %o", value)
-      arrow11pre.value2 = json_msg.value;
+      console.log("arrow912 status json %o", value)
+      arrow11pre.status2 = json_msg.value;
       arrow11pre.time = json_msg.time;
       console.log("arrow912 %o", arrow11pre)
     }
     if (json_msg.port == 'enode3' && json_msg.port2 == "load" && json_msg.port3 == "relay3") {
-      console.log("arrow912 json %o", value)
-      arrow11pre.value3 = json_msg.value;
+      console.log("arrow912 status json %o", value)
+      arrow11pre.status3 = json_msg.value;
       arrow11pre.time = json_msg.time;
       console.log("arrow812 %o", arrow11pre)
     }
@@ -524,23 +524,35 @@ function handler(type, value) {
 
 
     if (json_msg.port == 'enode4' && json_msg.port2 == "load" && json_msg.port3 == "relay1") {
-      console.log("arrow912 json %o", value)
-      arrow12pre.value1 = json_msg.value;
+      console.log("arrow912 status json %o", value)
+      arrow12pre.status1 = json_msg.value;
       arrow12pre.time = json_msg.time;
       console.log("arrow912 %o", arrow12pre)
     }
     if (json_msg.port == 'enode4' && json_msg.port2 == "load" && json_msg.port3 == "relay2") {
-      console.log("arrow912 json %o", value)
-      arrow12pre.value2 = json_msg.value;
+      console.log("arrow912 status json %o", value)
+      arrow12pre.status2 = json_msg.value;
       arrow12pre.time = json_msg.time;
       console.log("arrow912 %o", arrow12pre)
     }
     if (json_msg.port == 'enode4' && json_msg.port2 == "load" && json_msg.port3 == "relay3") {
-      console.log("arrow912 json %o", value)
-      arrow12pre.value3 = json_msg.value;
+      console.log("arrow912 status json %o", value)
+      arrow12pre.status3 = json_msg.value;
       arrow12pre.time = json_msg.time;
       console.log("arrow912 %o", arrow12pre)
     }
+    arrow9.status = arrow9pre.status1 || arrow9pre.status2 || arrow9pre.status3
+    arrow10.status = arrow10pre.status1 || arrow10pre.status2 || arrow10pre.status3
+    arrow11.status = arrow11pre.status1 || arrow11pre.status2 || arrow11pre.status3
+    arrow12.status = arrow12pre.status1 || arrow12pre.status2 || arrow12pre.status3
+    arrow9.value = arrow9pre.value1 * arrow9pre.status1 + arrow9pre.value2 * arrow9pre.status2 + arrow9pre.value3 * arrow9pre.status3
+    arrow10.value = arrow10pre.value1 * arrow10pre.status1 + arrow10pre.value2 * arrow10pre.status2 + arrow10pre.value3 * arrow10pre.status3
+    arrow11.value = arrow11pre.value1 * arrow11pre.status1 + arrow11pre.value2 * arrow11pre.status2 + arrow11pre.value3 * arrow11pre.status3
+    arrow12.value = arrow12pre.value1 * arrow12pre.status1 + arrow12pre.value2 * arrow12pre.status2 + arrow12pre.value3 * arrow12pre.status3
+    console.log("arrow9 %o", arrow9)
+    console.log("arrow10 %o", arrow10)
+    console.log("arrow11 %o", arrow11)
+    console.log("arrow12 %o", arrow12)
     //  /testbed/enodeX/portX/power
     if (json_msg.port == 'enode1' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
       console.log("allowDir json %o", value)
@@ -735,25 +747,41 @@ function handler(type, value) {
       rout.time = json_msg.time;
       console.log("router energy %o", rout)
     }
+    var date = new Date()
+    let date_hour_min = date.getHours() + ":" + date.getMinutes()
+    plot1.time = date_hour_min
+    plot1.value = (arrow9.value + arrow10.value + arrow11.value + arrow12.value) * rout.balance
+    console.log("plot1 %o", plot1)
     //TOPICS WHICH CONNECT WITH GRAPH
     if (true) {
-      let date_hour_min = date.getHours() + ":" + date.getMinutes()
 
-      database.ref('plot/' + timestamp).set({
-        id: 1,
-        time: date_hour_min,
-        value: json_msg.value
-      });
-      database.ref('plot/' + timestamp).set({
-        id: 2,
-        time: date_hour_min,
-        value: (json_msg.value + 0.2)
-      });
-      database.ref('plot/' + timestamp).set({
-        id: 3,
-        time: date_hour_min,
-        value: (json_msg.value + 0.3)
-      });
+      if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay'))) {
+        console.log("plot1 db %o", plot1)
+        let date_hour_min = date.getHours() + ":" + date.getMinutes()
+        database.ref('plot/' + timestamp).set({
+          id: 1,
+          time: date_hour_min,
+          value: plot1.value
+        });
+      }
+
+
+
+      // let date_hour_min = date.getHours() + ":" + date.getMinutes()
+      // database.ref('plot/' + timestamp).set({
+      //   id: 2,
+      //   time: date_hour_min,
+      //   value: (json_msg.value + 0.2)
+      // });
+      //
+      // date_hour_min = date.getHours() + ":" + date.getMinutes()
+      // database.ref('plot/' + timestamp).set({
+      //   id: 3,
+      //   time: date_hour_min,
+      //   value: (json_msg.value + 0.3)
+      // });
 
       ref.once("value", function(snapshot) {
           //console.log(snapshot.numChildren());
@@ -846,6 +874,14 @@ app.ws('/preset', function(ws, req) {
 
   ws.on('message', function incoming(data) {
     console.log(data);
+    var json_msg = data;
+    try {
+      json_msg = JSON.parse(data)
+      mqttDATA.publish113(json_msg.value)
+    } catch (ex) {
+      console.log(ex);
+    }
+
   });
 
   ws.on('close', function() {
@@ -974,40 +1010,111 @@ app.ws('/arrows', function(ws, req) {
         arrow8.status = json_msg.value;
         console.log("arrow status %o", arrow8)
       }
-      if (json_msg.port == 'enode1' && json_msg.port2 == "load" && json_msg.port3 == "relay1") {
-        console.log("arrow912 json %o", value)
+
+      if (json_msg.port == 'enode1' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
+        console.log("arrow912  json %o", value)
         arrow9pre.value1 = json_msg.value;
+        console.log("arrow912 %o", arrow9pre)
+      }
+      if (json_msg.port == 'enode1' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
+        console.log("arrow912  json %o", value)
+        arrow9pre.value2 = json_msg.value;
+        console.log("arrow912 %o", arrow9pre)
+      }
+      if (json_msg.port == 'enode1' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
+        console.log("arrow912  json %o", value)
+        arrow9pre.value3 = json_msg.value;
+        console.log("arrow912 %o", arrow9pre)
+      }
+
+      if (json_msg.port == 'enode2' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
+        console.log("arrow912  json %o", value)
+        arrow10pre.value1 = json_msg.value;
+        console.log("arrow912 %o", arrow10pre)
+      }
+      if (json_msg.port == 'enode2' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
+        console.log("arrow912  json %o", value)
+        arrow10pre.value2 = json_msg.value;
+        console.log("arrow912 %o", arrow10pre)
+      }
+      if (json_msg.port == 'enode2' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
+        console.log("arrow912  json %o", value)
+        arrow10pre.value3 = json_msg.value;
+        console.log("arrow812 %o", arrow10pre)
+      }
+
+
+
+
+      if (json_msg.port == 'enode3' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
+        console.log("arrow912  json %o", value)
+        arrow11pre.value1 = json_msg.value;
+        console.log("arrow912 %o", arrow11pre)
+      }
+      if (json_msg.port == 'enode3' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
+        console.log("arrow912  json %o", value)
+        arrow11pre.value2 = json_msg.value;
+        console.log("arrow912 %o", arrow11pre)
+      }
+      if (json_msg.port == 'enode3' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
+        console.log("arrow912  json %o", value)
+        arrow11pre.value3 = json_msg.value;
+        console.log("arrow812 %o", arrow11pre)
+      }
+
+
+
+      if (json_msg.port == 'enode4' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
+        console.log("arrow912  json %o", value)
+        arrow12pre.value1 = json_msg.value;
+        console.log("arrow912 %o", arrow12pre)
+      }
+      if (json_msg.port == 'enode4' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
+        console.log("arrow912  json %o", value)
+        arrow12pre.value2 = json_msg.value;
+        console.log("arrow912 %o", arrow12pre)
+      }
+      if (json_msg.port == 'enode4' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
+        console.log("arrow912  json %o", value)
+        arrow12pre.value3 = json_msg.value;
+        console.log("arrow912 %o", arrow12pre)
+      }
+
+
+      if (json_msg.port == 'enode1' && json_msg.port2 == "load" && json_msg.port3 == "relay1") {
+        console.log("arrow912 status json %o", value)
+        arrow9pre.status1 = json_msg.value;
         arrow9pre.time = json_msg.time;
         console.log("arrow912 %o", arrow9pre)
       }
       if (json_msg.port == 'enode1' && json_msg.port2 == "load" && json_msg.port3 == "relay2") {
-        console.log("arrow912 json %o", value)
-        arrow9pre.value2 = json_msg.value;
+        console.log("arrow912 status json %o", value)
+        arrow9pre.status2 = json_msg.value;
         arrow9pre.time = json_msg.time;
         console.log("arrow912 %o", arrow9pre)
       }
       if (json_msg.port == 'enode1' && json_msg.port2 == "load" && json_msg.port3 == "relay3") {
-        console.log("arrow912 json %o", value)
-        arrow9pre.value3 = json_msg.value;
+        console.log("arrow912 status json %o", value)
+        arrow9pre.status3 = json_msg.value;
         arrow9pre.time = json_msg.time;
         console.log("arrow912 %o", arrow9pre)
       }
 
       if (json_msg.port == 'enode2' && json_msg.port2 == "load" && json_msg.port3 == "relay1") {
-        console.log("arrow912 json %o", value)
-        arrow10pre.value1 = json_msg.value;
+        console.log("arrow912 status json %o", value)
+        arrow10pre.status1 = json_msg.value;
         arrow10pre.time = json_msg.time;
         console.log("arrow912 %o", arrow10pre)
       }
       if (json_msg.port == 'enode2' && json_msg.port2 == "load" && json_msg.port3 == "relay2") {
-        console.log("arrow912 json %o", value)
-        arrow10pre.value2 = json_msg.value;
+        console.log("arrow912 status json %o", value)
+        arrow10pre.status2 = json_msg.value;
         arrow10pre.time = json_msg.time;
         console.log("arrow912 %o", arrow10pre)
       }
       if (json_msg.port == 'enode2' && json_msg.port2 == "load" && json_msg.port3 == "relay3") {
-        console.log("arrow912 json %o", value)
-        arrow10pre.value3 = json_msg.value;
+        console.log("arrow912 status json %o", value)
+        arrow10pre.status3 = json_msg.value;
         arrow10pre.time = json_msg.time;
         console.log("arrow812 %o", arrow10pre)
       }
@@ -1016,20 +1123,20 @@ app.ws('/arrows', function(ws, req) {
 
 
       if (json_msg.port == 'enode3' && json_msg.port2 == "load" && json_msg.port3 == "relay1") {
-        console.log("arrow912 json %o", value)
-        arrow11pre.value1 = json_msg.value;
+        console.log("arrow912 status json %o", value)
+        arrow11pre.status1 = json_msg.value;
         arrow11pre.time = json_msg.time;
         console.log("arrow912 %o", arrow11pre)
       }
       if (json_msg.port == 'enode3' && json_msg.port2 == "load" && json_msg.port3 == "relay2") {
-        console.log("arrow912 json %o", value)
-        arrow11pre.value2 = json_msg.value;
+        console.log("arrow912 status json %o", value)
+        arrow11pre.status2 = json_msg.value;
         arrow11pre.time = json_msg.time;
         console.log("arrow912 %o", arrow11pre)
       }
       if (json_msg.port == 'enode3' && json_msg.port2 == "load" && json_msg.port3 == "relay3") {
-        console.log("arrow912 json %o", value)
-        arrow11pre.value3 = json_msg.value;
+        console.log("arrow912 status json %o", value)
+        arrow11pre.status3 = json_msg.value;
         arrow11pre.time = json_msg.time;
         console.log("arrow812 %o", arrow11pre)
       }
@@ -1037,90 +1144,21 @@ app.ws('/arrows', function(ws, req) {
 
 
       if (json_msg.port == 'enode4' && json_msg.port2 == "load" && json_msg.port3 == "relay1") {
-        console.log("arrow912 json %o", value)
-        arrow12pre.value1 = json_msg.value;
+        console.log("arrow912 status json %o", value)
+        arrow12pre.status1 = json_msg.value;
         arrow12pre.time = json_msg.time;
         console.log("arrow912 %o", arrow12pre)
       }
       if (json_msg.port == 'enode4' && json_msg.port2 == "load" && json_msg.port3 == "relay2") {
-        console.log("arrow912 json %o", value)
-        arrow12pre.value2 = json_msg.value;
+        console.log("arrow912 status json %o", value)
+        arrow12pre.status2 = json_msg.value;
         arrow12pre.time = json_msg.time;
         console.log("arrow912 %o", arrow12pre)
       }
       if (json_msg.port == 'enode4' && json_msg.port2 == "load" && json_msg.port3 == "relay3") {
-        console.log("arrow912 json %o", value)
-        arrow12pre.value3 = json_msg.value;
-        arrow12pre.time = json_msg.time;
-        console.log("arrow912 %o", arrow12pre)
-      }
-
-      if (json_msg.port == 'enode1' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
-        console.log("arrow912 status json %o", value)
-        arrow9pre.status1 = json_msg.value;
-        console.log("arrow912 %o", arrow9pre)
-      }
-      if (json_msg.port == 'enode1' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
-        console.log("arrow912 status json %o", value)
-        arrow9pre.status2 = json_msg.value;
-        console.log("arrow912 %o", arrow9pre)
-      }
-      if (json_msg.port == 'enode1' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
-        console.log("arrow912 status json %o", value)
-        arrow9pre.status3 = json_msg.value;
-        console.log("arrow912 %o", arrow9pre)
-      }
-
-      if (json_msg.port == 'enode2' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
-        console.log("arrow912 status json %o", value)
-        arrow10pre.status1 = json_msg.value;
-        console.log("arrow912 %o", arrow10pre)
-      }
-      if (json_msg.port == 'enode2' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
-        console.log("arrow912 status json %o", value)
-        arrow10pre.status2 = json_msg.value;
-        console.log("arrow912 %o", arrow10pre)
-      }
-      if (json_msg.port == 'enode2' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
-        console.log("arrow912 status json %o", value)
-        arrow10pre.status3 = json_msg.value;
-        console.log("arrow812 %o", arrow10pre)
-      }
-
-
-
-
-      if (json_msg.port == 'enode3' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
-        console.log("arrow912 status json %o", value)
-        arrow11pre.status1 = json_msg.value;
-        console.log("arrow912 %o", arrow11pre)
-      }
-      if (json_msg.port == 'enode3' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
-        console.log("arrow912 status json %o", value)
-        arrow11pre.status2 = json_msg.value;
-        console.log("arrow912 %o", arrow11pre)
-      }
-      if (json_msg.port == 'enode3' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
-        console.log("arrow912 status json %o", value)
-        arrow11pre.status3 = json_msg.value;
-        console.log("arrow812 %o", arrow11pre)
-      }
-
-
-
-      if (json_msg.port == 'enode4' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
-        console.log("arrow912 status json %o", value)
-        arrow12pre.status1 = json_msg.value;
-        console.log("arrow912 %o", arrow12pre)
-      }
-      if (json_msg.port == 'enode4' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
-        console.log("arrow912 status json %o", value)
-        arrow12pre.status2 = json_msg.value;
-        console.log("arrow912 %o", arrow12pre)
-      }
-      if (json_msg.port == 'enode4' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
         console.log("arrow912 status json %o", value)
         arrow12pre.status3 = json_msg.value;
+        arrow12pre.time = json_msg.time;
         console.log("arrow912 %o", arrow12pre)
       }
 
@@ -1132,6 +1170,10 @@ app.ws('/arrows', function(ws, req) {
       arrow10.value = arrow10pre.value1 * arrow10pre.status1 + arrow10pre.value2 * arrow10pre.status2 + arrow10pre.value3 * arrow10pre.status3
       arrow11.value = arrow11pre.value1 * arrow11pre.status1 + arrow11pre.value2 * arrow11pre.status2 + arrow11pre.value3 * arrow11pre.status3
       arrow12.value = arrow12pre.value1 * arrow12pre.status1 + arrow12pre.value2 * arrow12pre.status2 + arrow12pre.value3 * arrow12pre.status3
+      var date = new Date()
+      let date_hour_min = date.getHours() + ":" + date.getMinutes()
+      plot1.time = date_hour_min
+      plot1.value = (arrow9.value + arrow10.value + arrow11.value + arrow12.value) * rout.balance
       ws.send(JSON.stringify(arrow1))
       ws.send(JSON.stringify(arrow2))
       ws.send(JSON.stringify(arrow3))
@@ -1150,6 +1192,32 @@ app.ws('/arrows', function(ws, req) {
   }
   ws.on('message', function incoming(data) {
     console.log(data);
+    var json_msg = data;
+    try {
+      json_msg = JSON.parse(data)
+      if (json_msg.id >= 1 && json_msg.id <= 4) {
+        mqttDATA.publish77(json_msg.id, json_msg.status)
+        mqttDATA.publish77(json_msg.id, !json_msg.status)
+      }
+      if (json_msg.id == 5) {
+        mqttDATA.publish73(1, json_msg.status)
+        mqttDATA.publish73(1, json_msg.status)
+      }
+      if (json_msg.id == 7) {
+        mqttDATA.publish73(3, json_msg.status)
+        mqttDATA.publish73(3, json_msg.status)
+      }
+      if (json_msg.id == 9) {
+        mqttDATA.publish73(2, json_msg.status)
+        mqttDATA.publish73(2, json_msg.status)
+      }
+      if (json_msg.id == 11) {
+        mqttDATA.publish73(4, json_msg.status)
+        mqttDATA.publish73(4, json_msg.status)
+      }
+    } catch (ex) {
+      console.log(ex)
+    }
   });
   ws.on('close', function() {
     mqttDATA.stop();
@@ -1365,6 +1433,16 @@ app.ws('/arrowdirections', function(ws, req) {
   }
   ws.on('message', function incoming(data) {
     console.log(data);
+    var json_msg = data;
+    try {
+      json_msg = JSON.parse(data)
+      if (json_msg.id >= 1 && json_msg.id <= 6) {
+        mqttDATA.publish67(json_msg.id, json_msg.status)
+        mqttDATA.publish67(json_msg.id, !json_msg.status)
+      }
+    } catch (ex) {
+      console.log(ex)
+    }
   });
   ws.on('close', function() {
     mqttDATA.stop();
@@ -1374,31 +1452,42 @@ app.ws('/arrowdirections', function(ws, req) {
 
 app.ws('/plot', function(ws, req) {
 
-  // const mqttDATA = new mqtt_cl.ClientMQTT()
-  // mqttDATA.add_handler(handlerDATA)
-  // mqttDATA.start()
+  // void async function() {
   //
-  // function handlerDATA(type, value) {
-  void async function() {
+  //   let i = 1000;
+  //   do {
+  //     var date = new Date()
+  //     let date_hour_min = date.getHours() + ":" + date.getMinutes()
+  //     plot1.time = date_hour_min
+  //     plot2.time = date_hour_min
+  //     plot3.time = date_hour_min
+  //     console.log("plot1 %o", plot1)
+  //     console.log("plot2 %o", plot2)
+  //     console.log("plot3 %o", plot3)
+  //     ws.send(JSON.stringify(plot1))
+  //     ws.send(JSON.stringify(plot2))
+  //     ws.send(JSON.stringify(plot3))
+  //     await msleep(1000);
+  //   }
+  //   while (i-- > 0)
+  // }();
 
-    let i = 1000;
-    do {
-      var date = new Date()
-        let date_hour_min = date.getHours() + ":" + date.getMinutes()
-      plot1.time = date_hour_min
-      plot2.time = date_hour_min
-      plot3.time = date_hour_min
+
+  const mqttDATA = new mqtt_cl.ClientMQTT()
+  mqttDATA.add_handler(handlerDATA)
+  mqttDATA.start()
+  ws.send(JSON.stringify(plot1))
+
+  function handlerDATA(type, value) {
+    if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+      (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
+      (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay'))) {
       console.log("plot1 %o", plot1)
-      console.log("plot2 %o", plot2)
-      console.log("plot3 %o", plot3)
       ws.send(JSON.stringify(plot1))
-      ws.send(JSON.stringify(plot2))
-      ws.send(JSON.stringify(plot3))
-      await msleep(1000);
     }
-    while (i-- > 0)
-  }();
-  // }
+
+
+  }
 
   ws.on('close', function() {
     // mqttDATA.stop();

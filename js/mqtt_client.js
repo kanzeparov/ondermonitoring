@@ -116,27 +116,28 @@ class ClientMQTT {
     }
 
     //16, 6, 32,33,34,35
-    if (msg_type == 'ext_battery' ||
+    if ((msg_type == 'ext_battery' && (topic.split('/')[4] == 'power')) ||
       (topic.split('/')[2].toString().includes('enode') &&
-        topic.split('/')[3].toString().includes('port')) ||
+        topic.split('/')[3].toString().includes('port') && (topic.split('/')[4] == 'power')) ||
       (topic.split('/')[2].toString().includes('enode') &&
         topic.split('/')[3].toString().includes('load') &&
         topic.split('/')[4] == 'value')
     ) {
-      if (topic.split('/')[4] == 'power') {
-        console.log("16, 6, 32,33,34,35 topic")
-        var power_value = {
-          // For example, enodeX
-          node: topic.split('/')[1],
-          // For ex, portX
-          port: topic.split('/')[2],
-          port2: topic.split('/')[3],
-          time: json_msg.timeStamp,
-          // power
-          value: json_msg.value
-        }
-        this.handler(msg_type, JSON.stringify(power_value))
+
+      console.log("16, 6, 32,33,34,35 topic")
+      var power_value = {
+        // For example, enodeX
+        node: topic.split('/')[1],
+        // For ex, portX
+        port: topic.split('/')[2],
+        port2: topic.split('/')[3],
+        port3: topic.split('/')[4],
+        time: json_msg.timeStamp,
+        // power
+        value: json_msg.value
       }
+      this.handler(msg_type, JSON.stringify(power_value))
+
     }
 
 
@@ -162,8 +163,8 @@ class ClientMQTT {
     }
   }
 
-  publish113(enode, value) {
-    console.log("publish113 is hooked")
+  publish113(value) {
+    console.log("publish113 is hooked " + value)
     let topic = "/testbed/amigo/case_id"
     let payload = {
       value: value,
@@ -173,7 +174,7 @@ class ClientMQTT {
   }
 
   publish77(enode, value) {
-    console.log("publish77 is hooked")
+    console.log("publish77 is hooked enode " + enode + " " +  value)
     let topic = "/testbed/enode" + String(enode) + "/relay/ac/mode"
     let payload = {
       value: value,
@@ -183,7 +184,7 @@ class ClientMQTT {
   }
 
   publish73(enode, value) {
-    console.log("publish73 is hooked")
+    console.log("publish73 is hooked  enode " + enode + " " +  value)
     let topic = "testbed/enode" + String(enode) + "/relay/der/mode"
     let payload = {
       value: value,
@@ -193,7 +194,7 @@ class ClientMQTT {
   }
 
   publish67(dc_num, value) {
-    console.log("publish67 is hooked")
+    console.log("publish67 is hooked dc_num " + dc_num + " " +  value)
     let topic = "/testbed/relay/dc" + String(dc_num) + "/mode"
     let payload = {
       value: value,
