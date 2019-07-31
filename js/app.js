@@ -948,7 +948,7 @@ function handler(type, value) {
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay'))) {
         console.log("plot1 db %o", plot1)
         let date_hour_min = date.getHours() + ":" + date.getMinutes()
-        database.ref('plot/traditional' + timestamp).set({
+        database.ref('plot/traditional/' + timestamp).set({
           time: date_hour_min,
           value: plot1.value
         });
@@ -960,7 +960,7 @@ function handler(type, value) {
         (json_msg.port.toString().includes('enode')  && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
         let date_hour_min = date.getHours() + ":" + date.getMinutes()
-        database.ref('plot/distributed' + timestamp).set({
+        database.ref('plot/distributed/' + timestamp).set({
           time: date_hour_min,
           value: (plot2.value)
         });
@@ -974,7 +974,7 @@ function handler(type, value) {
         (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
         let date_hour_min = date.getHours() + ":" + date.getMinutes()
-        database.ref('plot/internet' + timestamp).set({
+        database.ref('plot/internet/' + timestamp).set({
           time: date_hour_min,
           value: (plot3.value)
         });
@@ -985,6 +985,7 @@ function handler(type, value) {
 
       ref.once("value", function(snapshot) {
           //console.log(snapshot.numChildren());
+        console.log(child.key);
           snapshot.forEach((child) => {
             var date = new Date();
             var timestamp = date.getTime();
