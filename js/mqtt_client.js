@@ -91,7 +91,7 @@ class ClientMQTT {
         amount: json_msg.amount,
         seller: json_msg.seller,
         contragent: json_msg.contragent,
-        const: json_msg.const,
+        cost: json_msg.cost,
         // power
         timeStamp: json_msg.timestamp
       }
