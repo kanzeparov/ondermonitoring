@@ -2074,10 +2074,8 @@ app.ws('/router', function(ws, req) {
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
-  let json_msg = value;
-  try {
-    json_msg = JSON.parse(value)
-  }
+
+
 
   app.get('/data', function(req, res) {
     res.set("Access-Control-Allow-Origin", "*")
