@@ -43,12 +43,7 @@ var refDistribution = database.ref("plot/distributed")
 var refInternet = database.ref("plot/internet");
 
 
-ref.once("value", function(snapshot) {
-  console.log(snapshot.numChildren());
-  res.send(snapshot.val())
-}, function(errorObject) {
-  console.log("The read failed: " + errorObject.code);
-});
+
 
 const mqtt = new mqtt_cl.ClientMQTT()
 mqtt.add_handler(handler)
