@@ -293,13 +293,13 @@ var rout = {
 }
 
 function handler(type, value) {
-  //console.log("Receive new message %o", value)
+  console.log("Receive new message %o ", value)
   var date = new Date();
   var timestamp = date.getTime();
   let json_msg = value;
   try {
     json_msg = JSON.parse(value)
-    console.log("handler %o", json_msg)
+    console.log("handler %o" + (json_msg.port == 'enode2' && json_msg.port2 == "contracts"), json_msg)
 
     if (json_msg.port == 'enode1' && json_msg.port2 == "gen") {
       console.log("gen price json %o", value)
@@ -1608,26 +1608,26 @@ app.ws('/arrowdirections', function(ws, req) {
     var json_msg = value;
     try {
       json_msg = JSON.parse(value)
-      if (json_msg.port == 'enode1' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
+      if (json_msg.port == 'enode1' && json_msg.portX == 1 && json_msg.port3 == "power") {
         console.log("allowDir json %o", value)
         arrowDir1.value = json_msg.value;
         arrowDir1.time = json_msg.time;
         console.log("allowDir %o", arrowDir1)
       }
-      if (json_msg.port == 'enode1' && json_msg.port2 == "port2" && json_msg.port3 == "power") {
+      if (json_msg.port == 'enode1' && json_msg.portX == 2 && json_msg.port3 == "power") {
         console.log("allowDir json %o", value)
         arrowDir6.value = json_msg.value;
         arrowDir6.time = json_msg.time;
         console.log("allowDir %o", arrowDir6)
       }
-      if (json_msg.port == 'enode1' && json_msg.port2 == "port3" && json_msg.port3 == "power") {
+      if (json_msg.port == 'enode1' && json_msg.portX == 3 && json_msg.port3 == "power") {
         console.log("allowDir json %o", value)
         arrowDir4.value = json_msg.value;
         arrowDir4.time = json_msg.time;
         console.log("allowDir %o", arrowDir4)
       }
 
-      if (json_msg.port == 'enode2' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
+      if (json_msg.port == 'enode2' && json_msg.portX == 1 && json_msg.port3 == "power") {
         console.log("allowDir json %o", value)
         arrowDir1.value = json_msg.value;
         arrowDir1.time = json_msg.time;
