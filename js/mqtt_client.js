@@ -238,7 +238,7 @@ if (topic.split('/')[4] == 'parameter0' && topic.split('/')[2].toString().includ
     this.Client.subscribe("/testbed/+/contracts/+/init")
     this.Client.subscribe("/testbed/amigo/set_price")
     this.Client.subscribe("/testbed/erouter/setpower_out")
-this.Client.subscribe("/testbed/enodeX/gen/parameter0")
+this.Client.subscribe("/testbed/+/gen/parameter0")
 
     this.Client.on('message', this.topic_handler.bind(this))
   }
