@@ -2074,7 +2074,7 @@ app.ws('/router', function(ws, req) {
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
-
+}
 
 
   app.get('/data', function(req, res) {
