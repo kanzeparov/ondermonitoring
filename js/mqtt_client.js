@@ -231,6 +231,7 @@ if (topic.split('/')[4] == 'parameter0' && topic.split('/')[2].toString().includ
     this.Client.subscribe("/testbed/+/ext_battery/power")
     this.Client.subscribe("/testbed/+/load/+/status")
     this.Client.subscribe("/testbed/+/+/value")
+    this.Client.subscribe("/testbed/relay/+/mode")
     this.Client.subscribe("/testbed/relay/+/status")
     this.Client.subscribe("/testbed/+/+/power")
     this.Client.subscribe("/testbed/+/contracts/+/init")
