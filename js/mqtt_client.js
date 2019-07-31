@@ -75,7 +75,7 @@ class ClientMQTT {
 
 
     //18
-    if (topic.split('/')[5] == 'init' && topic.split('/')[4] == 'contractID') {
+    if (topic.split('/')[5] == 'init' && topic.split('/')[3] == 'contracts') {
       console.log("18 topic")
       var power_value = {
 
