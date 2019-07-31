@@ -11,7 +11,7 @@ let trunc = require('./trunc.js')
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('plot.db');
 var firebase = require('firebase');
-let timeDelete = 1;
+let timeDelete = 100;
 //var admin = require("firebase-admin");
 
 var firebaseConfig = {
@@ -41,6 +41,14 @@ var ref = database.ref("plot/");
 var refTraditional = database.ref("plot/traditional");
 var refDistribution = database.ref("plot/distributed")
 var refInternet = database.ref("plot/internet");
+
+
+ref.once("value", function(snapshot) {
+  console.log(snapshot.numChildren());
+  res.send(snapshot.val())
+}, function(errorObject) {
+  console.log("The read failed: " + errorObject.code);
+});
 
 const mqtt = new mqtt_cl.ClientMQTT()
 mqtt.add_handler(handler)
@@ -990,13 +998,13 @@ function handler(type, value) {
           //console.log(snapshot.numChildren());
 
           snapshot.forEach((child) => {
-            console.log("vaaaaalue traditional" + child.key);
+            //console.log("vaaaaalue traditional" + child.key);
             var date = new Date();
             var timestamp = date.getTime();
             // console.log(child.key);
             if (timestamp - child.key > timeDelete * 1000 * 60) {
               // console.log("delete " + "");
-              let userRef = database.ref('plot/traditional' + child.key);
+              let userRef = database.ref('plot/traditional/' + child.key);
               userRef.remove()
             }
           });
@@ -1009,13 +1017,13 @@ function handler(type, value) {
             //console.log(snapshot.numChildren());
 
             snapshot.forEach((child) => {
-              console.log("vaaaaalue distributed" + child.key);
+              //console.log("vaaaaalue distributed" + child.key);
               var date = new Date();
               var timestamp = date.getTime();
               // console.log(child.key);
               if (timestamp - child.key > timeDelete * 1000 * 60) {
                 // console.log("delete " + "");
-                let userRef = database.ref('plot/distributed' + child.key);
+                let userRef = database.ref('plot/distributed/' + child.key);
                 userRef.remove()
               }
             });
@@ -1028,13 +1036,13 @@ function handler(type, value) {
               //console.log(snapshot.numChildren());
 
               snapshot.forEach((child) => {
-                console.log("vaaaaalue internet" + child.key);
+                //console.log("vaaaaalue internet" + child.key);
                 var date = new Date();
                 var timestamp = date.getTime();
                 // console.log(child.key);
                 if (timestamp - child.key > timeDelete * 1000 * 60) {
                   // console.log("delete " + "");
-                  let userRef = database.ref('plot/internet' + child.key);
+                  let userRef = database.ref('plot/internet/' + child.key);
                   userRef.remove()
                 }
               });
