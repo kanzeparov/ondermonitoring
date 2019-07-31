@@ -115,7 +115,7 @@ if (topic.split('/')[4] == 'parameter0' && topic.split('/')[2].toString().includ
 }
 
     //87
-    if (topic.split('/')[4] == 'status' && topic.split('/')[4].toString().includes('dc')) {
+    if (topic.split('/')[4] == 'status' && topic.split('/')[3].toString().includes('dc')) {
       console.log("87 topic")
       var power_value = {
         // For example, enodeX
@@ -123,6 +123,7 @@ if (topic.split('/')[4] == 'parameter0' && topic.split('/')[2].toString().includ
         // For ex, portX
         port: topic.split('/')[2],
         port2: topic.split('/')[3],
+        port3: topic.split('/')[4],
         time: json_msg.timeStamp,
         // power
         value: json_msg.value

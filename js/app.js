@@ -11,7 +11,7 @@ let trunc = require('./trunc.js')
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('plot.db');
 var firebase = require('firebase');
-let timeDelete = 100;
+let timeDelete = 1000;
 //var admin = require("firebase-admin");
 
 var firebaseConfig = {
@@ -1008,43 +1008,43 @@ function handler(type, value) {
           console.log("The read failed: " + errorObject.code);
         });
 
-        refDistribution.once("value", function(snapshot) {
-            //console.log(snapshot.numChildren());
+      refDistribution.once("value", function(snapshot) {
+          //console.log(snapshot.numChildren());
 
-            snapshot.forEach((child) => {
-              //console.log("vaaaaalue distributed" + child.key);
-              var date = new Date();
-              var timestamp = date.getTime();
-              // console.log(child.key);
-              if (timestamp - child.key > timeDelete * 1000 * 60) {
-                // console.log("delete " + "");
-                let userRef = database.ref('plot/distributed/' + child.key);
-                userRef.remove()
-              }
-            });
-          },
-          function(errorObject) {
-            console.log("The read failed: " + errorObject.code);
+          snapshot.forEach((child) => {
+            //console.log("vaaaaalue distributed" + child.key);
+            var date = new Date();
+            var timestamp = date.getTime();
+            // console.log(child.key);
+            if (timestamp - child.key > timeDelete * 1000 * 60) {
+              // console.log("delete " + "");
+              let userRef = database.ref('plot/distributed/' + child.key);
+              userRef.remove()
+            }
           });
+        },
+        function(errorObject) {
+          console.log("The read failed: " + errorObject.code);
+        });
 
-          refInternet.once("value", function(snapshot) {
-              //console.log(snapshot.numChildren());
+      refInternet.once("value", function(snapshot) {
+          //console.log(snapshot.numChildren());
 
-              snapshot.forEach((child) => {
-                //console.log("vaaaaalue internet" + child.key);
-                var date = new Date();
-                var timestamp = date.getTime();
-                // console.log(child.key);
-                if (timestamp - child.key > timeDelete * 1000 * 60) {
-                  // console.log("delete " + "");
-                  let userRef = database.ref('plot/internet/' + child.key);
-                  userRef.remove()
-                }
-              });
-            },
-            function(errorObject) {
-              console.log("The read failed: " + errorObject.code);
-            });
+          snapshot.forEach((child) => {
+            //console.log("vaaaaalue internet" + child.key);
+            var date = new Date();
+            var timestamp = date.getTime();
+            // console.log(child.key);
+            if (timestamp - child.key > timeDelete * 1000 * 60) {
+              // console.log("delete " + "");
+              let userRef = database.ref('plot/internet/' + child.key);
+              userRef.remove()
+            }
+          });
+        },
+        function(errorObject) {
+          console.log("The read failed: " + errorObject.code);
+        });
     }
   } catch (ex) {
     console.log(ex.toString())
@@ -1954,59 +1954,64 @@ app.ws('/plot', function(ws, req) {
   ws.send(JSON.stringify(plot1))
 
   function handlerDATA(type, value) {
-    if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
-      (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
-      (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay'))) {
-      console.log("plot1 %o", plot1)
-      ws.send(JSON.stringify(plot1))
-    }
+    let json_msg = value;
+    try {
+      json_msg = JSON.parse(value)
+      if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay'))) {
+        console.log("plot1 %o", plot1)
+        ws.send(JSON.stringify(plot1))
+      }
 
-    if (json_msg.port == 'enode1' && json_msg.port2 == "gen") {
-      console.log("gen price json %o", value)
-      gen1.value = json_msg.value;
-      gen1.time = json_msg.time;
-      console.log("gen %o", gen1)
-    }
-    if (json_msg.port == 'enode2' && json_msg.port2 == "gen") {
-      console.log("gen price json %o", value)
-      gen2.value = json_msg.value;
-      gen2.time = json_msg.time;
-      console.log("gen %o", gen2)
-    }
-    if (json_msg.port == 'enode3' && json_msg.port2 == "gen") {
-      console.log("gen price json %o", value)
-      gen3.value = json_msg.value;
-      gen3.time = json_msg.time;
-      console.log("gen %o", gen3)
-    }
-    if (json_msg.port == 'enode4' && json_msg.port2 == "gen") {
-      console.log("gen price json %o", value)
-      gen4.value = json_msg.value;
-      gen4.time = json_msg.time;
-      console.log("gen %o", gen4)
-    }
+      if (json_msg.port == 'enode1' && json_msg.port2 == "gen") {
+        console.log("gen price json %o", value)
+        gen1.value = json_msg.value;
+        gen1.time = json_msg.time;
+        console.log("gen %o", gen1)
+      }
+      if (json_msg.port == 'enode2' && json_msg.port2 == "gen") {
+        console.log("gen price json %o", value)
+        gen2.value = json_msg.value;
+        gen2.time = json_msg.time;
+        console.log("gen %o", gen2)
+      }
+      if (json_msg.port == 'enode3' && json_msg.port2 == "gen") {
+        console.log("gen price json %o", value)
+        gen3.value = json_msg.value;
+        gen3.time = json_msg.time;
+        console.log("gen %o", gen3)
+      }
+      if (json_msg.port == 'enode4' && json_msg.port2 == "gen") {
+        console.log("gen price json %o", value)
+        gen4.value = json_msg.value;
+        gen4.time = json_msg.time;
+        console.log("gen %o", gen4)
+      }
 
-    if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
-      (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
-      (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
-      (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
-    ) {
-      console.log("plot2 %o", plot2)
-      ws.send(JSON.stringify(plot2))
+      if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
+        (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
+      ) {
+        console.log("plot2 %o", plot2)
+        ws.send(JSON.stringify(plot2))
+      }
+
+      if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
+        (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
+        (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
+      ) {
+        console.log("plot3 %o", plot3)
+        ws.send(JSON.stringify(plot3))
+      }
+
+    } catch (ex) {
+      console.log(ex)
     }
-
-    if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
-      (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
-      (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
-      (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
-      (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
-      (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
-    ) {
-      console.log("plot3 %o", plot3)
-      ws.send(JSON.stringify(plot3))
-    }
-
-
   }
 
   ws.on('close', function() {
@@ -2069,19 +2074,22 @@ app.ws('/router', function(ws, req) {
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
-}
+  let json_msg = value;
+  try {
+    json_msg = JSON.parse(value)
+  }
 
-app.get('/data', function(req, res) {
-  res.set("Access-Control-Allow-Origin", "*")
+  app.get('/data', function(req, res) {
+    res.set("Access-Control-Allow-Origin", "*")
 
-  ref.once("value", function(snapshot) {
-    console.log(snapshot.numChildren());
-    res.send(snapshot.val())
-  }, function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
+    ref.once("value", function(snapshot) {
+      console.log(snapshot.numChildren());
+      res.send(snapshot.val())
+    }, function(errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
   });
-});
 
-app.listen(process.env.PORT || 3000, function() {
-  console.log("Server started on %o", process.env.PORT);
-})
+  app.listen(process.env.PORT || 3000, function() {
+    console.log("Server started on %o", process.env.PORT);
+  })
