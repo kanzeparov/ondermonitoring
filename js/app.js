@@ -11,7 +11,7 @@ let trunc = require('./trunc.js')
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('plot.db');
 var firebase = require('firebase');
-let timeDelete = 30;
+let timeDelete = 1;
 //var admin = require("firebase-admin");
 
 var firebaseConfig = {
@@ -38,6 +38,9 @@ const msleep = time =>
   );
 var aWss = expressWs.getWss('/');
 var ref = database.ref("plot/");
+var refTraditional = database.ref("plot/traditional");
+var refDistribution = database.ref("plot/distributed")
+var refInternet = database.ref("plot/internet");
 
 const mqtt = new mqtt_cl.ClientMQTT()
 mqtt.add_handler(handler)
@@ -65,17 +68,17 @@ var gen4 = {
 var plot1 = {
   time: "0",
   value: 0,
-  id: 1
+  id: "traditional"
 }
 var plot2 = {
   time: "0",
   value: 0,
-  id: 2
+  id: "distributed"
 }
 var plot3 = {
   time: "0",
   value: 0,
-  id: 3
+  id: "internet"
 }
 var cell1 = {
   time: "0",
@@ -954,10 +957,10 @@ function handler(type, value) {
         });
       }
 
-      if((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+      if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
-        (json_msg.port.toString().includes('enode')  && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
         let date_hour_min = date.getHours() + ":" + date.getMinutes()
         database.ref('plot/distributed/' + timestamp).set({
@@ -983,16 +986,17 @@ function handler(type, value) {
 
 
 
-      ref.once("value", function(snapshot) {
+      refTraditional.once("value", function(snapshot) {
           //console.log(snapshot.numChildren());
-        console.log(child.key);
+
           snapshot.forEach((child) => {
+            console.log("vaaaaalue traditional" + child.key);
             var date = new Date();
             var timestamp = date.getTime();
             // console.log(child.key);
             if (timestamp - child.key > timeDelete * 1000 * 60) {
               // console.log("delete " + "");
-              let userRef = database.ref('plot/' + child.key);
+              let userRef = database.ref('plot/traditional' + child.key);
               userRef.remove()
             }
           });
@@ -1000,6 +1004,44 @@ function handler(type, value) {
         function(errorObject) {
           console.log("The read failed: " + errorObject.code);
         });
+
+        refDistribution.once("value", function(snapshot) {
+            //console.log(snapshot.numChildren());
+
+            snapshot.forEach((child) => {
+              console.log("vaaaaalue distributed" + child.key);
+              var date = new Date();
+              var timestamp = date.getTime();
+              // console.log(child.key);
+              if (timestamp - child.key > timeDelete * 1000 * 60) {
+                // console.log("delete " + "");
+                let userRef = database.ref('plot/distributed' + child.key);
+                userRef.remove()
+              }
+            });
+          },
+          function(errorObject) {
+            console.log("The read failed: " + errorObject.code);
+          });
+
+          refInternet.once("value", function(snapshot) {
+              //console.log(snapshot.numChildren());
+
+              snapshot.forEach((child) => {
+                console.log("vaaaaalue internet" + child.key);
+                var date = new Date();
+                var timestamp = date.getTime();
+                // console.log(child.key);
+                if (timestamp - child.key > timeDelete * 1000 * 60) {
+                  // console.log("delete " + "");
+                  let userRef = database.ref('plot/internet' + child.key);
+                  userRef.remove()
+                }
+              });
+            },
+            function(errorObject) {
+              console.log("The read failed: " + errorObject.code);
+            });
     }
   } catch (ex) {
     console.log(ex.toString())
