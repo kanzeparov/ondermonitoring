@@ -2086,8 +2086,7 @@ function handler(type, value) {
         });
       }
 
-
-      refDistribution.once("value", function(snapshot) {
+      database.ref('plot/distributed').once("value", function(snapshot) {
           //console.log(snapshot.numChildren());
 
           snapshot.forEach((child) => {
@@ -2106,7 +2105,7 @@ function handler(type, value) {
           console.log("The read failed: " + errorObject.code);
         });
 
-      refTraditional.once("value", function(snapshot) {
+      database.ref('plot/traditional').once("value", function(snapshot) {
           //console.log(snapshot.numChildren());
 
           snapshot.forEach((child) => {
@@ -2127,7 +2126,7 @@ function handler(type, value) {
 
 
 
-      refInternet.once("value", function(snapshot) {
+      database.ref('plot/internet').once("value", function(snapshot) {
           //console.log(snapshot.numChildren());
 
           snapshot.forEach((child) => {
