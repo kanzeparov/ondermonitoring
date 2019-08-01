@@ -2032,17 +2032,35 @@ function handler(type, value) {
     }
 
     plot3.time = date_hour_min
-    if (arrow11.value > 0) {
+    if (arrow7.value > 0) {
       plot3.value = (arrow9.value - arrow5.value - powerBuyEnode1) * rout.balance + arrow5.value * gen1.value + pricePowerBuyEnode1 - pricePowerSellEnode1 +
         (arrow10.value - arrow6.value - powerBuyEnode2) * rout.balance + arrow6.value * gen2.value + pricePowerBuyEnode2 - pricePowerSellEnode2 +
         (arrow11.value - arrow7.value - powerBuyEnode3) * rout.balance + arrow7.value * gen3.value + pricePowerBuyEnode3 - pricePowerSellEnode3 +
         (arrow12.value - arrow8.value - powerBuyEnode4) * rout.balance + arrow8.value * gen4.value + pricePowerBuyEnode4 - pricePowerSellEnode4
-    } else if (arrow11.value <= 0) {
+    } else if (arrow7.value <= 0) {
       plot3.value = (arrow9.value - arrow5.value - powerBuyEnode1) * rout.balance + arrow5.value * gen1.value + pricePowerBuyEnode1 - pricePowerSellEnode1 +
         (arrow10.value - arrow6.value - powerBuyEnode2) * rout.balance + arrow6.value * gen2.value + pricePowerBuyEnode2 - pricePowerSellEnode2 +
         (arrow11.value - arrow7.value - powerBuyEnode3) * rout.balance + pricePowerBuyEnode3 - pricePowerSellEnode3 +
         (arrow12.value - arrow8.value - powerBuyEnode4) * rout.balance + arrow8.value * gen4.value + pricePowerBuyEnode4 - pricePowerSellEnode4
     }
+    console.log("powerBuyEnode1 %o", powerBuyEnode1)
+    console.log("powerBuyEnode2 %o", powerBuyEnode2)
+    console.log("powerBuyEnode3 %o", powerBuyEnode3)
+    console.log("powerBuyEnode4 %o", powerBuyEnode4)
+    console.log("pricePowerBuyEnode1 %o", pricePowerBuyEnode1)
+    console.log("pricePowerBuyEnode2 %o", pricePowerBuyEnode2)
+    console.log("pricePowerBuyEnode3 %o", pricePowerBuyEnode3)
+    console.log("pricePowerBuyEnode4 %o", pricePowerBuyEnode4)
+    console.log("pricePowerSellEnode1 %o", pricePowerSellEnode1)
+    console.log("pricePowerSellEnode2 %o", pricePowerSellEnode2)
+    console.log("pricePowerSellEnode3 %o", pricePowerSellEnode3)
+    console.log("pricePowerSellEnode4 %o", pricePowerSellEnode4)
+    console.log("arrowDir1 %o", arrowDir1)
+    console.log("arrowDir2 %o", arrowDir2)
+    console.log("arrowDir3 %o", arrowDir3)
+    console.log("arrowDir4 %o", arrowDir4)
+    console.log("arrowDir5 %o", arrowDir5)
+    console.log("arrowDir6 %o", arrowDir6)
     console.log("plot1 %o", plot1)
     console.log("plot2 %o", plot2)
     console.log("plot3 %o", plot3)
@@ -2627,17 +2645,35 @@ app.ws('/arrows', function(ws, req) {
       }
 
       plot3.time = date_hour_min
-      if (arrow11.value > 0) {
+      if (arrow7.value > 0) {
         plot3.value = (arrow9.value - arrow5.value - powerBuyEnode1) * rout.balance + arrow5.value * gen1.value + pricePowerBuyEnode1 - pricePowerSellEnode1 +
           (arrow10.value - arrow6.value - powerBuyEnode2) * rout.balance + arrow6.value * gen2.value + pricePowerBuyEnode2 - pricePowerSellEnode2 +
           (arrow11.value - arrow7.value - powerBuyEnode3) * rout.balance + arrow7.value * gen3.value + pricePowerBuyEnode3 - pricePowerSellEnode3 +
           (arrow12.value - arrow8.value - powerBuyEnode4) * rout.balance + arrow8.value * gen4.value + pricePowerBuyEnode4 - pricePowerSellEnode4
-      } else if (arrow11.value <= 0) {
+      } else if (arrow7.value <= 0) {
         plot3.value = (arrow9.value - arrow5.value - powerBuyEnode1) * rout.balance + arrow5.value * gen1.value + pricePowerBuyEnode1 - pricePowerSellEnode1 +
           (arrow10.value - arrow6.value - powerBuyEnode2) * rout.balance + arrow6.value * gen2.value + pricePowerBuyEnode2 - pricePowerSellEnode2 +
           (arrow11.value - arrow7.value - powerBuyEnode3) * rout.balance + pricePowerBuyEnode3 - pricePowerSellEnode3 +
           (arrow12.value - arrow8.value - powerBuyEnode4) * rout.balance + arrow8.value * gen4.value + pricePowerBuyEnode4 - pricePowerSellEnode4
       }
+      console.log("powerBuyEnode1 %o", powerBuyEnode1)
+      console.log("powerBuyEnode2 %o", powerBuyEnode2)
+      console.log("powerBuyEnode3 %o", powerBuyEnode3)
+      console.log("powerBuyEnode4 %o", powerBuyEnode4)
+      console.log("pricePowerBuyEnode1 %o", pricePowerBuyEnode1)
+      console.log("pricePowerBuyEnode2 %o", pricePowerBuyEnode2)
+      console.log("pricePowerBuyEnode3 %o", pricePowerBuyEnode3)
+      console.log("pricePowerBuyEnode4 %o", pricePowerBuyEnode4)
+      console.log("pricePowerSellEnode1 %o", pricePowerSellEnode1)
+      console.log("pricePowerSellEnode2 %o", pricePowerSellEnode2)
+      console.log("pricePowerSellEnode3 %o", pricePowerSellEnode3)
+      console.log("pricePowerSellEnode4 %o", pricePowerSellEnode4)
+      console.log("arrowDir1 %o", arrowDir1)
+      console.log("arrowDir2 %o", arrowDir2)
+      console.log("arrowDir3 %o", arrowDir3)
+      console.log("arrowDir4 %o", arrowDir4)
+      console.log("arrowDir5 %o", arrowDir5)
+      console.log("arrowDir6 %o", arrowDir6)
       ws.send(JSON.stringify(arrow1))
       ws.send(JSON.stringify(arrow2))
       ws.send(JSON.stringify(arrow3))
@@ -2997,17 +3033,35 @@ app.ws('/arrowdirections', function(ws, req) {
       var date = new Date()
       let date_hour_min = date.getHours() + ":" + date.getMinutes()
       plot3.time = date_hour_min
-      if (arrow11.value > 0) {
+      if (arrow7.value > 0) {
         plot3.value = (arrow9.value - arrow5.value - powerBuyEnode1) * rout.balance + arrow5.value * gen1.value + pricePowerBuyEnode1 - pricePowerSellEnode1 +
           (arrow10.value - arrow6.value - powerBuyEnode2) * rout.balance + arrow6.value * gen2.value + pricePowerBuyEnode2 - pricePowerSellEnode2 +
           (arrow11.value - arrow7.value - powerBuyEnode3) * rout.balance + arrow7.value * gen3.value + pricePowerBuyEnode3 - pricePowerSellEnode3 +
           (arrow12.value - arrow8.value - powerBuyEnode4) * rout.balance + arrow8.value * gen4.value + pricePowerBuyEnode4 - pricePowerSellEnode4
-      } else if (arrow11.value <= 0) {
+      } else if (arrow7.value <= 0) {
         plot3.value = (arrow9.value - arrow5.value - powerBuyEnode1) * rout.balance + arrow5.value * gen1.value + pricePowerBuyEnode1 - pricePowerSellEnode1 +
           (arrow10.value - arrow6.value - powerBuyEnode2) * rout.balance + arrow6.value * gen2.value + pricePowerBuyEnode2 - pricePowerSellEnode2 +
           (arrow11.value - arrow7.value - powerBuyEnode3) * rout.balance + pricePowerBuyEnode3 - pricePowerSellEnode3 +
           (arrow12.value - arrow8.value - powerBuyEnode4) * rout.balance + arrow8.value * gen4.value + pricePowerBuyEnode4 - pricePowerSellEnode4
       }
+      console.log("powerBuyEnode1 %o", powerBuyEnode1)
+      console.log("powerBuyEnode2 %o", powerBuyEnode2)
+      console.log("powerBuyEnode3 %o", powerBuyEnode3)
+      console.log("powerBuyEnode4 %o", powerBuyEnode4)
+      console.log("pricePowerBuyEnode1 %o", pricePowerBuyEnode1)
+      console.log("pricePowerBuyEnode2 %o", pricePowerBuyEnode2)
+      console.log("pricePowerBuyEnode3 %o", pricePowerBuyEnode3)
+      console.log("pricePowerBuyEnode4 %o", pricePowerBuyEnode4)
+      console.log("pricePowerSellEnode1 %o", pricePowerSellEnode1)
+      console.log("pricePowerSellEnode2 %o", pricePowerSellEnode2)
+      console.log("pricePowerSellEnode3 %o", pricePowerSellEnode3)
+      console.log("pricePowerSellEnode4 %o", pricePowerSellEnode4)
+      console.log("arrowDir1 %o", arrowDir1)
+      console.log("arrowDir2 %o", arrowDir2)
+      console.log("arrowDir3 %o", arrowDir3)
+      console.log("arrowDir4 %o", arrowDir4)
+      console.log("arrowDir5 %o", arrowDir5)
+      console.log("arrowDir6 %o", arrowDir6)
       ws.send(JSON.stringify(arrowDir1))
       ws.send(JSON.stringify(arrowDir2))
       ws.send(JSON.stringify(arrowDir3))
