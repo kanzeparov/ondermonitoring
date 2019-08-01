@@ -2087,7 +2087,24 @@ function handler(type, value) {
       }
 
 
+      refDistribution.once("value", function(snapshot) {
+          //console.log(snapshot.numChildren());
 
+          snapshot.forEach((child) => {
+            //console.log("vaaaaalue distributed" + child.key);
+            var date = new Date();
+            var timestamp = date.getTime();
+            // console.log(child.key);
+            if (timestamp - child.key > timeDelete * 1000 * 60) {
+              // console.log("delete " + "");
+              let userRef = database.ref('plot/distributed/' + child.key);
+              userRef.remove()
+            }
+          });
+        },
+        function(errorObject) {
+          console.log("The read failed: " + errorObject.code);
+        });
 
       refTraditional.once("value", function(snapshot) {
           //console.log(snapshot.numChildren());
@@ -2108,24 +2125,7 @@ function handler(type, value) {
           console.log("The read failed: " + errorObject.code);
         });
 
-      refDistribution.once("value", function(snapshot) {
-          //console.log(snapshot.numChildren());
 
-          snapshot.forEach((child) => {
-            //console.log("vaaaaalue distributed" + child.key);
-            var date = new Date();
-            var timestamp = date.getTime();
-            // console.log(child.key);
-            if (timestamp - child.key > timeDelete * 1000 * 60) {
-              // console.log("delete " + "");
-              let userRef = database.ref('plot/distributed/' + child.key);
-              userRef.remove()
-            }
-          });
-        },
-        function(errorObject) {
-          console.log("The read failed: " + errorObject.code);
-        });
 
       refInternet.once("value", function(snapshot) {
           //console.log(snapshot.numChildren());
