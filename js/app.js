@@ -42,7 +42,86 @@ var refTraditional = database.ref("plot/traditional");
 var refDistribution = database.ref("plot/distributed")
 var refInternet = database.ref("plot/internet");
 
-
+var ref107 = database.ref("/testbed/amigo/set_price")
+var ref57 = database.ref("/testbed/erouter/setpower_out")
+var ref40_1 = database.ref("/testbed/emeter1/power")
+var ref40_2 = database.ref("/testbed/emeter2/power")
+var ref40_3 = database.ref("/testbed/emeter3/power")
+var ref40_4 = database.ref("/testbed/emeter4/power")
+var ref16_1 = database.ref("/testbed/enode1/ext_battery/power")
+var ref16_2 = database.ref("/testbed/enode2/ext_battery/power")
+var ref16_3 = database.ref("/testbed/enode3/ext_battery/power")
+var ref16_4 = database.ref("/testbed/enode4/ext_battery/power")
+var ref101_1_1 = database.ref("/testbed/enode1/load/relay1/status")
+var ref101_1_2 = database.ref("/testbed/enode1/load/relay2/status")
+var ref101_1_3 = database.ref("/testbed/enode1/load/relay3/status")
+var ref101_2_1 = database.ref("/testbed/enode2/load/relay1/status")
+var ref101_2_2 = database.ref("/testbed/enode2/load/relay2/status")
+var ref101_2_3 = database.ref("/testbed/enode2/load/relay3/status")
+var ref101_3_1 = database.ref("/testbed/enode3/load/relay1/status")
+var ref101_3_2 = database.ref("/testbed/enode3/load/relay2/status")
+var ref101_3_3 = database.ref("/testbed/enode3/load/relay3/status")
+var ref101_4_1 = database.ref("/testbed/enode4/load/relay1/status")
+var ref101_4_2 = database.ref("/testbed/enode4/load/relay2/status")
+var ref101_4_3 = database.ref("/testbed/enode4/load/relay3/status")
+var ref32_1 = database.ref("/testbed/enode1/load1/value")
+var ref32_2 = database.ref("/testbed/enode1/load2/value")
+var ref32_3 = database.ref("/testbed/enode1/load3/value")
+var ref33_1 = database.ref("/testbed/enode2/load1/value")
+var ref33_2 = database.ref("/testbed/enode2/load2/value")
+var ref33_3 = database.ref("/testbed/enode2/load3/value")
+var ref34_1 = database.ref("/testbed/enode3/load1/value")
+var ref34_2 = database.ref("/testbed/enode3/load2/value")
+var ref34_3 = database.ref("/testbed/enode3/load3/value")
+var ref35_1 = database.ref("/testbed/enode4/load1/value")
+var ref35_2 = database.ref("/testbed/enode4/load2/value")
+var ref35_3 = database.ref("/testbed/enode4/load3/value")
+var ref23_1 = database.ref("/testbed/enode1/finance")
+var ref23_2 = database.ref("/testbed/enode2/finance")
+var ref23_3 = database.ref("/testbed/enode3/finance")
+var ref23_4 = database.ref("/testbed/enode4/finance")
+var ref6_1_1 = database.ref("/testbed/enode1/port1/power")
+var ref6_1_2 = database.ref("/testbed/enode1/port2/power")
+var ref6_1_3 = database.ref("/testbed/enode1/port3/power")
+var ref6_2_1 = database.ref("/testbed/enode2/port1/power")
+var ref6_2_2 = database.ref("/testbed/enode2/port2/power")
+var ref6_2_3 = database.ref("/testbed/enode2/port3/power")
+var ref6_3_1 = database.ref("/testbed/enode3/port1/power")
+var ref6_3_2 = database.ref("/testbed/enode3/port2/power")
+var ref6_3_3 = database.ref("/testbed/enode3/port3/power")
+var ref6_4_1 = database.ref("/testbed/enode4/port1/power")
+var ref6_4_2 = database.ref("/testbed/enode4/port2/power")
+var ref6_4_3 = database.ref("/testbed/enode4/port3/power")
+var ref18_1_1 = database.ref("/testbed/enode1/contracts/one")
+var ref18_1_4 = database.ref("/testbed/enode1/contracts/four")
+var ref18_1_6 = database.ref("/testbed/enode1/contracts/six")
+var ref18_2_1 = database.ref("/testbed/enode2/contracts/one")
+var ref18_2_2 = database.ref("/testbed/enode2/contracts/two")
+var ref18_2_5 = database.ref("/testbed/enode2/contracts/five")
+var ref18_3_3 = database.ref("/testbed/enode3/contracts/three")
+var ref18_3_4 = database.ref("/testbed/enode3/contracts/four")
+var ref18_3_5 = database.ref("/testbed/enode3/contracts/five")
+var ref18_4_2 = database.ref("/testbed/enode4/contracts/two")
+var ref18_4_3 = database.ref("/testbed/enode4/contracts/three")
+var ref18_4_6 = database.ref("/testbed/enode4/contracts/six")
+var ref97_1 = database.ref("/testbed/enode1/relay/ac/status")
+var ref97_2 = database.ref("/testbed/enode2/relay/ac/status")
+var ref97_3 = database.ref("/testbed/enode3/relay/ac/status")
+var ref97_4 = database.ref("/testbed/enode4/relay/ac/status")
+var ref93_1 = database.ref("/testbed/enode1/relay/der/status")
+var ref93_2 = database.ref("/testbed/enode2/relay/der/status")
+var ref93_3 = database.ref("/testbed/enode3/relay/der/status")
+var ref93_4 = database.ref("/testbed/enode4/relay/der/status")
+var ref87_1 = database.ref("/testbed/relay/dc1/status")
+var ref87_2 = database.ref("/testbed/relay/dc2/status")
+var ref87_3 = database.ref("/testbed/relay/dc3/status")
+var ref87_4 = database.ref("/testbed/relay/dc4/status")
+var ref87_5 = database.ref("/testbed/relay/dc5/status")
+var ref87_6 = database.ref("/testbed/relay/dc6/status")
+var ref115_1 = database.ref("/testbed/enode1/gen/parameter0")
+var ref115_2 = database.ref("/testbed/enode2/gen/parameter0")
+var ref115_3 = database.ref("/testbed/enode3/gen/parameter0")
+var ref115_4 = database.ref("/testbed/enode4/gen/parameter0")
 
 
 const mqtt = new mqtt_cl.ClientMQTT()
@@ -291,6 +370,1027 @@ var rout = {
   power: 0,
   energy: 0
 }
+
+ref107.once("value", function(snapshot) {
+    var timeCurrent = new Date(rout.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      rout.time = snapshot.val().time
+    }
+    rout.balance = snapshot.val().value.value
+    console.log("rout change time and balance %o", rout);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref57.once("value", function(snapshot) {
+    var timeCurrent = new Date(rout.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      rout.time = snapshot.val().time
+    }
+    rout.energy = snapshot.val().value.value
+    console.log("rout change time and energy %o", rout);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref40_1.once("value", function(snapshot) {
+    arrow1.time = snapshot.val().time
+    arrow1.value = snapshot.val().value.value
+    var timeCurrent = new Date(rout.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      rout.time = snapshot.val().time
+    }
+    rout.power = rout.power + snapshot.val().value.value
+    console.log("rout change time and power %o", rout);
+    console.log("arrow change time and value %o", arrow1);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref40_2.once("value", function(snapshot) {
+    arrow2.time = snapshot.val().time
+    arrow2.value = snapshot.val().value.value
+    var timeCurrent = new Date(rout.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      rout.time = snapshot.val().time
+    }
+    rout.power = rout.power + snapshot.val().value.value
+    console.log("rout change time and power %o", rout);
+    console.log("arrow change time and value %o", arrow2);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+ref40_3.once("value", function(snapshot) {
+    arrow3.time = snapshot.val().time
+    arrow3.value = snapshot.val().value.value
+    var timeCurrent = new Date(rout.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      rout.time = snapshot.val().time
+    }
+    rout.power = rout.power + snapshot.val().value.value
+    console.log("rout change time and power %o", rout);
+    console.log("arrow change time and value %o", arrow3);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref40_4.once("value", function(snapshot) {
+    arrow4.time = snapshot.val().time
+    arrow4.value = snapshot.val().value.value
+    var timeCurrent = new Date(rout.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      rout.time = snapshot.val().time
+    }
+    rout.power = rout.power + snapshot.val().value.value
+    console.log("rout change time and power %o", rout);
+    console.log("arrow change time and value %o", arrow4);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref16_1.once("value", function(snapshot) {
+    arrow5.time = snapshot.val().time
+    arrow5.value = snapshot.val().value.value
+    console.log("arrow change time and value %o", arrow5);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref16_2.once("value", function(snapshot) {
+    arrow6.time = snapshot.val().time
+    arrow6.value = snapshot.val().value.value
+    console.log("arrow change time and value %o", arrow6);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref16_3.once("value", function(snapshot) {
+    arrow7.time = snapshot.val().time
+    arrow7.value = snapshot.val().value.value
+    console.log("arrow change time and value %o", arrow7);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref16_4.once("value", function(snapshot) {
+    arrow8.time = snapshot.val().time
+    arrow8.value = snapshot.val().value.value
+    console.log("arrow change time and value %o", arrow8);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref101_1_1.once("value", function(snapshot) {
+    arrow9pre.time = snapshot.val().time
+    arrow9pre.status1 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow9.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow9.time = snapshot.val().time
+    }
+    console.log("arrow change time and value %o", arrow9pre);
+    console.log("arrow change time and value %o", arrow9);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref101_1_2.once("value", function(snapshot) {
+    arrow9pre.time = snapshot.val().time
+    arrow9pre.status2 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow9.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow9.time = snapshot.val().time
+    }
+    console.log("arrow change time and value %o", arrow9pre);
+    console.log("arrow change time and value %o", arrow9);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref101_1_3.once("value", function(snapshot) {
+    arrow9pre.time = snapshot.val().time
+    arrow9pre.status3 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow9.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow9.time = snapshot.val().time
+    }
+    arrow9.status = arrow9pre.status1 || arrow9pre.status2 || arrow9pre.status3
+    console.log("arrow change time and value %o", arrow9pre);
+    console.log("arrow change time and value %o", arrow9);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref101_2_1.once("value", function(snapshot) {
+    arrow10pre.time = snapshot.val().time
+    arrow10pre.status1 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow10.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow10.time = snapshot.val().time
+    }
+    console.log("arrow change time and value %o", arrow10pre);
+    console.log("arrow change time and value %o", arrow10);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref101_2_2.once("value", function(snapshot) {
+    arrow10pre.time = snapshot.val().time
+    arrow10pre.status2 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow10.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow10.time = snapshot.val().time
+    }
+    console.log("arrow change time and value %o", arrow10pre);
+    console.log("arrow change time and value %o", arrow10);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref101_2_3.once("value", function(snapshot) {
+    arrow10pre.time = snapshot.val().time
+    arrow10pre.status3 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow10.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow10.time = snapshot.val().time
+    }
+    arrow10.status = arrow10pre.status1 || arrow10pre.status2 || arrow10pre.status3
+    console.log("arrow change time and value %o", arrow10pre);
+    console.log("arrow change time and value %o", arrow10);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref101_3_1.once("value", function(snapshot) {
+    arrow11pre.time = snapshot.val().time
+    arrow11pre.status1 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow11.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow11.time = snapshot.val().time
+    }
+    console.log("arrow change time and value %o", arrow11pre);
+    console.log("arrow change time and value %o", arrow11);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref101_3_2.once("value", function(snapshot) {
+    arrow11pre.time = snapshot.val().time
+    arrow11pre.status2 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow11.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow11.time = snapshot.val().time
+    }
+    console.log("arrow change time and value %o", arrow11pre);
+    console.log("arrow change time and value %o", arrow11);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref101_3_3.once("value", function(snapshot) {
+    arrow11pre.time = snapshot.val().time
+    arrow11pre.status3 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow11.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow11.time = snapshot.val().time
+    }
+    arrow11.status = arrow11pre.status1 || arrow11pre.status2 || arrow11pre.status3
+    console.log("arrow change time and value %o", arrow11pre);
+    console.log("arrow change time and value %o", arrow11);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref101_4_1.once("value", function(snapshot) {
+    arrow12pre.time = snapshot.val().time
+    arrow12pre.status1 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow12.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow12.time = snapshot.val().time
+    }
+    console.log("arrow change time and value %o", arrow12pre);
+    console.log("arrow change time and value %o", arrow12);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref101_4_2.once("value", function(snapshot) {
+    arrow12pre.time = snapshot.val().time
+    arrow12pre.status2 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow12.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow12.time = snapshot.val().time
+    }
+    console.log("arrow change time and value %o", arrow12pre);
+    console.log("arrow change time and value %o", arrow12);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref101_4_3.once("value", function(snapshot) {
+    arrow12pre.time = snapshot.val().time
+    arrow12pre.status3 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow12.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow12.time = snapshot.val().time
+    }
+    arrow12.status = arrow12pre.status1 || arrow12pre.status2 || arrow12pre.status3
+    console.log("arrow change time and value %o", arrow12pre);
+    console.log("arrow change time and value %o", arrow12);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref32_1.once("value", function(snapshot) {
+    arrow9pre.time = snapshot.val().time
+    arrow9pre.value1 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow9.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow9.time = snapshot.val().time
+    }
+    console.log("arrow change time and value %o", arrow9pre);
+    console.log("arrow change time and value %o", arrow9);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref32_2.once("value", function(snapshot) {
+    arrow9pre.time = snapshot.val().time
+    arrow9pre.value2 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow9.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow9.time = snapshot.val().time
+    }
+    console.log("arrow change time and value %o", arrow9pre);
+    console.log("arrow change time and value %o", arrow9);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref32_3.once("value", function(snapshot) {
+    arrow9pre.time = snapshot.val().time
+    arrow9pre.value3 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow9.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow9.time = snapshot.val().time
+    }
+    arrow9.value = arrow9pre.status1 * arrow9pre.value1 + arrow9pre.status2 * arrow9pre.value2 + arrow9pre.status3 * arrow9pre.value3
+    console.log("arrow change time and value %o", arrow9pre);
+    console.log("arrow change time and value %o", arrow9);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref33_1.once("value", function(snapshot) {
+    arrow10pre.time = snapshot.val().time
+    arrow10pre.value1 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow10.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow10.time = snapshot.val().time
+    }
+    console.log("arrow change time and value %o", arrow10pre);
+    console.log("arrow change time and value %o", arrow10);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref33_2.once("value", function(snapshot) {
+    arrow10pre.time = snapshot.val().time
+    arrow10pre.value2 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow10.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow10.time = snapshot.val().time
+    }
+    console.log("arrow change time and value %o", arrow10pre);
+    console.log("arrow change time and value %o", arrow10);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref33_3.once("value", function(snapshot) {
+    arrow10pre.time = snapshot.val().time
+    arrow10pre.value3 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow10.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow10.time = snapshot.val().time
+    }
+    arrow10.value = arrow10pre.status1 * arrow10pre.value1 + arrow10pre.status2 * arrow10pre.value2 + arrow10pre.status3 * arrow10pre.value3
+    console.log("arrow change time and value %o", arrow10pre);
+    console.log("arrow change time and value %o", arrow10);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref34_1.once("value", function(snapshot) {
+    arrow11pre.time = snapshot.val().time
+    arrow11pre.value1 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow11.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow11.time = snapshot.val().time
+    }
+    console.log("arrow change time and value %o", arrow11pre);
+    console.log("arrow change time and value %o", arrow11);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref34_2.once("value", function(snapshot) {
+    arrow11pre.time = snapshot.val().time
+    arrow11pre.value2 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow11.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow11.time = snapshot.val().time
+    }
+    console.log("arrow change time and value %o", arrow11pre);
+    console.log("arrow change time and value %o", arrow11);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref34_3.once("value", function(snapshot) {
+    arrow11pre.time = snapshot.val().time
+    arrow11pre.value3 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow11.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow11.time = snapshot.val().time
+    }
+    arrow11.value = arrow11pre.status1 * arrow11pre.value1 + arrow11pre.status2 * arrow11pre.value2 + arrow11pre.status3 * arrow11pre.value3
+    console.log("arrow change time and value %o", arrow11pre);
+    console.log("arrow change time and value %o", arrow11);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref35_1.once("value", function(snapshot) {
+    arrow12pre.time = snapshot.val().time
+    arrow12pre.value1 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow12.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow12.time = snapshot.val().time
+    }
+    console.log("arrow change time and value %o", arrow12pre);
+    console.log("arrow change time and value %o", arrow12);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref35_2.once("value", function(snapshot) {
+    arrow12pre.time = snapshot.val().time
+    arrow12pre.value2 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow12.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow12.time = snapshot.val().time
+    }
+    console.log("arrow change time and value %o", arrow12pre);
+    console.log("arrow change time and value %o", arrow12);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref35_3.once("value", function(snapshot) {
+    arrow12pre.time = snapshot.val().time
+    arrow12pre.value3 = snapshot.val().value.value
+    var timeCurrent = new Date(arrow12.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrow12.time = snapshot.val().time
+    }
+    arrow12.value = arrow12pre.status1 * arrow12pre.value1 + arrow12pre.status2 * arrow12pre.value2 + arrow12pre.status3 * arrow12pre.value3
+    console.log("arrow change time and value %o", arrow12pre);
+    console.log("arrow change time and value %o", arrow12);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref23_1.once("value", function(snapshot) {
+    cell1.time = snapshot.val().time
+    cell1.value = snapshot.val().value.value
+    console.log("cell change time and value %o", cell1);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref23_2.once("value", function(snapshot) {
+    cell2.time = snapshot.val().time
+    cell2.value = snapshot.val().value.value
+    console.log("cell change time and value %o", cell2);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref23_3.once("value", function(snapshot) {
+    cell3.time = snapshot.val().time
+    cell3.value = snapshot.val().value.value
+    console.log("cell change time and value %o", cell3);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref23_4.once("value", function(snapshot) {
+    cell4.time = snapshot.val().time
+    cell4.value = snapshot.val().value.value
+    console.log("cell change time and value %o", cell4);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref6_1_1.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir1.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir1.time = snapshot.val().time
+    }
+    arrowDir1.value = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir1);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref6_1_2.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir6.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir6.time = snapshot.val().time
+    }
+    arrowDir6.value = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir6);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref6_1_3.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir4.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir4.time = snapshot.val().time
+    }
+    arrowDir4.value = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir4);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref6_2_1.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir1.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir1.time = snapshot.val().time
+    }
+    arrowDir1.value = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir1);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref6_2_2.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir5.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir5.time = snapshot.val().time
+    }
+    arrowDir5.value = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir5);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref6_2_3.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir2.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir2.time = snapshot.val().time
+    }
+    arrowDir2.value = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir2);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref6_3_1.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir4.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir4.time = snapshot.val().time
+    }
+    arrowDir4.value = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir4);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref6_3_2.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir5.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir5.time = snapshot.val().time
+    }
+    arrowDir5.value = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir5);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref6_3_3.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir3.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir3.time = snapshot.val().time
+    }
+    arrowDir3.value = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir3);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref6_4_1.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir3.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir3.time = snapshot.val().time
+    }
+    arrowDir3.value = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir3);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref6_4_2.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir6.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir6.time = snapshot.val().time
+    }
+    arrowDir6.value = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir6);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref6_4_3.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir2.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir2.time = snapshot.val().time
+    }
+    arrowDir2.value = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir2);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref18_1_1.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir1.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir1.time = snapshot.val().time
+    }
+    arrowDir1.directionfrom = snapshot.val().value.seller
+    arrowDir1.directionto = snapshot.val().value.contragent
+    arrowDir1.balance = snapshot.val().value.cost
+    console.log("arrowDir change time and value %o", arrowDir1);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref18_1_4.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir4.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir4.time = snapshot.val().time
+    }
+    arrowDir4.directionfrom = snapshot.val().value.seller
+    arrowDir4.directionto = snapshot.val().value.contragent
+    arrowDir4.balance = snapshot.val().value.cost
+    console.log("arrowDir change time and value %o", arrowDir4);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref18_1_6.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir6.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir6.time = snapshot.val().time
+    }
+    arrowDir6.directionfrom = snapshot.val().value.seller
+    arrowDir6.directionto = snapshot.val().value.contragent
+    arrowDir6.balance = snapshot.val().value.cost
+    console.log("arrowDir change time and value %o", arrowDir6);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref18_2_1.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir1.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir1.time = snapshot.val().time
+    }
+    arrowDir1.directionfrom = snapshot.val().value.seller
+    arrowDir1.directionto = snapshot.val().value.contragent
+    arrowDir1.balance = snapshot.val().value.cost
+    console.log("arrowDir change time and value %o", arrowDir1);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+ref18_2_2.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir2.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir2.time = snapshot.val().time
+    }
+    arrowDir2.directionfrom = snapshot.val().value.seller
+    arrowDir2.directionto = snapshot.val().value.contragent
+    arrowDir2.balance = snapshot.val().value.cost
+    console.log("arrowDir change time and value %o", arrowDir2);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+ref18_2_5.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir5.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir5.time = snapshot.val().time
+    }
+    arrowDir5.directionfrom = snapshot.val().value.seller
+    arrowDir5.directionto = snapshot.val().value.contragent
+    arrowDir5.balance = snapshot.val().value.cost
+    console.log("arrowDir change time and value %o", arrowDir5);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref18_3_3.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir3.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir3.time = snapshot.val().time
+    }
+    arrowDir3.directionfrom = snapshot.val().value.seller
+    arrowDir3.directionto = snapshot.val().value.contragent
+    arrowDir3.balance = snapshot.val().value.cost
+    console.log("arrowDir change time and value %o", arrowDir3);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+ref18_3_4.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir4.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir4.time = snapshot.val().time
+    }
+    arrowDir4.directionfrom = snapshot.val().value.seller
+    arrowDir4.directionto = snapshot.val().value.contragent
+    arrowDir4.balance = snapshot.val().value.cost
+    console.log("arrowDir change time and value %o", arrowDir4);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+ref18_3_5.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir5.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir5.time = snapshot.val().time
+    }
+    arrowDir5.directionfrom = snapshot.val().value.seller
+    arrowDir5.directionto = snapshot.val().value.contragent
+    arrowDir5.balance = snapshot.val().value.cost
+    console.log("arrowDir change time and value %o", arrowDir5);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref18_4_2.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir2.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir2.time = snapshot.val().time
+    }
+    arrowDir2.directionfrom = snapshot.val().value.seller
+    arrowDir2.directionto = snapshot.val().value.contragent
+    arrowDir2.balance = snapshot.val().value.cost
+    console.log("arrowDir change time and value %o", arrowDir2);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+ref18_4_3.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir3.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir3.time = snapshot.val().time
+    }
+    arrowDir3.directionfrom = snapshot.val().value.seller
+    arrowDir3.directionto = snapshot.val().value.contragent
+    arrowDir3.balance = snapshot.val().value.cost
+    console.log("arrowDir change time and value %o", arrowDir3);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+ref18_4_6.once("value", function(snapshot) {
+    var timeCurrent = new Date(arrowDir6.time)
+    var timeFromBd = new Date(snapshot.val().time)
+    if (timeCurrent < timeFromBd) {
+      arrowDir6.time = snapshot.val().time
+    }
+    arrowDir6.directionfrom = snapshot.val().value.seller
+    arrowDir6.directionto = snapshot.val().value.contragent
+    arrowDir6.balance = snapshot.val().value.cost
+    console.log("arrowDir change time and value %o", arrowDir6);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref97_1.once("value", function(snapshot) {
+    arrow1.time = snapshot.val().time
+    arrow1.status = snapshot.val().value.value
+    console.log("arrow change time and value %o", arrow1);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref97_2.once("value", function(snapshot) {
+    arrow2.time = snapshot.val().time
+    arrow2.status = snapshot.val().value.value
+    console.log("arrow change time and value %o", arrow2);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref97_3.once("value", function(snapshot) {
+    arrow3.time = snapshot.val().time
+    arrow3.status = snapshot.val().value.value
+    console.log("arrow change time and value %o", arrow3);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref97_4.once("value", function(snapshot) {
+    arrow4.time = snapshot.val().time
+    arrow4.status = snapshot.val().value.value
+    console.log("arrow change time and value %o", arrow4);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref93_1.once("value", function(snapshot) {
+    arrow5.time = snapshot.val().time
+    arrow5.status = snapshot.val().value.value
+    console.log("arrow change time and value %o", arrow5);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref93_2.once("value", function(snapshot) {
+    arrow6.time = snapshot.val().time
+    arrow6.status = snapshot.val().value.value
+    console.log("arrow change time and value %o", arrow6);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref93_3.once("value", function(snapshot) {
+    arrow7.time = snapshot.val().time
+    arrow7.status = snapshot.val().value.value
+    console.log("arrow change time and value %o", arrow7);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref93_4.once("value", function(snapshot) {
+    arrow8.time = snapshot.val().time
+    arrow8.status = snapshot.val().value.value
+    console.log("arrow change time and value %o", arrow8);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref87_1.once("value", function(snapshot) {
+    arrowDir1.time = snapshot.val().time
+    arrowDir1.status = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir1);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref87_2.once("value", function(snapshot) {
+    arrowDir2.time = snapshot.val().time
+    arrowDir2.status = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir2);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref87_3.once("value", function(snapshot) {
+    arrowDir3.time = snapshot.val().time
+    arrowDir3.status = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir3);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref87_4.once("value", function(snapshot) {
+    arrowDir4.time = snapshot.val().time
+    arrowDir4.status = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir4);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref87_5.once("value", function(snapshot) {
+    arrowDir5.time = snapshot.val().time
+    arrowDir5.status = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir5);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref87_6.once("value", function(snapshot) {
+    arrowDir6.time = snapshot.val().time
+    arrowDir6.status = snapshot.val().value.value
+    console.log("arrowDir change time and value %o", arrowDir6);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref115_1.once("value", function(snapshot) {
+    gen1.time = snapshot.val().time
+    gen1.value = snapshot.val().value.value
+    console.log("gen change time and value %o", gen1);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref115_2.once("value", function(snapshot) {
+    gen2.time = snapshot.val().time
+    gen2.value = snapshot.val().value.value
+    console.log("gen change time and value %o", gen2);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref115_3.once("value", function(snapshot) {
+    gen3.time = snapshot.val().time
+    gen3.value = snapshot.val().value.value
+    console.log("gen change time and value %o", gen3);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+ref115_4.once("value", function(snapshot) {
+    gen4.time = snapshot.val().time
+    gen4.value = snapshot.val().value.value
+    console.log("gen change time and value %o", gen4);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
 
 function handler(type, value) {
   console.log("Receive new message %o ", value)
@@ -729,17 +1829,17 @@ function handler(type, value) {
 
     if (json_msg.port == 'enode1' && json_msg.port2 == "contracts") {
       console.log("arrow direction json %o", value)
-      if (json_msg.portX == 1) {
+      if (json_msg.seller == 'enode2' || json_msg.contragent == 'enode2') {
         arrowDir1.directionfrom = json_msg.seller;
         arrowDir1.directionto = json_msg.contragent;
         arrowDir1.balance = json_msg.cost;
       }
-      if (json_msg.portX == 2) {
+      if (json_msg.seller == 'enode4' || json_msg.contragent == 'enode4') {
         arrowDir6.directionfrom = json_msg.seller;
         arrowDir6.directionto = json_msg.contragent;
         arrowDir6.balance = json_msg.cost;
       }
-      if (json_msg.portX == 3) {
+      if (json_msg.seller == 'enode3' || json_msg.contragent == 'enode3') {
         arrowDir4.directionfrom = json_msg.seller;
         arrowDir4.directionto = json_msg.contragent;
         arrowDir4.balance = json_msg.cost;
@@ -748,17 +1848,17 @@ function handler(type, value) {
     }
     if (json_msg.port == 'enode2' && json_msg.port2 == "contracts") {
       console.log("arrow direction json %o", value)
-      if (json_msg.portX == 1) {
+      if (json_msg.seller == 'enode1' || json_msg.contragent == 'enode1') {
         arrowDir1.directionfrom = json_msg.seller;
         arrowDir1.directionto = json_msg.contragent;
         arrowDir1.balance = json_msg.cost;
       }
-      if (json_msg.portX == 2) {
+      if (json_msg.seller == 'enode3' || json_msg.contragent == 'enode3') {
         arrowDir5.directionfrom = json_msg.seller;
         arrowDir5.directionto = json_msg.contragent;
         arrowDir5.balance = json_msg.cost;
       }
-      if (json_msg.portX == 3) {
+      if (json_msg.seller == 'enode4' || json_msg.contragent == 'enode4') {
         arrowDir2.directionfrom = json_msg.seller;
         arrowDir2.directionto = json_msg.contragent;
         arrowDir2.balance = json_msg.cost;
@@ -767,17 +1867,17 @@ function handler(type, value) {
     }
     if (json_msg.port == 'enode3' && json_msg.port2 == "contracts") {
       console.log("arrow direction json %o", value)
-      if (json_msg.portX == 1) {
+      if (json_msg.seller == 'enode1' || json_msg.contragent == 'enode1') {
         arrowDir4.directionfrom = json_msg.seller;
         arrowDir4.directionto = json_msg.contragent;
         arrowDir4.balance = json_msg.cost;
       }
-      if (json_msg.portX == 2) {
+      if (json_msg.seller == 'enode2' || json_msg.contragent == 'enode2') {
         arrowDir5.directionfrom = json_msg.seller;
         arrowDir5.directionto = json_msg.contragent;
         arrowDir5.balance = json_msg.cost;
       }
-      if (json_msg.portX == 3) {
+      if (json_msg.seller == 'enode4' || json_msg.contragent == 'enode4') {
         arrowDir3.directionfrom = json_msg.seller;
         arrowDir3.directionto = json_msg.contragent;
         arrowDir3.balance = json_msg.cost;
@@ -786,17 +1886,17 @@ function handler(type, value) {
     }
     if (json_msg.port == 'enode4' && json_msg.port2 == "contracts") {
       console.log("arrow direction json %o", value)
-      if (json_msg.portX == 1) {
+      if (json_msg.seller == 'enode3' || json_msg.contragent == 'enode3') {
         arrowDir3.directionfrom = json_msg.seller;
         arrowDir3.directionto = json_msg.contragent;
         arrowDir3.balance = json_msg.cost;
       }
-      if (json_msg.portX == 2) {
+      if (json_msg.seller == 'enode1' || json_msg.contragent == 'enode1') {
         arrowDir6.directionfrom = json_msg.seller;
         arrowDir6.directionto = json_msg.contragent;
         arrowDir6.balance = json_msg.cost;
       }
-      if (json_msg.portX == 3) {
+      if (json_msg.seller == 'enode2' || json_msg.contragent == 'enode2') {
         arrowDir2.directionfrom = json_msg.seller;
         arrowDir2.directionto = json_msg.contragent;
         arrowDir2.balance = json_msg.cost;
@@ -954,7 +2054,7 @@ function handler(type, value) {
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay'))) {
         console.log("plot1 db %o", plot1)
         let date_hour_min = date.getHours() + ":" + date.getMinutes()
-        database.ref('plot/traditional/' + timestamp).set({
+        refTraditional = database.ref('plot/traditional/' + timestamp).set({
           time: date_hour_min,
           value: plot1.value
         });
@@ -966,7 +2066,7 @@ function handler(type, value) {
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
         let date_hour_min = date.getHours() + ":" + date.getMinutes()
-        database.ref('plot/distributed/' + timestamp).set({
+        refDistribution = database.ref('plot/distributed/' + timestamp).set({
           time: date_hour_min,
           value: (plot2.value)
         });
@@ -980,7 +2080,7 @@ function handler(type, value) {
         (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
         let date_hour_min = date.getHours() + ":" + date.getMinutes()
-        database.ref('plot/internet/' + timestamp).set({
+        refInternet = database.ref('plot/internet/' + timestamp).set({
           time: date_hour_min,
           value: (plot3.value)
         });
@@ -1722,67 +2822,80 @@ app.ws('/arrowdirections', function(ws, req) {
         arrowDir6.time = json_msg.time;
         console.log("allowDir %o", arrowDir6)
       }
+
       if (json_msg.port == 'enode1' && json_msg.port2 == "contracts") {
         console.log("arrow direction json %o", value)
-        if (json_msg.portX == 1) {
+        if (json_msg.seller == 'enode2' || json_msg.contragent == 'enode2') {
           arrowDir1.directionfrom = json_msg.seller;
           arrowDir1.directionto = json_msg.contragent;
+          arrowDir1.balance = json_msg.cost;
         }
-        if (json_msg.portX == 2) {
+        if (json_msg.seller == 'enode4' || json_msg.contragent == 'enode4') {
           arrowDir6.directionfrom = json_msg.seller;
           arrowDir6.directionto = json_msg.contragent;
+          arrowDir6.balance = json_msg.cost;
         }
-        if (json_msg.portX == 3) {
+        if (json_msg.seller == 'enode3' || json_msg.contragent == 'enode3') {
           arrowDir4.directionfrom = json_msg.seller;
           arrowDir4.directionto = json_msg.contragent;
+          arrowDir4.balance = json_msg.cost;
         }
         console.log("arrow direction %o %o %o", arrowDir1, arrowDir6, arrowDir4)
       }
       if (json_msg.port == 'enode2' && json_msg.port2 == "contracts") {
         console.log("arrow direction json %o", value)
-        if (json_msg.portX == 1) {
+        if (json_msg.seller == 'enode1' || json_msg.contragent == 'enode1') {
           arrowDir1.directionfrom = json_msg.seller;
           arrowDir1.directionto = json_msg.contragent;
+          arrowDir1.balance = json_msg.cost;
         }
-        if (json_msg.portX == 2) {
+        if (json_msg.seller == 'enode3' || json_msg.contragent == 'enode3') {
           arrowDir5.directionfrom = json_msg.seller;
           arrowDir5.directionto = json_msg.contragent;
+          arrowDir5.balance = json_msg.cost;
         }
-        if (json_msg.portX == 3) {
+        if (json_msg.seller == 'enode4' || json_msg.contragent == 'enode4') {
           arrowDir2.directionfrom = json_msg.seller;
           arrowDir2.directionto = json_msg.contragent;
+          arrowDir2.balance = json_msg.cost;
         }
         console.log("arrow direction %o %o %o", arrowDir1, arrowDir5, arrowDir2)
       }
       if (json_msg.port == 'enode3' && json_msg.port2 == "contracts") {
         console.log("arrow direction json %o", value)
-        if (json_msg.portX == 1) {
+        if (json_msg.seller == 'enode1' || json_msg.contragent == 'enode1') {
           arrowDir4.directionfrom = json_msg.seller;
           arrowDir4.directionto = json_msg.contragent;
+          arrowDir4.balance = json_msg.cost;
         }
-        if (json_msg.portX == 2) {
+        if (json_msg.seller == 'enode2' || json_msg.contragent == 'enode2') {
           arrowDir5.directionfrom = json_msg.seller;
           arrowDir5.directionto = json_msg.contragent;
+          arrowDir5.balance = json_msg.cost;
         }
-        if (json_msg.portX == 3) {
+        if (json_msg.seller == 'enode4' || json_msg.contragent == 'enode4') {
           arrowDir3.directionfrom = json_msg.seller;
           arrowDir3.directionto = json_msg.contragent;
+          arrowDir3.balance = json_msg.cost;
         }
         console.log("arrow direction %o %o %o", arrowDir4, arrowDir5, arrowDir3)
       }
       if (json_msg.port == 'enode4' && json_msg.port2 == "contracts") {
         console.log("arrow direction json %o", value)
-        if (json_msg.portX == 1) {
+        if (json_msg.seller == 'enode3' || json_msg.contragent == 'enode3') {
           arrowDir3.directionfrom = json_msg.seller;
           arrowDir3.directionto = json_msg.contragent;
+          arrowDir3.balance = json_msg.cost;
         }
-        if (json_msg.portX == 2) {
+        if (json_msg.seller == 'enode1' || json_msg.contragent == 'enode1') {
           arrowDir6.directionfrom = json_msg.seller;
           arrowDir6.directionto = json_msg.contragent;
+          arrowDir6.balance = json_msg.cost;
         }
-        if (json_msg.portX == 3) {
+        if (json_msg.seller == 'enode2' || json_msg.contragent == 'enode2') {
           arrowDir2.directionfrom = json_msg.seller;
           arrowDir2.directionto = json_msg.contragent;
+          arrowDir2.balance = json_msg.cost;
         }
         console.log("arrow direction %o %o %o", arrowDir3, arrowDir6, arrowDir2)
       }
@@ -2077,17 +3190,17 @@ function getRandomArbitrary(min, max) {
 }
 
 
-  app.get('/data', function(req, res) {
-    res.set("Access-Control-Allow-Origin", "*")
+app.get('/data', function(req, res) {
+  res.set("Access-Control-Allow-Origin", "*")
 
-    ref.once("value", function(snapshot) {
-      console.log(snapshot.numChildren());
-      res.send(snapshot.val())
-    }, function(errorObject) {
-      console.log("The read failed: " + errorObject.code);
-    });
+  ref.once("value", function(snapshot) {
+    console.log(snapshot.numChildren());
+    res.send(snapshot.val())
+  }, function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
   });
+});
 
-  app.listen(process.env.PORT || 3000, function() {
-    console.log("Server started on %o", process.env.PORT);
-  })
+app.listen(process.env.PORT || 3000, function() {
+  console.log("Server started on %o", process.env.PORT);
+})
