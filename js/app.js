@@ -3092,7 +3092,7 @@ app.ws('/arrowdirections', function(ws, req) {
 });
 
 app.ws('/plot', function(ws, req) {
-
+  ws.setKeepAlive(true)
   // void async function() {
   //
   //   let i = 1000;
