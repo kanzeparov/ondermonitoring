@@ -11,7 +11,7 @@ let trunc = require('./trunc.js')
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('plot.db');
 var firebase = require('firebase');
-let timeDelete = 1000;
+let timeDelete = 30;
 //var admin = require("firebase-admin");
 
 var firebaseConfig = {
