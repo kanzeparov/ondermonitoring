@@ -3242,6 +3242,9 @@ function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
 
+app.post('/login', function (req, res) {
+  res.send('true');
+});
 
 app.get('/data', function(req, res) {
   res.set("Access-Control-Allow-Origin", "*")
