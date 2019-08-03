@@ -12,6 +12,7 @@ const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('plot.db');
 var firebase = require('firebase');
 let timeDelete = 30;
+var password_str = ""
 //var admin = require("firebase-admin");
 
 var firebaseConfig = {
@@ -41,6 +42,7 @@ var ref = database.ref("plot/");
 var refTraditional = database.ref("plot/traditional");
 var refDistribution = database.ref("plot/distributed")
 var refInternet = database.ref("plot/internet");
+var pas = database.ref("password/")
 
 var ref107 = database.ref("/testbed/amigo/set_price")
 var ref57 = database.ref("/testbed/erouter/setpower_out")
@@ -370,6 +372,14 @@ var rout = {
   power: 0,
   energy: 0
 }
+
+pas.once("value", function(snapshot) {
+    password_str = snapshot.val().value
+    console.log("pass %o", password_str);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
 
 ref107.once("value", function(snapshot) {
     var timeCurrent = new Date(rout.time)
@@ -3243,7 +3253,12 @@ function getRandomArbitrary(min, max) {
 }
 
 app.post('/login', function (req, res) {
+  es.set("Access-Control-Allow-Origin", "*")
+  if(req.body.password == password_str) {
   res.send('true');
+} else {
+  res.send('false');
+}
 });
 
 app.get('/data', function(req, res) {
