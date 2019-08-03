@@ -3251,12 +3251,10 @@ app.ws('/router', function(ws, req) {
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
-app.options('/', function (req, res) {
-  res.set("Access-Control-Allow-Origin", "*")
-});
 
 
-app.post('/login', function(req, res) {
+
+app.get('/login', function(req, res) {
   res.set("Access-Control-Allow-Origin", "*")
   if (req.body.password == password_str) {
     res.send('true');
