@@ -3252,13 +3252,13 @@ function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-app.post('/login', function (req, res) {
-  es.set("Access-Control-Allow-Origin", "*")
-  if(req.body.password == password_str) {
-  res.send('true');
-} else {
-  res.send('false');
-}
+app.post('/login', function(req, res) {
+  res.set("Access-Control-Allow-Origin", "*")
+  if (req.body.password == password_str) {
+    res.send('true');
+  } else {
+    res.send('false');
+  }
 });
 
 app.get('/data', function(req, res) {
