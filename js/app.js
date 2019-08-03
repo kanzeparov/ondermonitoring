@@ -3256,7 +3256,7 @@ function getRandomArbitrary(min, max) {
 
 app.get('/login', function(req, res) {
   res.set("Access-Control-Allow-Origin", "*")
-  if (req.body.password == password_str) {
+  if (req.query.password == password_str) {
     res.send('true');
   } else {
     res.send('false');
