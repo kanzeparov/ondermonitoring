@@ -1,0 +1,11 @@
+{
+    "port" : 3005,
+    "minutes" : 30,
+    "apiKey" : "AIzaSyCalxvSjI6Op_WLR4PNOb02zVvXyCpg_wE",
+      "authDomain": "onder2.firebaseapp.com",
+  "databaseURL": "https://onder2.firebaseio.com",
+  "projectId": "onder2",
+  "storageBucket": "",
+  "messagingSenderId": "1017048097094",
+  "appId": "1:1017048097094:web:39cd1d4029ffe5f3"
+}
