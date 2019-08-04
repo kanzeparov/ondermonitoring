@@ -2400,6 +2400,10 @@ app.ws('/agents', function(ws, req) {
   const mqttDATA = new mqtt_cl.ClientMQTT()
   mqttDATA.add_handler(handlerDATA)
   mqttDATA.start()
+  ws.send(JSON.stringify(cell1))
+  ws.send(JSON.stringify(cell2))
+  ws.send(JSON.stringify(cell3))
+  ws.send(JSON.stringify(cell4))
 
   function handlerDATA(type, value) {
     console.log("Receive new message %o", value)
