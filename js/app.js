@@ -2404,7 +2404,7 @@ app.ws('/agents', function(ws, req) {
   function handlerDATA(type, value) {
     console.log("Receive new message %o", value)
 
-    if (json_msg.port2 == 'known_agents') {
+    if (value.port2 == 'known_agents') {
       console.log("agent json %o", value)
       if (value.count == 0) {
         if (value.value.agent1 == 'Agent1') {
@@ -3526,7 +3526,7 @@ app.get('/data', function(req, res) {
     console.log("The read failed: " + errorObject.code);
   });
 });
-
-app.listen(process.env.PORT || 3000, function() {
+//
+app.listen(process.env.PORT || 3005, function() {
   console.log("Server started on %o", process.env.PORT);
 })
