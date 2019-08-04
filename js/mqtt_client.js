@@ -98,21 +98,83 @@ class ClientMQTT {
       this.handler(msg_type, JSON.stringify(power_value))
     }
 
-//115
-if (topic.split('/')[4] == 'parameter0' && topic.split('/')[2].toString().includes('enode')) {
-  console.log("115 topic")
-  var power_value = {
-    // For example, enodeX
-    node: topic.split('/')[1],
-    // For ex, portX
-    port: topic.split('/')[2],
-    port2: topic.split('/')[3],
-    time: json_msg.timeStamp,
-    // power
-    value: json_msg.value
-  }
-  this.handler(msg_type, JSON.stringify(power_value))
-}
+    //22
+    if (topic.split('/')[3] == 'known_agents' && topic.split('/')[2].toString().includes('enode')) {
+      console.log("22 topic")
+      var i = 0
+      for (i in json_msg.known_agents) {
+        i++
+      }
+      var count = i
+      var power_value = {
+        // For example, enodeX
+        node: topic.split('/')[1],
+        // For ex, portX
+        port: topic.split('/')[2],
+        port2: topic.split('/')[3],
+        time: json_msg.timeStamp,
+        agent1: json_msg.agentId,
+        count: count
+      }
+      if (i == 1) {
+        var power_value = {
+          // For example, enodeX
+          node: topic.split('/')[1],
+          // For ex, portX
+          port: topic.split('/')[2],
+          port2: topic.split('/')[3],
+          time: json_msg.timeStamp,
+          agent1: json_msg.agentId,
+          count: count,
+          agent2: json_msg.known_agents[0].agentId
+        }
+      } else if (i == 2) {
+        var power_value = {
+          // For example, enodeX
+          node: topic.split('/')[1],
+          // For ex, portX
+          port: topic.split('/')[2],
+          port2: topic.split('/')[3],
+          time: json_msg.timeStamp,
+          agent1: json_msg.agentId,
+          count: count,
+          agent2: json_msg.known_agents[0].agentId,
+          agent3: json_msg.known_agents[1].agentId
+        }
+      } else if (i == 3) {
+        var power_value = {
+          // For example, enodeX
+          node: topic.split('/')[1],
+          // For ex, portX
+          port: topic.split('/')[2],
+          port2: topic.split('/')[3],
+          time: json_msg.timeStamp,
+          agent1: json_msg.agentId,
+          count: count,
+          agent2: json_msg.known_agents[0].agentId,
+          agent3: json_msg.known_agents[1].agentId,
+          agent4: json_msg.known_agents[2].agentId
+        }
+      }
+
+      this.handler(msg_type, JSON.stringify(power_value))
+    }
+
+    //115
+    if (topic.split('/')[4] == 'parameter0' && topic.split('/')[2].toString().includes('enode')) {
+      console.log("115 topic")
+      var power_value = {
+        // For example, enodeX
+        node: topic.split('/')[1],
+        // For ex, portX
+        port: topic.split('/')[2],
+        port2: topic.split('/')[3],
+        time: json_msg.timeStamp,
+        // power
+        value: json_msg.value
+      }
+      this.handler(msg_type, JSON.stringify(power_value))
+    }
 
     //87
     if (topic.split('/')[4] == 'status' && topic.split('/')[3].toString().includes('dc')) {
@@ -190,7 +252,7 @@ if (topic.split('/')[4] == 'parameter0' && topic.split('/')[2].toString().includ
   }
 
   publish77(enode, value) {
-    console.log("publish77 is hooked enode " + enode + " " +  value)
+    console.log("publish77 is hooked enode " + enode + " " + value)
     let topic = "/testbed/enode" + String(enode) + "/relay/ac/mode"
     let payload = {
       value: value,
@@ -200,7 +262,7 @@ if (topic.split('/')[4] == 'parameter0' && topic.split('/')[2].toString().includ
   }
 
   publish73(enode, value) {
-    console.log("publish73 is hooked  enode " + enode + " " +  value)
+    console.log("publish73 is hooked  enode " + enode + " " + value)
     let topic = "testbed/enode" + String(enode) + "/relay/der/mode"
     let payload = {
       value: value,
@@ -210,7 +272,7 @@ if (topic.split('/')[4] == 'parameter0' && topic.split('/')[2].toString().includ
   }
 
   publish67(dc_num, value) {
-    console.log("publish67 is hooked dc_num " + dc_num + " " +  value)
+    console.log("publish67 is hooked dc_num " + dc_num + " " + value)
     let topic = "/testbed/relay/dc" + String(dc_num) + "/mode"
     let payload = {
       value: value,
@@ -238,7 +300,8 @@ if (topic.split('/')[4] == 'parameter0' && topic.split('/')[2].toString().includ
     this.Client.subscribe("/testbed/+/contracts/+/init")
     this.Client.subscribe("/testbed/amigo/set_price")
     this.Client.subscribe("/testbed/erouter/setpower_out")
-this.Client.subscribe("/testbed/+/gen/parameter0")
+    this.Client.subscribe("/testbed/+/gen/parameter0")
+    this.Client.subscribe("/testbed/+/known_agents")
 
     this.Client.on('message', this.topic_handler.bind(this))
   }

@@ -43,6 +43,7 @@ var refTraditional = database.ref("plot/traditional");
 var refDistribution = database.ref("plot/distributed")
 var refInternet = database.ref("plot/internet");
 var pas = database.ref("password/")
+var refstatus = database.ref("status/")
 
 var ref107 = database.ref("/testbed/amigo/set_price")
 var ref57 = database.ref("/testbed/erouter/setpower_out")
@@ -167,22 +168,26 @@ var plot3 = {
 var cell1 = {
   time: "0",
   value: 0,
-  id: 1
+  id: 1,
+  status: false
 }
 var cell2 = {
   time: "0",
   value: 0,
-  id: 2
+  id: 2,
+  status: false
 }
 var cell3 = {
   time: "0",
   value: 0,
-  id: 3
+  id: 3,
+  status: false
 }
 var cell4 = {
   time: "0",
   value: 0,
-  id: 4
+  id: 4,
+  status: false
 }
 ///testbed/emeterX/power
 ///testbed/enodeX/relay/ac/status
@@ -376,6 +381,40 @@ var rout = {
 pas.once("value", function(snapshot) {
     password_str = snapshot.val().value
     console.log("pass %o", password_str);
+  },
+  function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+refstatus.once("value", function(snapshot) {
+    if (snapshot.val().value.agent1 == "Agent1" ||
+  snapshot.val().value.agent2 == "Agent1" ||
+snapshot.val().value.agent3 == "Agent1" ||
+snapshot.val().value.agent4 == "Agent1") {
+      cell1.status = true;
+    }
+    if (snapshot.val().value.agent1 == "Agent2" ||
+  snapshot.val().value.agent2 == "Agent2" ||
+snapshot.val().value.agent3 == "Agent2" ||
+snapshot.val().value.agent4 == "Agent2") {
+      cell2.status = true;
+    }
+
+    if (snapshot.val().value.agent1 == "Agent3" ||
+  snapshot.val().value.agent2 == "Agent3" ||
+snapshot.val().value.agent3 == "Agent3" ||
+snapshot.val().value.agent4 == "Agent3") {
+      cell3.status = true;
+    }
+
+    if (snapshot.val().value.agent1 == "Agent4" ||
+  snapshot.val().value.agent2 == "Agent4" ||
+snapshot.val().value.agent3 == "Agent4" ||
+snapshot.val().value.agent4 == "Agent4") {
+      cell4.status = true;
+    }
+
+    console.log("status %o", status);
   },
   function(errorObject) {
     console.log("The read failed: " + errorObject.code);
@@ -1410,6 +1449,100 @@ function handler(type, value) {
   try {
     json_msg = JSON.parse(value)
     console.log("handler %o" + (json_msg.port == 'enode2' && json_msg.port2 == "contracts"), json_msg)
+
+    if (json_msg.port2 == 'known_agents') {
+      console.log("agent json %o", value)
+      if(value.count == 0) {
+        if(value.value.agent1 == 'Agent1') {
+          cell1.status = true
+          cell2.status = false
+          cell3.status = false
+          cell4.status = false
+        }
+        if(value.value.agent1 == 'Agent2') {
+          cell1.status = false
+          cell2.status = true
+          cell3.status = false
+          cell4.status = false
+        }
+        if(value.value.agent1 == 'Agent3') {
+          cell1.status = false
+          cell2.status = false
+          cell3.status = true
+          cell4.status = false
+        }
+        if(value.value.agent1 == 'Agent4') {
+          cell1.status = false
+          cell2.status = false
+          cell3.status = false
+          cell4.status = true
+        }
+      }
+      if(value.count == 1) {
+        if((value.value.agent1 == 'Agent1' && value.value.agent2 == 'Agent2') || (value.value.agent1 == 'Agent2' && value.value.agent2 == 'Agent1')) {
+          cell1.status = true
+          cell2.status = true
+          cell3.status = false
+          cell4.status = false
+        }
+        if((value.value.agent1 == 'Agent2' && value.value.agent2 == 'Agent3') || (value.value.agent1 == 'Agent3' && value.value.agent2 == 'Agent2')) {
+          cell1.status = false
+          cell2.status = true
+          cell3.status = true
+          cell4.status = false
+        }
+        if((value.value.agent1 == 'Agent3' && value.value.agent2 == 'Agent4') || (value.value.agent1 == 'Agent4' && value.value.agent2 == 'Agent3')) {
+          cell1.status = false
+          cell2.status = false
+          cell3.status = true
+          cell4.status = true
+        }
+        if((value.value.agent1 == 'Agent3' && value.value.agent2 == 'Agent1') || (value.value.agent1 == 'Agent1' && value.value.agent2 == 'Agent3')) {
+          cell1.status = true
+          cell2.status = false
+          cell3.status = true
+          cell4.status = false
+        }
+        if((value.value.agent1 == 'Agent4' && value.value.agent2 == 'Agent1') || (value.value.agent1 == 'Agent1' && value.value.agent2 == 'Agent4')) {
+          cell1.status = true
+          cell2.status = false
+          cell3.status = false
+          cell4.status = true
+        }
+        if((value.value.agent1 == 'Agent4' && value.value.agent2 == 'Agent2') || (value.value.agent1 == 'Agent2' && value.value.agent2 == 'Agent4')) {
+          cell1.status = false
+          cell2.status = true
+          cell3.status = false
+          cell4.status = true
+        }
+
+
+      }
+      if(value.count == 2) {
+        cell1.status = false
+        cell2.status = false
+        cell3.status = false
+        cell4.status = false
+        if(value.value.agent1 == 'Agent1' || value.value.agent2 == 'Agent1' || value.value.agent3 == 'Agent1') {
+          cell1.status = true
+        }
+        if(value.value.agent1 == 'Agent2' || value.value.agent2 == 'Agent2' || value.value.agent3 == 'Agent2') {
+          cell2.status = true
+        }
+        if(value.value.agent1 == 'Agent3' || value.value.agent2 == 'Agent3' || value.value.agent3 == 'Agent3') {
+          cell3.status = true
+        }
+        if(value.value.agent1 == 'Agent4' || value.value.agent2 == 'Agent4' || value.value.agent3 == 'Agent4') {
+          cell4.status = true
+        }
+      }
+      if(value.count == 3) {
+        cell1.status == true
+        cell2.status == true
+        cell3.status == true
+        cell4.status == true
+      }
+    }
 
     if (json_msg.port == 'enode1' && json_msg.port2 == "gen") {
       console.log("gen price json %o", value)
