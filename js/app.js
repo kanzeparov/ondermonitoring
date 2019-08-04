@@ -388,33 +388,32 @@ pas.once("value", function(snapshot) {
 
 refstatus.once("value", function(snapshot) {
     if (snapshot.val().value.agent1 == "Agent1" ||
-  snapshot.val().value.agent2 == "Agent1" ||
-snapshot.val().value.agent3 == "Agent1" ||
-snapshot.val().value.agent4 == "Agent1") {
+      snapshot.val().value.agent2 == "Agent1" ||
+      snapshot.val().value.agent3 == "Agent1" ||
+      snapshot.val().value.agent4 == "Agent1") {
       cell1.status = true;
     }
     if (snapshot.val().value.agent1 == "Agent2" ||
-  snapshot.val().value.agent2 == "Agent2" ||
-snapshot.val().value.agent3 == "Agent2" ||
-snapshot.val().value.agent4 == "Agent2") {
+      snapshot.val().value.agent2 == "Agent2" ||
+      snapshot.val().value.agent3 == "Agent2" ||
+      snapshot.val().value.agent4 == "Agent2") {
       cell2.status = true;
     }
 
     if (snapshot.val().value.agent1 == "Agent3" ||
-  snapshot.val().value.agent2 == "Agent3" ||
-snapshot.val().value.agent3 == "Agent3" ||
-snapshot.val().value.agent4 == "Agent3") {
+      snapshot.val().value.agent2 == "Agent3" ||
+      snapshot.val().value.agent3 == "Agent3" ||
+      snapshot.val().value.agent4 == "Agent3") {
       cell3.status = true;
     }
 
     if (snapshot.val().value.agent1 == "Agent4" ||
-  snapshot.val().value.agent2 == "Agent4" ||
-snapshot.val().value.agent3 == "Agent4" ||
-snapshot.val().value.agent4 == "Agent4") {
+      snapshot.val().value.agent2 == "Agent4" ||
+      snapshot.val().value.agent3 == "Agent4" ||
+      snapshot.val().value.agent4 == "Agent4") {
       cell4.status = true;
     }
 
-    console.log("status %o", status);
   },
   function(errorObject) {
     console.log("The read failed: " + errorObject.code);
@@ -1452,64 +1451,64 @@ function handler(type, value) {
 
     if (json_msg.port2 == 'known_agents') {
       console.log("agent json %o", value)
-      if(value.count == 0) {
-        if(value.value.agent1 == 'Agent1') {
+      if (value.count == 0) {
+        if (value.value.agent1 == 'Agent1') {
           cell1.status = true
           cell2.status = false
           cell3.status = false
           cell4.status = false
         }
-        if(value.value.agent1 == 'Agent2') {
+        if (value.value.agent1 == 'Agent2') {
           cell1.status = false
           cell2.status = true
           cell3.status = false
           cell4.status = false
         }
-        if(value.value.agent1 == 'Agent3') {
+        if (value.value.agent1 == 'Agent3') {
           cell1.status = false
           cell2.status = false
           cell3.status = true
           cell4.status = false
         }
-        if(value.value.agent1 == 'Agent4') {
+        if (value.value.agent1 == 'Agent4') {
           cell1.status = false
           cell2.status = false
           cell3.status = false
           cell4.status = true
         }
       }
-      if(value.count == 1) {
-        if((value.value.agent1 == 'Agent1' && value.value.agent2 == 'Agent2') || (value.value.agent1 == 'Agent2' && value.value.agent2 == 'Agent1')) {
+      if (value.count == 1) {
+        if ((value.value.agent1 == 'Agent1' && value.value.agent2 == 'Agent2') || (value.value.agent1 == 'Agent2' && value.value.agent2 == 'Agent1')) {
           cell1.status = true
           cell2.status = true
           cell3.status = false
           cell4.status = false
         }
-        if((value.value.agent1 == 'Agent2' && value.value.agent2 == 'Agent3') || (value.value.agent1 == 'Agent3' && value.value.agent2 == 'Agent2')) {
+        if ((value.value.agent1 == 'Agent2' && value.value.agent2 == 'Agent3') || (value.value.agent1 == 'Agent3' && value.value.agent2 == 'Agent2')) {
           cell1.status = false
           cell2.status = true
           cell3.status = true
           cell4.status = false
         }
-        if((value.value.agent1 == 'Agent3' && value.value.agent2 == 'Agent4') || (value.value.agent1 == 'Agent4' && value.value.agent2 == 'Agent3')) {
+        if ((value.value.agent1 == 'Agent3' && value.value.agent2 == 'Agent4') || (value.value.agent1 == 'Agent4' && value.value.agent2 == 'Agent3')) {
           cell1.status = false
           cell2.status = false
           cell3.status = true
           cell4.status = true
         }
-        if((value.value.agent1 == 'Agent3' && value.value.agent2 == 'Agent1') || (value.value.agent1 == 'Agent1' && value.value.agent2 == 'Agent3')) {
+        if ((value.value.agent1 == 'Agent3' && value.value.agent2 == 'Agent1') || (value.value.agent1 == 'Agent1' && value.value.agent2 == 'Agent3')) {
           cell1.status = true
           cell2.status = false
           cell3.status = true
           cell4.status = false
         }
-        if((value.value.agent1 == 'Agent4' && value.value.agent2 == 'Agent1') || (value.value.agent1 == 'Agent1' && value.value.agent2 == 'Agent4')) {
+        if ((value.value.agent1 == 'Agent4' && value.value.agent2 == 'Agent1') || (value.value.agent1 == 'Agent1' && value.value.agent2 == 'Agent4')) {
           cell1.status = true
           cell2.status = false
           cell3.status = false
           cell4.status = true
         }
-        if((value.value.agent1 == 'Agent4' && value.value.agent2 == 'Agent2') || (value.value.agent1 == 'Agent2' && value.value.agent2 == 'Agent4')) {
+        if ((value.value.agent1 == 'Agent4' && value.value.agent2 == 'Agent2') || (value.value.agent1 == 'Agent2' && value.value.agent2 == 'Agent4')) {
           cell1.status = false
           cell2.status = true
           cell3.status = false
@@ -1518,25 +1517,25 @@ function handler(type, value) {
 
 
       }
-      if(value.count == 2) {
+      if (value.count == 2) {
         cell1.status = false
         cell2.status = false
         cell3.status = false
         cell4.status = false
-        if(value.value.agent1 == 'Agent1' || value.value.agent2 == 'Agent1' || value.value.agent3 == 'Agent1') {
+        if (value.value.agent1 == 'Agent1' || value.value.agent2 == 'Agent1' || value.value.agent3 == 'Agent1') {
           cell1.status = true
         }
-        if(value.value.agent1 == 'Agent2' || value.value.agent2 == 'Agent2' || value.value.agent3 == 'Agent2') {
+        if (value.value.agent1 == 'Agent2' || value.value.agent2 == 'Agent2' || value.value.agent3 == 'Agent2') {
           cell2.status = true
         }
-        if(value.value.agent1 == 'Agent3' || value.value.agent2 == 'Agent3' || value.value.agent3 == 'Agent3') {
+        if (value.value.agent1 == 'Agent3' || value.value.agent2 == 'Agent3' || value.value.agent3 == 'Agent3') {
           cell3.status = true
         }
-        if(value.value.agent1 == 'Agent4' || value.value.agent2 == 'Agent4' || value.value.agent3 == 'Agent4') {
+        if (value.value.agent1 == 'Agent4' || value.value.agent2 == 'Agent4' || value.value.agent3 == 'Agent4') {
           cell4.status = true
         }
       }
-      if(value.count == 3) {
+      if (value.count == 3) {
         cell1.status == true
         cell2.status == true
         cell3.status == true
@@ -2395,6 +2394,127 @@ app.ws('/preset', function(ws, req) {
     console.log('The connection was closed!');
   });
 });
+
+app.ws('/agents', function(ws, req) {
+
+  const mqttDATA = new mqtt_cl.ClientMQTT()
+  mqttDATA.add_handler(handlerDATA)
+  mqttDATA.start()
+
+  function handlerDATA(type, value) {
+    console.log("Receive new message %o", value)
+
+    if (json_msg.port2 == 'known_agents') {
+      console.log("agent json %o", value)
+      if (value.count == 0) {
+        if (value.value.agent1 == 'Agent1') {
+          cell1.status = true
+          cell2.status = false
+          cell3.status = false
+          cell4.status = false
+        }
+        if (value.value.agent1 == 'Agent2') {
+          cell1.status = false
+          cell2.status = true
+          cell3.status = false
+          cell4.status = false
+        }
+        if (value.value.agent1 == 'Agent3') {
+          cell1.status = false
+          cell2.status = false
+          cell3.status = true
+          cell4.status = false
+        }
+        if (value.value.agent1 == 'Agent4') {
+          cell1.status = false
+          cell2.status = false
+          cell3.status = false
+          cell4.status = true
+        }
+      }
+      if (value.count == 1) {
+        if ((value.value.agent1 == 'Agent1' && value.value.agent2 == 'Agent2') || (value.value.agent1 == 'Agent2' && value.value.agent2 == 'Agent1')) {
+          cell1.status = true
+          cell2.status = true
+          cell3.status = false
+          cell4.status = false
+        }
+        if ((value.value.agent1 == 'Agent2' && value.value.agent2 == 'Agent3') || (value.value.agent1 == 'Agent3' && value.value.agent2 == 'Agent2')) {
+          cell1.status = false
+          cell2.status = true
+          cell3.status = true
+          cell4.status = false
+        }
+        if ((value.value.agent1 == 'Agent3' && value.value.agent2 == 'Agent4') || (value.value.agent1 == 'Agent4' && value.value.agent2 == 'Agent3')) {
+          cell1.status = false
+          cell2.status = false
+          cell3.status = true
+          cell4.status = true
+        }
+        if ((value.value.agent1 == 'Agent3' && value.value.agent2 == 'Agent1') || (value.value.agent1 == 'Agent1' && value.value.agent2 == 'Agent3')) {
+          cell1.status = true
+          cell2.status = false
+          cell3.status = true
+          cell4.status = false
+        }
+        if ((value.value.agent1 == 'Agent4' && value.value.agent2 == 'Agent1') || (value.value.agent1 == 'Agent1' && value.value.agent2 == 'Agent4')) {
+          cell1.status = true
+          cell2.status = false
+          cell3.status = false
+          cell4.status = true
+        }
+        if ((value.value.agent1 == 'Agent4' && value.value.agent2 == 'Agent2') || (value.value.agent1 == 'Agent2' && value.value.agent2 == 'Agent4')) {
+          cell1.status = false
+          cell2.status = true
+          cell3.status = false
+          cell4.status = true
+        }
+
+
+      }
+      if (value.count == 2) {
+        cell1.status = false
+        cell2.status = false
+        cell3.status = false
+        cell4.status = false
+        if (value.value.agent1 == 'Agent1' || value.value.agent2 == 'Agent1' || value.value.agent3 == 'Agent1') {
+          cell1.status = true
+        }
+        if (value.value.agent1 == 'Agent2' || value.value.agent2 == 'Agent2' || value.value.agent3 == 'Agent2') {
+          cell2.status = true
+        }
+        if (value.value.agent1 == 'Agent3' || value.value.agent2 == 'Agent3' || value.value.agent3 == 'Agent3') {
+          cell3.status = true
+        }
+        if (value.value.agent1 == 'Agent4' || value.value.agent2 == 'Agent4' || value.value.agent3 == 'Agent4') {
+          cell4.status = true
+        }
+      }
+      if (value.count == 3) {
+        cell1.status == true
+        cell2.status == true
+        cell3.status == true
+        cell4.status == true
+      }
+    }
+
+    ws.send(JSON.stringify(cell1))
+    ws.send(JSON.stringify(cell2))
+    ws.send(JSON.stringify(cell3))
+    ws.send(JSON.stringify(cell4))
+  }
+
+
+
+  ws.on('close', function() {
+    mqttDATA.stop();
+    console.log('The connection was closed!');
+  });
+});
+
+
+
+
 
 app.ws('/arrows', function(ws, req) {
 
