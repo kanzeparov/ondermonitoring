@@ -105,6 +105,7 @@ class ClientMQTT {
       for (i in json_msg.known_agents) {
         i++
       }
+      console.log("i - " + i)
       var count = i
       var power_value = {
         // For example, enodeX
@@ -156,7 +157,7 @@ class ClientMQTT {
           agent4: json_msg.known_agents[2].agentId
         }
       }
-
+console.log("power - %o", power_value)
       this.handler(msg_type, JSON.stringify(power_value))
     }
 
