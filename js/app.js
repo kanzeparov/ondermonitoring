@@ -1447,6 +1447,7 @@ function handler(type, value) {
   var date = new Date();
   var timestamp = date.getTime();
   let json_msg = value;
+  console.log("data - %o",json_msg.port2);
   try {
     json_msg = JSON.parse(value)
     console.log("handler %o" + (json_msg.port == 'enode2' && json_msg.port2 == "contracts"), json_msg)
