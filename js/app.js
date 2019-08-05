@@ -1447,13 +1447,12 @@ function handler(type, value) {
   var date = new Date();
   var timestamp = date.getTime();
   let json_msg = value;
-  console.log("data - %o",json_msg.port2);
   try {
     json_msg = JSON.parse(value)
     console.log("handler %o" + (json_msg.port == 'enode2' && json_msg.port2 == "contracts"), json_msg)
 
     if (json_msg.port2 == 'known_agents') {
-      console.log("agent json %o " + json_msg.count, json_msg)
+      console.log("agent json %o " + (json_msg.count == 3), json_msg)
       cell1.status = false;
       cell2.status = false;
       cell3.status = false;
@@ -1545,10 +1544,14 @@ function handler(type, value) {
         }
       }
       if (json_msg.count == 3) {
-        cell1.status == true
-        cell2.status == true
-        cell3.status == true
-        cell4.status == true
+        cell1.status = true
+        cell2.status = true
+        cell3.status = true
+        cell4.status = true
+        console.log("cell1 status %o ", cell1)
+        console.log("cell2 status %o ", cell2)
+        console.log("cell3 status %o ", cell3)
+        console.log("cell4 status %o ", cell4)
       }
 
       console.log("cell1 %o ", cell1)
@@ -2454,10 +2457,10 @@ app.ws('/cells', function(ws, req) {
           }
         }
         if (json_msg.count == 3) {
-          cell1.status == true
-          cell2.status == true
-          cell3.status == true
-          cell4.status == true
+          cell1.status = true
+          cell2.status = true
+          cell3.status= true
+          cell4.status = true
         }
       }
 
@@ -2612,10 +2615,10 @@ app.ws('/agents', function(ws, req) {
         }
       }
       if (json_msg.count == 3) {
-        cell1.status == true
-        cell2.status == true
-        cell3.status == true
-        cell4.status == true
+        cell1.status = true
+        cell2.status = true
+        cell3.status = true
+        cell4.status = true
       }
 
 
