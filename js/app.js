@@ -2458,24 +2458,25 @@ app.ws('/cells', function(ws, req) {
           cell3.status == true
           cell4.status == true
         }
-
-
+      }
 
       ws.send(JSON.stringify(cell1))
       ws.send(JSON.stringify(cell2))
       ws.send(JSON.stringify(cell3))
       ws.send(JSON.stringify(cell4))
+
     } catch (ex) {
       console.log(ex)
     }
+
+
+
+
+    ws.on('close', function() {
+      mqttDATACells.stop();
+      console.log('The connection was closed!');
+    });
   }
-
-
-
-  ws.on('close', function() {
-    mqttDATACells.stop();
-    console.log('The connection was closed!');
-  });
 });
 
 app.ws('/preset', function(ws, req) {
