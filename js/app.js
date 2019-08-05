@@ -2514,134 +2514,134 @@ app.ws('/preset', function(ws, req) {
 
 app.ws('/agents', function(ws, req) {
 
-  const mqttDATA = new mqtt_cl.ClientMQTT()
-  mqttDATA.add_handler(handlerDATA)
-  mqttDATA.start()
-  ws.send(JSON.stringify(cell1))
-  ws.send(JSON.stringify(cell2))
-  ws.send(JSON.stringify(cell3))
-  ws.send(JSON.stringify(cell4))
+    const mqttDATA = new mqtt_cl.ClientMQTT()
+    mqttDATA.add_handler(handlerDATA)
+    mqttDATA.start()
+    ws.send(JSON.stringify(cell1))
+    ws.send(JSON.stringify(cell2))
+    ws.send(JSON.stringify(cell3))
+    ws.send(JSON.stringify(cell4))
 
-  function handlerDATA(type, value) {
-    console.log("Receive new message %o", value)
-    var json_msg = value;
-    try {
-      json_msg = JSON.parse(value)
-      if (json_msg.port2 == 'known_agents') {
-        console.log("agent json %o", value)
+    function handlerDATA(type, value) {
+      console.log("Receive new message %o", value)
+      var json_msg = value;
+      try {
+        json_msg = JSON.parse(value)
+        if (json_msg.port2 == 'known_agents') {
+          console.log("agent json %o", value)
 
 
 
-        if (json_msg.count == 0) {
-          if (json_msg.agent1 == 'Agent1') {
+          if (json_msg.count == 0) {
+            if (json_msg.agent1 == 'Agent1') {
+              cell1.status = true
+              cell2.status = false
+              cell3.status = false
+              cell4.status = false
+            }
+            if (json_msg.agent1 == 'Agent2') {
+              cell1.status = false
+              cell2.status = true
+              cell3.status = false
+              cell4.status = false
+            }
+            if (json_msg.agent1 == 'Agent3') {
+              cell1.status = false
+              cell2.status = false
+              cell3.status = true
+              cell4.status = false
+            }
+            if (json_msg.agent1 == 'Agent4') {
+              cell1.status = false
+              cell2.status = false
+              cell3.status = false
+              cell4.status = true
+            }
+          }
+          if (json_msg.count == 1) {
+            if ((json_msg.agent1 == 'Agent1' && json_msg.agent2 == 'Agent2') || (json_msg.agent1 == 'Agent2' && json_msg.agent2 == 'Agent1')) {
+              cell1.status = true
+              cell2.status = true
+              cell3.status = false
+              cell4.status = false
+            }
+            if ((json_msg.agent1 == 'Agent2' && json_msg.agent2 == 'Agent3') || (json_msg.agent1 == 'Agent3' && json_msg.agent2 == 'Agent2')) {
+              cell1.status = false
+              cell2.status = true
+              cell3.status = true
+              cell4.status = false
+            }
+            if ((json_msg.agent1 == 'Agent3' && json_msg.agent2 == 'Agent4') || (json_msg.agent1 == 'Agent4' && json_msg.agent2 == 'Agent3')) {
+              cell1.status = false
+              cell2.status = false
+              cell3.status = true
+              cell4.status = true
+            }
+            if ((json_msg.agent1 == 'Agent3' && json_msg.agent2 == 'Agent1') || (json_msg.agent1 == 'Agent1' && json_msg.agent2 == 'Agent3')) {
+              cell1.status = true
+              cell2.status = false
+              cell3.status = true
+              cell4.status = false
+            }
+            if ((json_msg.agent1 == 'Agent4' && json_msg.agent2 == 'Agent1') || (json_msg.agent1 == 'Agent1' && json_msg.agent2 == 'Agent4')) {
+              cell1.status = true
+              cell2.status = false
+              cell3.status = false
+              cell4.status = true
+            }
+            if ((json_msg.agent1 == 'Agent4' && json_msg.agent2 == 'Agent2') || (json_msg.agent1 == 'Agent2' && json_msg.agent2 == 'Agent4')) {
+              cell1.status = false
+              cell2.status = true
+              cell3.status = false
+              cell4.status = true
+            }
+
+
+          }
+          if (json_msg.count == 2) {
+            cell1.status = false
+            cell2.status = false
+            cell3.status = false
+            cell4.status = false
+            if (json_msg.agent1 == 'Agent1' || json_msg.agent2 == 'Agent1' || json_msg.agent3 == 'Agent1') {
+              cell1.status = true
+            }
+            if (json_msg.agent1 == 'Agent2' || json_msg.agent2 == 'Agent2' || json_msg.agent3 == 'Agent2') {
+              cell2.status = true
+            }
+            if (json_msg.agent1 == 'Agent3' || json_msg.agent2 == 'Agent3' || json_msg.agent3 == 'Agent3') {
+              cell3.status = true
+            }
+            if (json_msg.agent1 == 'Agent4' || json_msg.agent2 == 'Agent4' || json_msg.agent3 == 'Agent4') {
+              cell4.status = true
+            }
+          }
+          if (json_msg.count == 3) {
             cell1.status = true
-            cell2.status = false
-            cell3.status = false
-            cell4.status = false
-          }
-          if (json_msg.agent1 == 'Agent2') {
-            cell1.status = false
             cell2.status = true
-            cell3.status = false
-            cell4.status = false
-          }
-          if (json_msg.agent1 == 'Agent3') {
-            cell1.status = false
-            cell2.status = false
             cell3.status = true
-            cell4.status = false
-          }
-          if (json_msg.agent1 == 'Agent4') {
-            cell1.status = false
-            cell2.status = false
-            cell3.status = false
             cell4.status = true
           }
+
+
+
+          ws.send(JSON.stringify(cell1))
+          ws.send(JSON.stringify(cell2))
+          ws.send(JSON.stringify(cell3))
+          ws.send(JSON.stringify(cell4))
         }
-        if (json_msg.count == 1) {
-          if ((json_msg.agent1 == 'Agent1' && json_msg.agent2 == 'Agent2') || (json_msg.agent1 == 'Agent2' && json_msg.agent2 == 'Agent1')) {
-            cell1.status = true
-            cell2.status = true
-            cell3.status = false
-            cell4.status = false
-          }
-          if ((json_msg.agent1 == 'Agent2' && json_msg.agent2 == 'Agent3') || (json_msg.agent1 == 'Agent3' && json_msg.agent2 == 'Agent2')) {
-            cell1.status = false
-            cell2.status = true
-            cell3.status = true
-            cell4.status = false
-          }
-          if ((json_msg.agent1 == 'Agent3' && json_msg.agent2 == 'Agent4') || (json_msg.agent1 == 'Agent4' && json_msg.agent2 == 'Agent3')) {
-            cell1.status = false
-            cell2.status = false
-            cell3.status = true
-            cell4.status = true
-          }
-          if ((json_msg.agent1 == 'Agent3' && json_msg.agent2 == 'Agent1') || (json_msg.agent1 == 'Agent1' && json_msg.agent2 == 'Agent3')) {
-            cell1.status = true
-            cell2.status = false
-            cell3.status = true
-            cell4.status = false
-          }
-          if ((json_msg.agent1 == 'Agent4' && json_msg.agent2 == 'Agent1') || (json_msg.agent1 == 'Agent1' && json_msg.agent2 == 'Agent4')) {
-            cell1.status = true
-            cell2.status = false
-            cell3.status = false
-            cell4.status = true
-          }
-          if ((json_msg.agent1 == 'Agent4' && json_msg.agent2 == 'Agent2') || (json_msg.agent1 == 'Agent2' && json_msg.agent2 == 'Agent4')) {
-            cell1.status = false
-            cell2.status = true
-            cell3.status = false
-            cell4.status = true
-          }
-
-
-        }
-        if (json_msg.count == 2) {
-          cell1.status = false
-          cell2.status = false
-          cell3.status = false
-          cell4.status = false
-          if (json_msg.agent1 == 'Agent1' || json_msg.agent2 == 'Agent1' || json_msg.agent3 == 'Agent1') {
-            cell1.status = true
-          }
-          if (json_msg.agent1 == 'Agent2' || json_msg.agent2 == 'Agent2' || json_msg.agent3 == 'Agent2') {
-            cell2.status = true
-          }
-          if (json_msg.agent1 == 'Agent3' || json_msg.agent2 == 'Agent3' || json_msg.agent3 == 'Agent3') {
-            cell3.status = true
-          }
-          if (json_msg.agent1 == 'Agent4' || json_msg.agent2 == 'Agent4' || json_msg.agent3 == 'Agent4') {
-            cell4.status = true
-          }
-        }
-        if (json_msg.count == 3) {
-          cell1.status = true
-          cell2.status = true
-          cell3.status = true
-          cell4.status = true
-        }
-
-
-
-        ws.send(JSON.stringify(cell1))
-        ws.send(JSON.stringify(cell2))
-        ws.send(JSON.stringify(cell3))
-        ws.send(JSON.stringify(cell4))
-      }
-    } catch (ex) {
-      console.log(ex));
+      } catch (ex) {
+        console.log(ex));
+    }
   }
-
 
 }
 
 
 
 ws.on('close', function() {
-  mqttDATA.stop();
-  console.log('The connection was closed!');
+mqttDATA.stop();
+console.log('The connection was closed!');
 });
 });
 
