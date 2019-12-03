@@ -27,6 +27,7 @@ class ClientMQTT {
   }
 
   topic_handler(topic, message) {
+	try {
     console.log("Received a new message from %o - %o", topic.toString(), message.toString())
     let json_msg = JSON.parse(message)
     var topicMas = topic.split('/')
@@ -97,7 +98,7 @@ class ClientMQTT {
       }
       this.handler(msg_type, JSON.stringify(power_value))
     }
-
+/////////////////////////////////////////////////////////////////////// READY
     //22
     if (topic.split('/')[3] == 'known_agents' && topic.split('/')[2].toString().includes('enode')) {
       console.log("22 topic")
@@ -240,6 +241,9 @@ console.log("power - %o", power_value)
       }
       this.handler(msg_type, JSON.stringify(power_value))
     }
+} catch(e) {
+console.log(e)
+}
   }
 
   publish113(value) {

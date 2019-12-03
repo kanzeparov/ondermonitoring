@@ -324,8 +324,8 @@ var arrowDir1 = {
   id: 1,
   balance: 0,
   status: true,
-  directionfrom: "enode1",
-  directionto: "enode2"
+  directionfrom: "Agent1",
+  directionto: "Agent2"
 }
 var arrowDir2 = {
   time: "0",
@@ -333,8 +333,8 @@ var arrowDir2 = {
   id: 2,
   balance: 0,
   status: true,
-  directionfrom: "enode2",
-  directionto: "enode4"
+  directionfrom: "Agent2",
+  directionto: "Agent4"
 }
 var arrowDir3 = {
   time: "0",
@@ -342,8 +342,8 @@ var arrowDir3 = {
   id: 3,
   balance: 0,
   status: true,
-  directionfrom: "enode3",
-  directionto: "enode4"
+  directionfrom: "Agent4",
+  directionto: "Agent3"
 }
 var arrowDir4 = {
   time: "0",
@@ -351,8 +351,8 @@ var arrowDir4 = {
   id: 4,
   balance: 0,
   status: true,
-  directionfrom: "enode3",
-  directionto: "enode1"
+  directionfrom: "Agent3",
+  directionto: "Agent1"
 }
 var arrowDir5 = {
   time: "0",
@@ -360,8 +360,8 @@ var arrowDir5 = {
   id: 5,
   balance: 0,
   status: true,
-  directionfrom: "enode3",
-  directionto: "enode2"
+  directionfrom: "Agent3",
+  directionto: "Agent2"
 }
 var arrowDir6 = {
   time: "0",
@@ -369,8 +369,8 @@ var arrowDir6 = {
   id: 6,
   balance: 0,
   status: true,
-  directionfrom: "enode1",
-  directionto: "enode4"
+  directionfrom: "Agent1",
+  directionto: "Agent4"
 }
 
 var rout = {
@@ -1987,18 +1987,18 @@ function handler(type, value) {
     }
 
     if (json_msg.port == 'enode1' && json_msg.port2 == "contracts") {
-      console.log("arrow direction json %o", value)
-      if (json_msg.seller == 'enode2' || json_msg.contragent == 'enode2') {
+      console.log("ENODE1 arrow direction json %o", value)
+      if (json_msg.seller == 'Agent2' || json_msg.contragent == 'Agent2') {
         arrowDir1.directionfrom = json_msg.seller;
         arrowDir1.directionto = json_msg.contragent;
         arrowDir1.balance = json_msg.cost;
       }
-      if (json_msg.seller == 'enode4' || json_msg.contragent == 'enode4') {
+      if (json_msg.seller == 'Agent4' || json_msg.contragent == 'Agent4') {
         arrowDir6.directionfrom = json_msg.seller;
         arrowDir6.directionto = json_msg.contragent;
         arrowDir6.balance = json_msg.cost;
       }
-      if (json_msg.seller == 'enode3' || json_msg.contragent == 'enode3') {
+      if (json_msg.seller == 'Agent3' || json_msg.contragent == 'Agent3') {
         arrowDir4.directionfrom = json_msg.seller;
         arrowDir4.directionto = json_msg.contragent;
         arrowDir4.balance = json_msg.cost;
@@ -2006,18 +2006,18 @@ function handler(type, value) {
       console.log("arrow direction %o %o %o", arrowDir1, arrowDir6, arrowDir4)
     }
     if (json_msg.port == 'enode2' && json_msg.port2 == "contracts") {
-      console.log("arrow direction json %o", value)
-      if (json_msg.seller == 'enode1' || json_msg.contragent == 'enode1') {
+      console.log("ENODE2 arrow direction json %o", value)
+      if (json_msg.seller == 'Agent1' || json_msg.contragent == 'Agent1') {
         arrowDir1.directionfrom = json_msg.seller;
         arrowDir1.directionto = json_msg.contragent;
         arrowDir1.balance = json_msg.cost;
       }
-      if (json_msg.seller == 'enode3' || json_msg.contragent == 'enode3') {
+      if (json_msg.seller == 'Agent3' || json_msg.contragent == 'Agent3') {
         arrowDir5.directionfrom = json_msg.seller;
         arrowDir5.directionto = json_msg.contragent;
         arrowDir5.balance = json_msg.cost;
       }
-      if (json_msg.seller == 'enode4' || json_msg.contragent == 'enode4') {
+      if (json_msg.seller == 'Agent4' || json_msg.contragent == 'Agent4') {
         arrowDir2.directionfrom = json_msg.seller;
         arrowDir2.directionto = json_msg.contragent;
         arrowDir2.balance = json_msg.cost;
@@ -2025,18 +2025,21 @@ function handler(type, value) {
       console.log("arrow direction %o %o %o", arrowDir1, arrowDir5, arrowDir2)
     }
     if (json_msg.port == 'enode3' && json_msg.port2 == "contracts") {
-      console.log("arrow direction json %o", value)
-      if (json_msg.seller == 'enode1' || json_msg.contragent == 'enode1') {
+      console.log("ENODE3 arrow direction json %o", value)
+console.log("json_msg.seller %o, json_msg.contragent %o", json_msg.seller,json_msg.contragent)
+      if (json_msg.seller == 'Agent1' || json_msg.contragent == 'Agent1') {
         arrowDir4.directionfrom = json_msg.seller;
         arrowDir4.directionto = json_msg.contragent;
         arrowDir4.balance = json_msg.cost;
       }
-      if (json_msg.seller == 'enode2' || json_msg.contragent == 'enode2') {
+      if (json_msg.seller == 'Agent2' || json_msg.contragent == 'Agent2') {
         arrowDir5.directionfrom = json_msg.seller;
         arrowDir5.directionto = json_msg.contragent;
         arrowDir5.balance = json_msg.cost;
       }
-      if (json_msg.seller == 'enode4' || json_msg.contragent == 'enode4') {
+      if (json_msg.seller == 'Agent4' || json_msg.contragent == 'Agent4') {
+console.log("arrowDir3.directionfrom %o", arrowDir3.directionfrom)
+console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
         arrowDir3.directionfrom = json_msg.seller;
         arrowDir3.directionto = json_msg.contragent;
         arrowDir3.balance = json_msg.cost;
@@ -2044,18 +2047,18 @@ function handler(type, value) {
       console.log("arrow direction %o %o %o", arrowDir4, arrowDir5, arrowDir3)
     }
     if (json_msg.port == 'enode4' && json_msg.port2 == "contracts") {
-      console.log("arrow direction json %o", value)
-      if (json_msg.seller == 'enode3' || json_msg.contragent == 'enode3') {
+      console.log("ENODE4 arrow direction json %o", value)
+      if (json_msg.seller == 'Agent3' || json_msg.contragent == 'Agent3') {
         arrowDir3.directionfrom = json_msg.seller;
         arrowDir3.directionto = json_msg.contragent;
         arrowDir3.balance = json_msg.cost;
       }
-      if (json_msg.seller == 'enode1' || json_msg.contragent == 'enode1') {
+      if (json_msg.seller == 'Agent1' || json_msg.contragent == 'Agent1') {
         arrowDir6.directionfrom = json_msg.seller;
         arrowDir6.directionto = json_msg.contragent;
         arrowDir6.balance = json_msg.cost;
       }
-      if (json_msg.seller == 'enode2' || json_msg.contragent == 'enode2') {
+      if (json_msg.seller == 'Agent2' || json_msg.contragent == 'Agent2') {
         arrowDir2.directionfrom = json_msg.seller;
         arrowDir2.directionto = json_msg.contragent;
         arrowDir2.balance = json_msg.cost;
@@ -2113,77 +2116,77 @@ function handler(type, value) {
     var powerSellEnode4 = 0
     var pricePowerSellEnode4 = 0
 
-    if (arrowDir1.directionto == 'enode1') {
+    if (arrowDir1.directionto == 'Agent1') {
       powerBuyEnode1 = powerBuyEnode1 + arrowDir1.value
       pricePowerBuyEnode1 = pricePowerBuyEnode1 + arrowDir1.value * arrowDir1.balance
       powerSellEnode2 = powerSellEnode2 + arrowDir1.value
       pricePowerSellEnode2 = pricePowerSellEnode2 + arrowDir1.value * arrowDir1.balance
     }
-    if (arrowDir6.directionto == 'enode1') {
+    if (arrowDir6.directionto == 'Agent1') {
       powerBuyEnode1 = powerBuyEnode1 + arrowDir6.value
       pricePowerBuyEnode1 = pricePowerBuyEnode1 + arrowDir6.value * arrowDir6.balance
       powerSellEnode4 = powerSellEnode4 + arrowDir6.value
       pricePowerSellEnode4 = pricePowerSellEnode4 + arrowDir6.value * arrowDir6.balance
     }
-    if (arrowDir4.directionto == 'enode1') {
+    if (arrowDir4.directionto == 'Agent1') {
       powerBuyEnode1 = powerBuyEnode1 + arrowDir4.value
       pricePowerBuyEnode1 = pricePowerBuyEnode1 + arrowDir4.value * arrowDir4.balance
       powerSellEnode3 = powerSellEnode3 + arrowDir4.value
       pricePowerSellEnode3 = pricePowerSellEnode3 + arrowDir4.value * arrowDir4.balance
     }
 
-    if (arrowDir1.directionto == 'enode2') {
+    if (arrowDir1.directionto == 'Agent2') {
       powerBuyEnode2 = powerBuyEnode2 + arrowDir1.value
       pricePowerBuyEnode2 = pricePowerBuyEnode2 + arrowDir1.value * arrowDir1.balance
       powerSellEnode1 = powerSellEnode1 + arrowDir1.value
       pricePowerSellEnode1 = pricePowerSellEnode1 + arrowDir1.value * arrowDir1.balance
     }
-    if (arrowDir2.directionto == 'enode2') {
+    if (arrowDir2.directionto == 'Agent2') {
       powerBuyEnode2 = powerBuyEnode2 + arrowDir2.value
       pricePowerBuyEnode2 = pricePowerBuyEnode2 + arrowDir2.value * arrowDir2.balance
       powerSellEnode4 = powerSellEnode4 + arrowDir2.value
       pricePowerSellEnode4 = pricePowerSellEnode4 + arrowDir2.value * arrowDir2.balance
     }
-    if (arrowDir5.directionto == 'enode2') {
+    if (arrowDir5.directionto == 'Agent2') {
       powerBuyEnode2 = powerBuyEnode2 + arrowDir5.value
       pricePowerBuyEnode2 = pricePowerBuyEnode2 + arrowDir5.value * arrowDir5.balance
       powerSellEnode3 = powerSellEnode3 + arrowDir5.value
       pricePowerSellEnode3 = pricePowerSellEnode3 + arrowDir5.value * arrowDir5.balance
     }
 
-    if (arrowDir4.directionto == 'enode3') {
+    if (arrowDir4.directionto == 'Agent3') {
       powerBuyEnode3 = powerBuyEnode3 + arrowDir4.value
       pricePowerBuyEnode3 = pricePowerBuyEnode3 + arrowDir4.value * arrowDir4.balance
       powerSellEnode1 = powerSellEnode1 + arrowDir4.value
       pricePowerSellEnode1 = pricePowerSellEnode1 + arrowDir4.value * arrowDir4.balance
     }
 
-    if (arrowDir5.directionto == 'enode3') {
+    if (arrowDir5.directionto == 'Agent3') {
       powerBuyEnode3 = powerBuyEnode3 + arrowDir5.value
       pricePowerBuyEnode3 = pricePowerBuyEnode3 + arrowDir5.value * arrowDir5.balance
       powerSellEnode2 = powerSellEnode2 + arrowDir5.value
       pricePowerSellEnode2 = pricePowerSellEnode2 + arrowDir5.value * arrowDir5.balance
     }
-    if (arrowDir3.directionto == 'enode3') {
+    if (arrowDir3.directionto == 'Agent3') {
       powerBuyEnode3 = powerBuyEnode3 + arrowDir3.value
       pricePowerBuyEnode3 = pricePowerBuyEnode3 + arrowDir3.value * arrowDir3.balance
       powerSellEnode4 = powerSellEnode4 + arrowDir3.value
       pricePowerSellEnode4 = pricePowerSellEnode4 + arrowDir3.value * arrowDir3.balance
     }
 
-    if (arrowDir2.directionto == 'enode4') {
+    if (arrowDir2.directionto == 'Agent4') {
       powerBuyEnode4 = powerBuyEnode4 + arrowDir2.value
       pricePowerBuyEnode4 = pricePowerBuyEnode4 + arrowDir2.value * arrowDir2.balance
       powerSellEnode2 = powerSellEnode2 + arrowDir2.value
       pricePowerSellEnode2 = pricePowerSellEnode2 + arrowDir2.value * arrowDir2.balance
     }
-    if (arrowDir6.directionto == 'enode4') {
+    if (arrowDir6.directionto == 'Agent4') {
       powerBuyEnode4 = powerBuyEnode4 + arrowDir6.value
       pricePowerBuyEnode4 = pricePowerBuyEnode4 + arrowDir6.value * arrowDir6.balance
       powerSellEnode1 = powerSellEnode1 + arrowDir6.value
       pricePowerSellEnode1 = pricePowerSellEnode1 + arrowDir6.value * arrowDir6.balance
     }
-    if (arrowDir3.directionto == 'enode4') {
+    if (arrowDir3.directionto == 'Agent4') {
       powerBuyEnode4 = powerBuyEnode4 + arrowDir3.value
       pricePowerBuyEnode4 = pricePowerBuyEnode4 + arrowDir3.value * arrowDir3.balance
       powerSellEnode3 = powerSellEnode3 + arrowDir3.value
@@ -2674,7 +2677,7 @@ app.ws('/arrows', function(ws, req) {
   ws.send(JSON.stringify(arrow12))
 
   function handlerDATA(type, value) {
-    console.log(" arrows Receive new message %o", value)
+    console.log(" arrows - ws Receive new message %o", value)
     var json_msg = value;
     try {
       json_msg = JSON.parse(value)
@@ -3133,7 +3136,7 @@ app.ws('/arrowdirections', function(ws, req) {
   ws.send(JSON.stringify(arrowDir6))
 
   function handlerDATA(type, value) {
-    console.log(" arrows Receive new message %o", value)
+    console.log(" arrows DIR Receive new message %o", value)
     var json_msg = value;
     try {
       json_msg = JSON.parse(value)
@@ -3253,18 +3256,18 @@ app.ws('/arrowdirections', function(ws, req) {
       }
 
       if (json_msg.port == 'enode1' && json_msg.port2 == "contracts") {
-        console.log("arrow direction json %o", value)
-        if (json_msg.seller == 'enode2' || json_msg.contragent == 'enode2') {
+        console.log("ENODE1 arrow direction json %o", value)
+        if (json_msg.seller == 'Agent2' || json_msg.contragent == 'Agent2') {
           arrowDir1.directionfrom = json_msg.seller;
           arrowDir1.directionto = json_msg.contragent;
           arrowDir1.balance = json_msg.cost;
         }
-        if (json_msg.seller == 'enode4' || json_msg.contragent == 'enode4') {
+        if (json_msg.seller == 'Agent4' || json_msg.contragent == 'Agent4') {
           arrowDir6.directionfrom = json_msg.seller;
           arrowDir6.directionto = json_msg.contragent;
           arrowDir6.balance = json_msg.cost;
         }
-        if (json_msg.seller == 'enode3' || json_msg.contragent == 'enode3') {
+        if (json_msg.seller == 'Agent3' || json_msg.contragent == 'Agent3') {
           arrowDir4.directionfrom = json_msg.seller;
           arrowDir4.directionto = json_msg.contragent;
           arrowDir4.balance = json_msg.cost;
@@ -3272,18 +3275,18 @@ app.ws('/arrowdirections', function(ws, req) {
         console.log("arrow direction %o %o %o", arrowDir1, arrowDir6, arrowDir4)
       }
       if (json_msg.port == 'enode2' && json_msg.port2 == "contracts") {
-        console.log("arrow direction json %o", value)
-        if (json_msg.seller == 'enode1' || json_msg.contragent == 'enode1') {
+        console.log("ENODE2 arrow direction json %o", value)
+        if (json_msg.seller == 'Agent1' || json_msg.contragent == 'Agent1') {
           arrowDir1.directionfrom = json_msg.seller;
           arrowDir1.directionto = json_msg.contragent;
           arrowDir1.balance = json_msg.cost;
         }
-        if (json_msg.seller == 'enode3' || json_msg.contragent == 'enode3') {
+        if (json_msg.seller == 'Agent3' || json_msg.contragent == 'Agent3') {
           arrowDir5.directionfrom = json_msg.seller;
           arrowDir5.directionto = json_msg.contragent;
           arrowDir5.balance = json_msg.cost;
         }
-        if (json_msg.seller == 'enode4' || json_msg.contragent == 'enode4') {
+        if (json_msg.seller == 'Agent4' || json_msg.contragent == 'Agent4') {
           arrowDir2.directionfrom = json_msg.seller;
           arrowDir2.directionto = json_msg.contragent;
           arrowDir2.balance = json_msg.cost;
@@ -3291,18 +3294,21 @@ app.ws('/arrowdirections', function(ws, req) {
         console.log("arrow direction %o %o %o", arrowDir1, arrowDir5, arrowDir2)
       }
       if (json_msg.port == 'enode3' && json_msg.port2 == "contracts") {
-        console.log("arrow direction json %o", value)
-        if (json_msg.seller == 'enode1' || json_msg.contragent == 'enode1') {
+        console.log("ENODE3 arrow direction json %o", value)
+console.log("json_msg.seller %o, json_msg.contragent %o", json_msg.seller,json_msg.contragent)
+        if (json_msg.seller == 'Agent1' || json_msg.contragent == 'Agent1') {
           arrowDir4.directionfrom = json_msg.seller;
           arrowDir4.directionto = json_msg.contragent;
           arrowDir4.balance = json_msg.cost;
         }
-        if (json_msg.seller == 'enode2' || json_msg.contragent == 'enode2') {
+        if (json_msg.seller == 'Agent2' || json_msg.contragent == 'Agent2') {
           arrowDir5.directionfrom = json_msg.seller;
           arrowDir5.directionto = json_msg.contragent;
           arrowDir5.balance = json_msg.cost;
         }
-        if (json_msg.seller == 'enode4' || json_msg.contragent == 'enode4') {
+        if (json_msg.seller == 'Agent4' || json_msg.contragent == 'Agent4') {
+console.log("arrowDir3.directionfrom %o", arrowDir3.directionfrom)
+console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
           arrowDir3.directionfrom = json_msg.seller;
           arrowDir3.directionto = json_msg.contragent;
           arrowDir3.balance = json_msg.cost;
@@ -3310,18 +3316,18 @@ app.ws('/arrowdirections', function(ws, req) {
         console.log("arrow direction %o %o %o", arrowDir4, arrowDir5, arrowDir3)
       }
       if (json_msg.port == 'enode4' && json_msg.port2 == "contracts") {
-        console.log("arrow direction json %o", value)
-        if (json_msg.seller == 'enode3' || json_msg.contragent == 'enode3') {
+        console.log("ENODE4 arrow direction json %o", json_msg)
+        if (json_msg.seller == 'Agent3' || json_msg.contragent == 'Agent3') {
           arrowDir3.directionfrom = json_msg.seller;
           arrowDir3.directionto = json_msg.contragent;
           arrowDir3.balance = json_msg.cost;
         }
-        if (json_msg.seller == 'enode1' || json_msg.contragent == 'enode1') {
+        if (json_msg.seller == 'Agent1' || json_msg.contragent == 'Agent1') {
           arrowDir6.directionfrom = json_msg.seller;
           arrowDir6.directionto = json_msg.contragent;
           arrowDir6.balance = json_msg.cost;
         }
-        if (json_msg.seller == 'enode2' || json_msg.contragent == 'enode2') {
+        if (json_msg.seller == 'Agent2' || json_msg.contragent == 'Agent2') {
           arrowDir2.directionfrom = json_msg.seller;
           arrowDir2.directionto = json_msg.contragent;
           arrowDir2.balance = json_msg.cost;
@@ -3348,77 +3354,77 @@ app.ws('/arrowdirections', function(ws, req) {
       var powerSellEnode4 = 0
       var pricePowerSellEnode4 = 0
 
-      if (arrowDir1.directionto == 'enode1') {
+      if (arrowDir1.directionto == 'Agent1') {
         powerBuyEnode1 = powerBuyEnode1 + arrowDir1.value
         pricePowerBuyEnode1 = pricePowerBuyEnode1 + arrowDir1.value * arrowDir1.balance
         powerSellEnode2 = powerSellEnode2 + arrowDir1.value
         pricePowerSellEnode2 = pricePowerSellEnode2 + arrowDir1.value * arrowDir1.balance
       }
-      if (arrowDir6.directionto == 'enode1') {
+      if (arrowDir6.directionto == 'Agent1') {
         powerBuyEnode1 = powerBuyEnode1 + arrowDir6.value
         pricePowerBuyEnode1 = pricePowerBuyEnode1 + arrowDir6.value * arrowDir6.balance
         powerSellEnode4 = powerSellEnode4 + arrowDir6.value
         pricePowerSellEnode4 = pricePowerSellEnode4 + arrowDir6.value * arrowDir6.balance
       }
-      if (arrowDir4.directionto == 'enode1') {
+      if (arrowDir4.directionto == 'Agent1') {
         powerBuyEnode1 = powerBuyEnode1 + arrowDir4.value
         pricePowerBuyEnode1 = pricePowerBuyEnode1 + arrowDir4.value * arrowDir4.balance
         powerSellEnode3 = powerSellEnode3 + arrowDir4.value
         pricePowerSellEnode3 = pricePowerSellEnode3 + arrowDir4.value * arrowDir4.balance
       }
 
-      if (arrowDir1.directionto == 'enode2') {
+      if (arrowDir1.directionto == 'Agent2') {
         powerBuyEnode2 = powerBuyEnode2 + arrowDir1.value
         pricePowerBuyEnode2 = pricePowerBuyEnode2 + arrowDir1.value * arrowDir1.balance
         powerSellEnode1 = powerSellEnode1 + arrowDir1.value
         pricePowerSellEnode1 = pricePowerSellEnode1 + arrowDir1.value * arrowDir1.balance
       }
-      if (arrowDir2.directionto == 'enode2') {
+      if (arrowDir2.directionto == 'Agent2') {
         powerBuyEnode2 = powerBuyEnode2 + arrowDir2.value
         pricePowerBuyEnode2 = pricePowerBuyEnode2 + arrowDir2.value * arrowDir2.balance
         powerSellEnode4 = powerSellEnode4 + arrowDir2.value
         pricePowerSellEnode4 = pricePowerSellEnode4 + arrowDir2.value * arrowDir2.balance
       }
-      if (arrowDir5.directionto == 'enode2') {
+      if (arrowDir5.directionto == 'Agent2') {
         powerBuyEnode2 = powerBuyEnode2 + arrowDir5.value
         pricePowerBuyEnode2 = pricePowerBuyEnode2 + arrowDir5.value * arrowDir5.balance
         powerSellEnode3 = powerSellEnode3 + arrowDir5.value
         pricePowerSellEnode3 = pricePowerSellEnode3 + arrowDir5.value * arrowDir5.balance
       }
 
-      if (arrowDir4.directionto == 'enode3') {
+      if (arrowDir4.directionto == 'Agent3') {
         powerBuyEnode3 = powerBuyEnode3 + arrowDir4.value
         pricePowerBuyEnode3 = pricePowerBuyEnode3 + arrowDir4.value * arrowDir4.balance
         powerSellEnode1 = powerSellEnode1 + arrowDir4.value
         pricePowerSellEnode1 = pricePowerSellEnode1 + arrowDir4.value * arrowDir4.balance
       }
 
-      if (arrowDir5.directionto == 'enode3') {
+      if (arrowDir5.directionto == 'Agent3') {
         powerBuyEnode3 = powerBuyEnode3 + arrowDir5.value
         pricePowerBuyEnode3 = pricePowerBuyEnode3 + arrowDir5.value * arrowDir5.balance
         powerSellEnode2 = powerSellEnode2 + arrowDir5.value
         pricePowerSellEnode2 = pricePowerSellEnode2 + arrowDir5.value * arrowDir5.balance
       }
-      if (arrowDir3.directionto == 'enode3') {
+      if (arrowDir3.directionto == 'Agent3') {
         powerBuyEnode3 = powerBuyEnode3 + arrowDir3.value
         pricePowerBuyEnode3 = pricePowerBuyEnode3 + arrowDir3.value * arrowDir3.balance
         powerSellEnode4 = powerSellEnode4 + arrowDir3.value
         pricePowerSellEnode4 = pricePowerSellEnode4 + arrowDir3.value * arrowDir3.balance
       }
 
-      if (arrowDir2.directionto == 'enode4') {
+      if (arrowDir2.directionto == 'Agent4') {
         powerBuyEnode4 = powerBuyEnode4 + arrowDir2.value
         pricePowerBuyEnode4 = pricePowerBuyEnode4 + arrowDir2.value * arrowDir2.balance
         powerSellEnode2 = powerSellEnode2 + arrowDir2.value
         pricePowerSellEnode2 = pricePowerSellEnode2 + arrowDir2.value * arrowDir2.balance
       }
-      if (arrowDir6.directionto == 'enode4') {
+      if (arrowDir6.directionto == 'Agent4') {
         powerBuyEnode4 = powerBuyEnode4 + arrowDir6.value
         pricePowerBuyEnode4 = pricePowerBuyEnode4 + arrowDir6.value * arrowDir6.balance
         powerSellEnode1 = powerSellEnode1 + arrowDir6.value
         pricePowerSellEnode1 = pricePowerSellEnode1 + arrowDir6.value * arrowDir6.balance
       }
-      if (arrowDir3.directionto == 'enode4') {
+      if (arrowDir3.directionto == 'Agent4') {
         powerBuyEnode4 = powerBuyEnode4 + arrowDir3.value
         pricePowerBuyEnode4 = pricePowerBuyEnode4 + arrowDir3.value * arrowDir3.balance
         powerSellEnode3 = powerSellEnode3 + arrowDir3.value

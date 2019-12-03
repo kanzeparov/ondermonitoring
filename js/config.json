@@ -1,11 +1,11 @@
 {
     "port" : 3005,
     "minutes" : 30,
-    "apiKey" : "AIzaSyCqS2bWFtRXX2P4wq5nD0PANaFXsPr6FLw",
+    "apiKey" : "AIzaSyDC8vp9ZYBaTu2hzC8D_HbD3ViVsLiV8vo",
       "authDomain": "onder3-f45a2.firebaseapp.com",
-  "databaseURL": "https://onder3-f45a2.firebaseio.com",
-  "projectId": "onder3-f45a2",
-  "storageBucket": "",
-  "messagingSenderId": "1081599581797",
-  "appId": "1:1081599581797:web:a5c728edae6f8db9b3b08c"
+  "databaseURL": "https://monitoring-idea.firebaseio.com",
+  "projectId": "monitoring-idea",
+  "storageBucket": "monitoring-idea.appspot.com",
+  "messagingSenderId": "156746994093",
+  "appId": "1:156746994093:web:4666a181ef4fd29f82d124"
 }
