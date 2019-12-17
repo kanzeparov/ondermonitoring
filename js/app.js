@@ -3126,23 +3126,18 @@ app.ws('/arrows', function(ws, req) {
       json_msg = JSON.parse(data)
       if (json_msg.id >= 1 && json_msg.id <= 4) {
         mqttDATA.publish77(json_msg.id, json_msg.status)
-        mqttDATA.publish77(json_msg.id, !json_msg.status)
       }
       if (json_msg.id == 5) {
         mqttDATA.publish73(1, json_msg.status)
-        mqttDATA.publish73(1, !json_msg.status)
       }
       if (json_msg.id == 7) {
         mqttDATA.publish73(3, json_msg.status)
-        mqttDATA.publish73(3, !json_msg.status)
       }
       if (json_msg.id == 9) {
         mqttDATA.publish73(2, json_msg.status)
-        mqttDATA.publish73(2, !json_msg.status)
       }
       if (json_msg.id == 11) {
         mqttDATA.publish73(4, json_msg.status)
-        mqttDATA.publish73(4, !json_msg.status)
       }
     } catch (ex) {
       console.log(ex)
@@ -3511,7 +3506,6 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
       json_msg = JSON.parse(data)
       if (json_msg.id >= 1 && json_msg.id <= 6) {
         mqttDATA.publish67(json_msg.id, json_msg.status)
-        mqttDATA.publish67(json_msg.id, !json_msg.status)
       }
     } catch (ex) {
       console.log(ex)
