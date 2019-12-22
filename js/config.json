@@ -10,13 +10,5 @@
     "appId": "1:89296205645:web:bc4933b5726ced4249a904"
 
 }
-  var firebaseConfig = {
-    apiKey: "AIzaSyCBprJnncExuvsfIRZtJl1xfHsVlPfzudI",
-    authDomain: "onder-acd4f.firebaseapp.com",
-    databaseURL: "https://onder-acd4f.firebaseio.com",
-    projectId: "onder-acd4f",
-    storageBucket: "onder-acd4f.appspot.com",
-    messagingSenderId: "657540513948",
-    appId: "1:657540513948:web:6054b532aa52354dc12d59"
-  };
+
 

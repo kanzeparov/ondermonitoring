@@ -13,15 +13,14 @@ function makeid(length) {
 class ClientMQTT {
   constructor() {
     this.options = {
-      port: 8883,
-      host: "mqtt-stage.rnd.rtsoft.ru",
+      port: 1883,
+      host: "192.168.0.10",
       clientId: makeid(20),
-      username: "user1",
-      password: "jejcoilld7493",
+ 
       keepalive: 60,
       reconnectPeriod: 1000,
       rejectUnauthorized: true,
-      protocol: 'mqtts'
+      protocol: 'mqtt'
     }
     this.started = 0
   }

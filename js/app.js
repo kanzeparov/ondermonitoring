@@ -15,15 +15,15 @@ var firebase = require('firebase');
 let timeDelete = config.minutes;
 var password_str = ""
 //var admin = require("firebase-admin");
-var firebaseConfig = {
-  apiKey: config.apiKey,
-  authDomain: config.authDomain,
-  databaseURL: config.databaseURL,
-  projectId: config.projectId,
-  storageBucket: config.storageBucket,
-  messagingSenderId: config.messagingSenderId,
-  appId: config.appId
-};
+  var firebaseConfig = {
+    apiKey: "AIzaSyCBprJnncExuvsfIRZtJl1xfHsVlPfzudI",
+    authDomain: "onder-acd4f.firebaseapp.com",
+    databaseURL: "https://onder-acd4f.firebaseio.com",
+    projectId: "onder-acd4f",
+    storageBucket: "onder-acd4f.appspot.com",
+    messagingSenderId: "657540513948",
+    appId: "1:657540513948:web:6054b532aa52354dc12d59"
+  };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 //  admin.initializeApp();
