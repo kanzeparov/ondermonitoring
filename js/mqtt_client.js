@@ -201,7 +201,7 @@ console.log("power - %o", power_value)
         topic.split('/')[3].toString().includes('port') && (topic.split('/')[4] == 'power')) ||
       (topic.split('/')[2].toString().includes('enode') &&
         topic.split('/')[3].toString().includes('load') &&
-        topic.split('/')[4] == 'value')
+        topic.split('/')[4] == 'measure')
     ) {
 
       console.log("16, 6, 32,33,34,35 topic")
@@ -298,7 +298,7 @@ console.log(e)
     this.Client.subscribe("/testbed/+/relay/+/status")
     this.Client.subscribe("/testbed/+/ext_battery/power")
     this.Client.subscribe("/testbed/+/load/+/status")
-    this.Client.subscribe("/testbed/+/+/value")
+    this.Client.subscribe("/testbed/+/+/measure")
     this.Client.subscribe("/testbed/relay/+/mode")
     this.Client.subscribe("/testbed/relay/+/status")
     this.Client.subscribe("/testbed/+/+/power")

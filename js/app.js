@@ -561,33 +561,33 @@ function handler(type, value) {
 
 
 
-    if (json_msg.port == 'enode1' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
+    if (json_msg.port == 'enode1' && json_msg.port2 == "load1" && json_msg.port3 == "measure") {
       console.log("arrow912  json %o", value)
       arrow9pre.value1 = json_msg.value;
       console.log("arrow912 %o", arrow9pre)
     }
-    if (json_msg.port == 'enode1' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
+    if (json_msg.port == 'enode1' && json_msg.port2 == "load2" && json_msg.port3 == "measure") {
       console.log("arrow912  json %o", value)
       arrow9pre.value2 = json_msg.value;
       console.log("arrow912 %o", arrow9pre)
     }
-    if (json_msg.port == 'enode1' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
+    if (json_msg.port == 'enode1' && json_msg.port2 == "load3" && json_msg.port3 == "measure") {
       console.log("arrow912  json %o", value)
       arrow9pre.value3 = json_msg.value;
       console.log("arrow912 %o", arrow9pre)
     }
 
-    if (json_msg.port == 'enode2' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
+    if (json_msg.port == 'enode2' && json_msg.port2 == "load1" && json_msg.port3 == "measure") {
       console.log("arrow912  json %o", value)
       arrow10pre.value1 = json_msg.value;
       console.log("arrow912 %o", arrow10pre)
     }
-    if (json_msg.port == 'enode2' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
+    if (json_msg.port == 'enode2' && json_msg.port2 == "load2" && json_msg.port3 == "measure") {
       console.log("arrow912  json %o", value)
       arrow10pre.value2 = json_msg.value;
       console.log("arrow912 %o", arrow10pre)
     }
-    if (json_msg.port == 'enode2' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
+    if (json_msg.port == 'enode2' && json_msg.port2 == "load3" && json_msg.port3 == "measure") {
       console.log("arrow912  json %o", value)
       arrow10pre.value3 = json_msg.value;
       console.log("arrow812 %o", arrow10pre)
@@ -596,17 +596,17 @@ function handler(type, value) {
 
 
 
-    if (json_msg.port == 'enode3' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
+    if (json_msg.port == 'enode3' && json_msg.port2 == "load1" && json_msg.port3 == "measure") {
       console.log("arrow912  json %o", value)
       arrow11pre.value1 = json_msg.value;
       console.log("arrow912 %o", arrow11pre)
     }
-    if (json_msg.port == 'enode3' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
+    if (json_msg.port == 'enode3' && json_msg.port2 == "load2" && json_msg.port3 == "measure") {
       console.log("arrow912  json %o", value)
       arrow11pre.value2 = json_msg.value;
       console.log("arrow912 %o", arrow11pre)
     }
-    if (json_msg.port == 'enode3' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
+    if (json_msg.port == 'enode3' && json_msg.port2 == "load3" && json_msg.port3 == "measure") {
       console.log("arrow912  json %o", value)
       arrow11pre.value3 = json_msg.value;
       console.log("arrow812 %o", arrow11pre)
@@ -614,17 +614,17 @@ function handler(type, value) {
 
 
 
-    if (json_msg.port == 'enode4' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
+    if (json_msg.port == 'enode4' && json_msg.port2 == "load1" && json_msg.port3 == "measure") {
       console.log("arrow912  json %o", value)
       arrow12pre.value1 = json_msg.value;
       console.log("arrow912 %o", arrow12pre)
     }
-    if (json_msg.port == 'enode4' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
+    if (json_msg.port == 'enode4' && json_msg.port2 == "load2" && json_msg.port3 == "measure") {
       console.log("arrow912  json %o", value)
       arrow12pre.value2 = json_msg.value;
       console.log("arrow912 %o", arrow12pre)
     }
-    if (json_msg.port == 'enode4' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
+    if (json_msg.port == 'enode4' && json_msg.port2 == "load3" && json_msg.port3 == "measure") {
       console.log("arrow912  json %o", value)
       arrow12pre.value3 = json_msg.value;
       console.log("arrow912 %o", arrow12pre)
@@ -1088,7 +1088,7 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
       if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
         (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
-        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
@@ -1104,7 +1104,7 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
       if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
         (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
-        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
@@ -1121,7 +1121,7 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
       if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
         (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
-        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
@@ -1474,50 +1474,50 @@ app.ws('/arrows', function(ws, req) {
         console.log("arrow status %o", arrow8)
       }
 
-      if (json_msg.port == 'enode1' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
+      if (json_msg.port == 'enode1' && json_msg.port2 == "load1" && json_msg.port3 == "measure") {
         console.log("arrow912  json %o", value)
         arrow9pre.value1 = json_msg.value;
         console.log("arrow912 %o", arrow9pre)
       }
-      if (json_msg.port == 'enode1' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
+      if (json_msg.port == 'enode1' && json_msg.port2 == "load2" && json_msg.port3 == "measure") {
         console.log("arrow912  json %o", value)
         arrow9pre.value2 = json_msg.value;
         console.log("arrow912 %o", arrow9pre)
       }
-      if (json_msg.port == 'enode1' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
+      if (json_msg.port == 'enode1' && json_msg.port2 == "load3" && json_msg.port3 == "measure") {
         console.log("arrow912  json %o", value)
         arrow9pre.value3 = json_msg.value;
         console.log("arrow912 %o", arrow9pre)
       }
 
-      if (json_msg.port == 'enode2' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
+      if (json_msg.port == 'enode2' && json_msg.port2 == "load1" && json_msg.port3 == "measure") {
         console.log("arrow912  json %o", value)
         arrow10pre.value1 = json_msg.value;
         console.log("arrow912 %o", arrow10pre)
       }
-      if (json_msg.port == 'enode2' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
+      if (json_msg.port == 'enode2' && json_msg.port2 == "load2" && json_msg.port3 == "measure") {
         console.log("arrow912  json %o", value)
         arrow10pre.value2 = json_msg.value;
         console.log("arrow912 %o", arrow10pre)
       }
-      if (json_msg.port == 'enode2' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
+      if (json_msg.port == 'enode2' && json_msg.port2 == "load3" && json_msg.port3 == "measure") {
         console.log("arrow912  json %o", value)
         arrow10pre.value3 = json_msg.value;
         console.log("arrow812 %o", arrow10pre)
       }
 
 
-      if (json_msg.port == 'enode3' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
+      if (json_msg.port == 'enode3' && json_msg.port2 == "load1" && json_msg.port3 == "measure") {
         console.log("arrow912  json %o", value)
         arrow11pre.value1 = json_msg.value;
         console.log("arrow912 %o", arrow11pre)
       }
-      if (json_msg.port == 'enode3' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
+      if (json_msg.port == 'enode3' && json_msg.port2 == "load2" && json_msg.port3 == "measure") {
         console.log("arrow912  json %o", value)
         arrow11pre.value2 = json_msg.value;
         console.log("arrow912 %o", arrow11pre)
       }
-      if (json_msg.port == 'enode3' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
+      if (json_msg.port == 'enode3' && json_msg.port2 == "load3" && json_msg.port3 == "measure") {
         console.log("arrow912  json %o", value)
         arrow11pre.value3 = json_msg.value;
         console.log("arrow812 %o", arrow11pre)
@@ -1525,17 +1525,17 @@ app.ws('/arrows', function(ws, req) {
 
 
 
-      if (json_msg.port == 'enode4' && json_msg.port2 == "load1" && json_msg.port3 == "value") {
+      if (json_msg.port == 'enode4' && json_msg.port2 == "load1" && json_msg.port3 == "measure") {
         console.log("arrow912  json %o", value)
         arrow12pre.value1 = json_msg.value;
         console.log("arrow912 %o", arrow12pre)
       }
-      if (json_msg.port == 'enode4' && json_msg.port2 == "load2" && json_msg.port3 == "value") {
+      if (json_msg.port == 'enode4' && json_msg.port2 == "load2" && json_msg.port3 == "measure") {
         console.log("arrow912  json %o", value)
         arrow12pre.value2 = json_msg.value;
         console.log("arrow912 %o", arrow12pre)
       }
-      if (json_msg.port == 'enode4' && json_msg.port2 == "load3" && json_msg.port3 == "value") {
+      if (json_msg.port == 'enode4' && json_msg.port2 == "load3" && json_msg.port3 == "measure") {
         console.log("arrow912  json %o", value)
         arrow12pre.value3 = json_msg.value;
         console.log("arrow912 %o", arrow12pre)
@@ -2203,7 +2203,7 @@ app.ws('/plot', function(ws, req) {
     try {
       json_msg = JSON.parse(value)
       if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
-        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay'))) {
         console.log("plot1 %o", plot1)
         ws.send(JSON.stringify(plot1))
@@ -2235,7 +2235,7 @@ app.ws('/plot', function(ws, req) {
       }
 
       if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
-        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
         (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
@@ -2246,7 +2246,7 @@ app.ws('/plot', function(ws, req) {
       if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
         (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
-        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
         (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
@@ -2391,7 +2391,7 @@ app.get('/data',async function(req, res) {
     console.log(error);
   }
  // TODO GIVE DOTS! traditional, internet, distributed (timestamp ( value ,time (hh:mm))
- //  ref.once("value", function(snapshot) {
+ //  ref.once("measure", function(snapshot) {
  //    console.log(snapshot.numChildren());
  //    res.send(snapshot.val())
  //  }, function(errorObject) {
