@@ -935,7 +935,9 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
     var date = new Date()
     let date_hour_min = date.getHours() + ":" + date.getMinutes()
     plot1.time = date_hour_min
+    console.log("plot1 938- " + plot1.value)
     plot1.value = (arrow9.value + arrow10.value + arrow11.value + arrow12.value) * rout.balance
+    console.log("plot1 938- " + plot1.value)
 
     plot2.time = date_hour_min
     if (arrow11.value > 0) {
@@ -1083,9 +1085,13 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
     //TOPICS WHICH CONNECT WITH GRAPH
     if (true) {
 
-      if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+      if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
+        (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
-        (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay'))) {
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
+      ) {
         console.log("plot1 db %o", plot1)
         let date_hour_min = date.getHours() + ":" + date.getMinutes()
         traditionalDB.create({
@@ -1095,7 +1101,9 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
         })
       }
 
-      if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+      if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
+        (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
@@ -1115,7 +1123,7 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
         (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "value") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
-        (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
         let date_hour_min = date.getHours() + ":" + date.getMinutes()
 
@@ -1626,7 +1634,9 @@ app.ws('/arrows', function(ws, req) {
       var date = new Date()
       let date_hour_min = date.getHours() + ":" + date.getMinutes()
       plot1.time = date_hour_min
+      console.log("plot1 (1637_) - " + plot1.value)
       plot1.value = (arrow9.value + arrow10.value + arrow11.value + arrow12.value) * rout.balance
+      console.log("plot1 (1637_) - " + plot1.value)
       plot2.time = date_hour_min
       if (arrow11.value > 0) {
         plot2.value = (arrow9.value - arrow5.value) * rout.balance + arrow5.value * gen1.value +
@@ -2337,13 +2347,49 @@ Promise
 
 app.get('/data',async function(req, res) {
   try {
- res.set("Access-Control-Allow-Origin", "*")
-  var endJson = "{\"internet\":{\"1577088600150\":{\"time\":\"11:10\",\"value\":31},\"1577088787198\":{\"time\":\"11:13\",\"value\":12}},\"traditional\":{\"1577088600150\":{\"time\":\"11:10\",\"value\":10},\"1577088787198\":{\"time\":\"5:15\",\"value\":18}},\"distributed\":{\"1577088600150\":{\"time\":\"11:10\",\"value\":12},\"1577088787198\":{\"time\":\"11:13\",\"value\":17}}}"
-console.log("end %o",JSON.stringify(endJson))
-res.send(JSON.parse(endJson))
-} catch(error) {
-  console.log(error);
-}
+    res.set("Access-Control-Allow-Origin", "*")
+    try {
+      const internet_old = await internetDB.findAll();
+      const distributed_old = await distributedDB.findAll();
+      const traditional_old = await traditionalDB.findAll();
+      let internet = {};
+      for (const value of internet_old) {
+        Object.assign(internet, {
+          [value.timestamp]: {
+            value: value.value,
+            time: value.time
+          }
+        })
+      }
+      let distributed = {};
+      for (const value of distributed_old) {
+        Object.assign(distributed, {
+          [value.timestamp]: {
+            value: value.value,
+            time: value.time
+          }
+        })
+      }
+      let traditional = {};
+      for (const value of traditional_old) {
+        Object.assign(traditional, {
+          [value.timestamp]: {
+            value: value.value,
+            time: value.time
+          }
+        })
+      }
+
+      return res.send({ internet, distributed, traditional });
+    } catch (error) {
+      return res.send(error);
+    }
+
+    // console.log("end %o",JSON.stringify(endJson))
+    // res.send(JSON.parse(endJson))
+  } catch(error) {
+    console.log(error);
+  }
  // TODO GIVE DOTS! traditional, internet, distributed (timestamp ( value ,time (hh:mm))
  //  ref.once("value", function(snapshot) {
  //    console.log(snapshot.numChildren());
