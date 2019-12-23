@@ -28,7 +28,7 @@ class ClientMQTT {
 
   topic_handler(topic, message) {
 	try {
-    console.log("Received a new message from %o - %o", topic.toString(), message.toString())
+    console.log("Rhandlereceived a new message from %o - %o", topic.toString(), message.toString())
     let json_msg = JSON.parse(message)
     var topicMas = topic.split('/')
     var msg_type = topic.split('/')[3]
