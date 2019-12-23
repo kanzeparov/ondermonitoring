@@ -1,6 +1,6 @@
 {
     "port" : 3005,
-    "minutes" : 30,
+    "minutes" : 5,
     "apiKey": "AIzaSyBRIH183Wyi-24ZsHUMPAeGjXFd04uzQ3w",
     "authDomain": "monitoring-77e75.firebaseapp.com",
     "databaseURL": "https://monitoring-77e75.firebaseio.com",
@@ -10,5 +10,3 @@
     "appId": "1:89296205645:web:bc4933b5726ced4249a904"
 
 }
-
-

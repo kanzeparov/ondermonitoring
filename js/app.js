@@ -10,24 +10,15 @@ let mqtt_cl = require('./mqtt_client')
 var config = require('./config.json');
 let trunc = require('./trunc.js')
 const sqlite3 = require('sqlite3');
-const db = new sqlite3.Database('plot.db');
-var firebase = require('firebase');
 let timeDelete = config.minutes;
-var password_str = ""
-//var admin = require("firebase-admin");
-  var firebaseConfig = {
-    apiKey: "AIzaSyCBprJnncExuvsfIRZtJl1xfHsVlPfzudI",
-    authDomain: "onder-acd4f.firebaseapp.com",
-    databaseURL: "https://onder-acd4f.firebaseio.com",
-    projectId: "onder-acd4f",
-    storageBucket: "onder-acd4f.appspot.com",
-    messagingSenderId: "657540513948",
-    appId: "1:657540513948:web:6054b532aa52354dc12d59"
-  };
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-//  admin.initializeApp();
-const database = firebase.database();
+var password_str = "123456789"
+
+const Sequelize = require('sequelize');
+// your credentials
+const DATABASE_URL = 'postgres://postgres:postgres@localhost:5432/monitoring';
+
+const database = new Sequelize(DATABASE_URL);
+
 app.use(express.json());
 app.use(express.urlencoded({
   extended: false
@@ -41,92 +32,105 @@ const msleep = time =>
 
 var aWss = expressWs.getWss('/');
 
-var ref = database.ref("plot/");
-var refTraditional = database.ref("plot/traditional");
-var refDistribution = database.ref("plot/distributed")
-var refInternet = database.ref("plot/internet");
-var pas = database.ref("password/")
-var refstatus = database.ref("status/")
-var ref107 = database.ref("/testbed/amigo/set_price")
-var ref57 = database.ref("/testbed/erouter/setpower_out")
-var ref40_1 = database.ref("/testbed/emeter1/power")
-var ref40_2 = database.ref("/testbed/emeter2/power")
-var ref40_3 = database.ref("/testbed/emeter3/power")
-var ref40_4 = database.ref("/testbed/emeter4/power")
-var ref16_1 = database.ref("/testbed/enode1/ext_battery/power")
-var ref16_2 = database.ref("/testbed/enode2/ext_battery/power")
-var ref16_3 = database.ref("/testbed/enode3/ext_battery/power")
-var ref16_4 = database.ref("/testbed/enode4/ext_battery/power")
-var ref101_1_1 = database.ref("/testbed/enode1/load/relay1/status")
-var ref101_1_2 = database.ref("/testbed/enode1/load/relay2/status")
-var ref101_1_3 = database.ref("/testbed/enode1/load/relay3/status")
-var ref101_2_1 = database.ref("/testbed/enode2/load/relay1/status")
-var ref101_2_2 = database.ref("/testbed/enode2/load/relay2/status")
-var ref101_2_3 = database.ref("/testbed/enode2/load/relay3/status")
-var ref101_3_1 = database.ref("/testbed/enode3/load/relay1/status")
-var ref101_3_2 = database.ref("/testbed/enode3/load/relay2/status")
-var ref101_3_3 = database.ref("/testbed/enode3/load/relay3/status")
-var ref101_4_1 = database.ref("/testbed/enode4/load/relay1/status")
-var ref101_4_2 = database.ref("/testbed/enode4/load/relay2/status")
-var ref101_4_3 = database.ref("/testbed/enode4/load/relay3/status")
-var ref32_1 = database.ref("/testbed/enode1/load1/value")
-var ref32_2 = database.ref("/testbed/enode1/load2/value")
-var ref32_3 = database.ref("/testbed/enode1/load3/value")
-var ref33_1 = database.ref("/testbed/enode2/load1/value")
-var ref33_2 = database.ref("/testbed/enode2/load2/value")
-var ref33_3 = database.ref("/testbed/enode2/load3/value")
-var ref34_1 = database.ref("/testbed/enode3/load1/value")
-var ref34_2 = database.ref("/testbed/enode3/load2/value")
-var ref34_3 = database.ref("/testbed/enode3/load3/value")
-var ref35_1 = database.ref("/testbed/enode4/load1/value")
-var ref35_2 = database.ref("/testbed/enode4/load2/value")
-var ref35_3 = database.ref("/testbed/enode4/load3/value")
-var ref23_1 = database.ref("/testbed/enode1/finance")
-var ref23_2 = database.ref("/testbed/enode2/finance")
-var ref23_3 = database.ref("/testbed/enode3/finance")
-var ref23_4 = database.ref("/testbed/enode4/finance")
-var ref6_1_1 = database.ref("/testbed/enode1/port1/power")
-var ref6_1_2 = database.ref("/testbed/enode1/port2/power")
-var ref6_1_3 = database.ref("/testbed/enode1/port3/power")
-var ref6_2_1 = database.ref("/testbed/enode2/port1/power")
-var ref6_2_2 = database.ref("/testbed/enode2/port2/power")
-var ref6_2_3 = database.ref("/testbed/enode2/port3/power")
-var ref6_3_1 = database.ref("/testbed/enode3/port1/power")
-var ref6_3_2 = database.ref("/testbed/enode3/port2/power")
-var ref6_3_3 = database.ref("/testbed/enode3/port3/power")
-var ref6_4_1 = database.ref("/testbed/enode4/port1/power")
-var ref6_4_2 = database.ref("/testbed/enode4/port2/power")
-var ref6_4_3 = database.ref("/testbed/enode4/port3/power")
-var ref18_1_1 = database.ref("/testbed/enode1/contracts/one")
-var ref18_1_4 = database.ref("/testbed/enode1/contracts/four")
-var ref18_1_6 = database.ref("/testbed/enode1/contracts/six")
-var ref18_2_1 = database.ref("/testbed/enode2/contracts/one")
-var ref18_2_2 = database.ref("/testbed/enode2/contracts/two")
-var ref18_2_5 = database.ref("/testbed/enode2/contracts/five")
-var ref18_3_3 = database.ref("/testbed/enode3/contracts/three")
-var ref18_3_4 = database.ref("/testbed/enode3/contracts/four")
-var ref18_3_5 = database.ref("/testbed/enode3/contracts/five")
-var ref18_4_2 = database.ref("/testbed/enode4/contracts/two")
-var ref18_4_3 = database.ref("/testbed/enode4/contracts/three")
-var ref18_4_6 = database.ref("/testbed/enode4/contracts/six")
-var ref97_1 = database.ref("/testbed/enode1/relay/ac/status")
-var ref97_2 = database.ref("/testbed/enode2/relay/ac/status")
-var ref97_3 = database.ref("/testbed/enode3/relay/ac/status")
-var ref97_4 = database.ref("/testbed/enode4/relay/ac/status")
-var ref93_1 = database.ref("/testbed/enode1/relay/der/status")
-var ref93_2 = database.ref("/testbed/enode2/relay/der/status")
-var ref93_3 = database.ref("/testbed/enode3/relay/der/status")
-var ref93_4 = database.ref("/testbed/enode4/relay/der/status")
-var ref87_1 = database.ref("/testbed/relay/dc1/status")
-var ref87_2 = database.ref("/testbed/relay/dc2/status")
-var ref87_3 = database.ref("/testbed/relay/dc3/status")
-var ref87_4 = database.ref("/testbed/relay/dc4/status")
-var ref87_5 = database.ref("/testbed/relay/dc5/status")
-var ref87_6 = database.ref("/testbed/relay/dc6/status")
-var ref115_1 = database.ref("/testbed/enode1/gen/parameter0")
-var ref115_2 = database.ref("/testbed/enode2/gen/parameter0")
-var ref115_3 = database.ref("/testbed/enode3/gen/parameter0")
-var ref115_4 = database.ref("/testbed/enode4/gen/parameter0")
+const User = database.define(
+  'users',
+  {
+    nickname: {
+      type: Sequelize.TEXT
+    }
+  },
+  { timestamps: false }
+);
+
+const internetDB = database.define(
+  'internetdbs',
+  {
+    time: {
+      type: Sequelize.TEXT
+    },
+    value: {
+      type: Sequelize.DOUBLE
+    },
+    timestamp: {
+      type: Sequelize.BIGINT
+    }
+  },
+  { timestamps: false }
+);
+
+const traditionalDB = database.define(
+  'traditionaldbs',
+  {
+    time: {
+      type: Sequelize.TEXT
+    },
+    value: {
+      type: Sequelize.DOUBLE
+    },
+    timestamp: {
+      type: Sequelize.BIGINT
+    }
+  },
+  { timestamps: false }
+);
+
+const distributedDB = database.define(
+  'distributeddbs',
+  {
+    time: {
+      type: Sequelize.TEXT
+    },
+    value: {
+      type: Sequelize.DOUBLE
+    },
+    timestamp: {
+      type: Sequelize.BIGINT
+    }
+  },
+  { timestamps: false }
+);
+
+User.readAll = async (req, res) => {
+  try {
+    const users = await User.findAll();
+    return res.send({ users });
+  } catch (error) {
+    return res.send(error);
+  }
+};
+
+traditionalDB.readAll = async (req, res) => {
+  try {
+    const traditional = await traditionalDB.findAll();
+    return res.send({ traditional });
+  } catch (error) {
+    return res.send(error);
+  }
+};
+
+distributedDB.readAll = async (req, res) => {
+  try {
+    const distributed = await distributedDB.findAll();
+    return res.send({ distributed });
+  } catch (error) {
+    return res.send(error);
+  }
+};
+
+internetDB.readAll = async (req, res) => {
+  try {
+    const internet = await internetDB.findAll();
+    return res.send({ internet });
+  } catch (error) {
+    return res.send(error);
+  }
+};
+
+app.get('/users', User.readAll);
+
+app.get('/internet', internetDB.readAll);
+app.get('/distributed', distributedDB.readAll);
+app.get('/traditional', traditionalDB.readAll);
 
 
 const mqtt = new mqtt_cl.ClientMQTT()
@@ -191,53 +195,49 @@ var cell4 = {
   id: 4,
   status: false
 }
-///testbed/emeterX/power
-///testbed/enodeX/relay/ac/status
+
 var arrow1 = {
   time: "0",
   value: 0,
   id: 1,
   status: true
 }
-///testbed/emeterX/power
-///testbed/enodeX/relay/ac/status
+
 var arrow2 = {
   time: "0",
   value: 0,
   id: 2,
   status: true
 }
-///testbed/emeterX/power
-///testbed/enodeX/relay/ac/status
+
 var arrow3 = {
   time: "0",
   value: 0,
   id: 3,
   status: true
 }
-///testbed/emeterX/power
-///testbed/enodeX/relay/ac/status
+
 var arrow4 = {
   time: "0",
   value: 0,
   id: 4,
   status: true
 }
-///testbed/enodeX/ext_battery/power
+
 var arrow5 = {
   time: "0",
   value: 0,
   id: 5,
   status: true
 }
-///testbed/enodeX/ext_battery/power
+
 var arrow6 = {
   time: "0",
   value: 0,
   id: 9,
   status: true
 }
-///testbed/enodeX/ext_battery/power
+
 var arrow7 = {
   time: "0",
   value: 0,
@@ -292,7 +292,7 @@ var arrow12pre = {
   status2: true,
   status3: true
 }
-///testbed/enodeX/ext_battery/power
+
 var arrow9 = {
   time: "0",
   value: 0,
@@ -380,1068 +380,6 @@ var rout = {
   energy: 0
 }
 
-pas.once("value", function(snapshot) {
-    password_str = snapshot.val().value
-    console.log("pass %o", password_str);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-refstatus.once("value", function(snapshot) {
-    if (snapshot.val().value.agent1 == "Agent1" ||
-      snapshot.val().value.agent2 == "Agent1" ||
-      snapshot.val().value.agent3 == "Agent1" ||
-      snapshot.val().value.agent4 == "Agent1") {
-      cell1.status = true;
-    }
-    if (snapshot.val().value.agent1 == "Agent2" ||
-      snapshot.val().value.agent2 == "Agent2" ||
-      snapshot.val().value.agent3 == "Agent2" ||
-      snapshot.val().value.agent4 == "Agent2") {
-      cell2.status = true;
-    }
-
-    if (snapshot.val().value.agent1 == "Agent3" ||
-      snapshot.val().value.agent2 == "Agent3" ||
-      snapshot.val().value.agent3 == "Agent3" ||
-      snapshot.val().value.agent4 == "Agent3") {
-      cell3.status = true;
-    }
-
-    if (snapshot.val().value.agent1 == "Agent4" ||
-      snapshot.val().value.agent2 == "Agent4" ||
-      snapshot.val().value.agent3 == "Agent4" ||
-      snapshot.val().value.agent4 == "Agent4") {
-      cell4.status = true;
-    }
-
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref107.once("value", function(snapshot) {
-    var timeCurrent = new Date(rout.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      rout.time = snapshot.val().time
-    }
-    rout.balance = snapshot.val().value.value
-    console.log("rout change time and balance %o", rout);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref57.once("value", function(snapshot) {
-    var timeCurrent = new Date(rout.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      rout.time = snapshot.val().time
-    }
-    rout.energy = snapshot.val().value.value
-    console.log("rout change time and energy %o", rout);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref40_1.once("value", function(snapshot) {
-    arrow1.time = snapshot.val().time
-    arrow1.value = snapshot.val().value.value
-    var timeCurrent = new Date(rout.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      rout.time = snapshot.val().time
-    }
-    rout.power = rout.power + snapshot.val().value.value
-    console.log("rout change time and power %o", rout);
-    console.log("arrow change time and value %o", arrow1);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref40_2.once("value", function(snapshot) {
-    arrow2.time = snapshot.val().time
-    arrow2.value = snapshot.val().value.value
-    var timeCurrent = new Date(rout.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      rout.time = snapshot.val().time
-    }
-    rout.power = rout.power + snapshot.val().value.value
-    console.log("rout change time and power %o", rout);
-    console.log("arrow change time and value %o", arrow2);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-ref40_3.once("value", function(snapshot) {
-    arrow3.time = snapshot.val().time
-    arrow3.value = snapshot.val().value.value
-    var timeCurrent = new Date(rout.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      rout.time = snapshot.val().time
-    }
-    rout.power = rout.power + snapshot.val().value.value
-    console.log("rout change time and power %o", rout);
-    console.log("arrow change time and value %o", arrow3);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref40_4.once("value", function(snapshot) {
-    arrow4.time = snapshot.val().time
-    arrow4.value = snapshot.val().value.value
-    var timeCurrent = new Date(rout.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      rout.time = snapshot.val().time
-    }
-    rout.power = rout.power + snapshot.val().value.value
-    console.log("rout change time and power %o", rout);
-    console.log("arrow change time and value %o", arrow4);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref16_1.once("value", function(snapshot) {
-    arrow5.time = snapshot.val().time
-    arrow5.value = snapshot.val().value.value
-    console.log("arrow change time and value %o", arrow5);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref16_2.once("value", function(snapshot) {
-    arrow6.time = snapshot.val().time
-    arrow6.value = snapshot.val().value.value
-    console.log("arrow change time and value %o", arrow6);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref16_3.once("value", function(snapshot) {
-    arrow7.time = snapshot.val().time
-    arrow7.value = snapshot.val().value.value
-    console.log("arrow change time and value %o", arrow7);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref16_4.once("value", function(snapshot) {
-    arrow8.time = snapshot.val().time
-    arrow8.value = snapshot.val().value.value
-    console.log("arrow change time and value %o", arrow8);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref101_1_1.once("value", function(snapshot) {
-    arrow9pre.time = snapshot.val().time
-    arrow9pre.status1 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow9.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow9.time = snapshot.val().time
-    }
-    console.log("arrow change time and value %o", arrow9pre);
-    console.log("arrow change time and value %o", arrow9);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref101_1_2.once("value", function(snapshot) {
-    arrow9pre.time = snapshot.val().time
-    arrow9pre.status2 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow9.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow9.time = snapshot.val().time
-    }
-    console.log("arrow change time and value %o", arrow9pre);
-    console.log("arrow change time and value %o", arrow9);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref101_1_3.once("value", function(snapshot) {
-    arrow9pre.time = snapshot.val().time
-    arrow9pre.status3 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow9.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow9.time = snapshot.val().time
-    }
-    arrow9.status = arrow9pre.status1 || arrow9pre.status2 || arrow9pre.status3
-    console.log("arrow change time and value %o", arrow9pre);
-    console.log("arrow change time and value %o", arrow9);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref101_2_1.once("value", function(snapshot) {
-    arrow10pre.time = snapshot.val().time
-    arrow10pre.status1 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow10.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow10.time = snapshot.val().time
-    }
-    console.log("arrow change time and value %o", arrow10pre);
-    console.log("arrow change time and value %o", arrow10);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref101_2_2.once("value", function(snapshot) {
-    arrow10pre.time = snapshot.val().time
-    arrow10pre.status2 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow10.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow10.time = snapshot.val().time
-    }
-    console.log("arrow change time and value %o", arrow10pre);
-    console.log("arrow change time and value %o", arrow10);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref101_2_3.once("value", function(snapshot) {
-    arrow10pre.time = snapshot.val().time
-    arrow10pre.status3 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow10.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow10.time = snapshot.val().time
-    }
-    arrow10.status = arrow10pre.status1 || arrow10pre.status2 || arrow10pre.status3
-    console.log("arrow change time and value %o", arrow10pre);
-    console.log("arrow change time and value %o", arrow10);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref101_3_1.once("value", function(snapshot) {
-    arrow11pre.time = snapshot.val().time
-    arrow11pre.status1 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow11.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow11.time = snapshot.val().time
-    }
-    console.log("arrow change time and value %o", arrow11pre);
-    console.log("arrow change time and value %o", arrow11);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref101_3_2.once("value", function(snapshot) {
-    arrow11pre.time = snapshot.val().time
-    arrow11pre.status2 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow11.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow11.time = snapshot.val().time
-    }
-    console.log("arrow change time and value %o", arrow11pre);
-    console.log("arrow change time and value %o", arrow11);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref101_3_3.once("value", function(snapshot) {
-    arrow11pre.time = snapshot.val().time
-    arrow11pre.status3 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow11.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow11.time = snapshot.val().time
-    }
-    arrow11.status = arrow11pre.status1 || arrow11pre.status2 || arrow11pre.status3
-    console.log("arrow change time and value %o", arrow11pre);
-    console.log("arrow change time and value %o", arrow11);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref101_4_1.once("value", function(snapshot) {
-    arrow12pre.time = snapshot.val().time
-    arrow12pre.status1 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow12.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow12.time = snapshot.val().time
-    }
-    console.log("arrow change time and value %o", arrow12pre);
-    console.log("arrow change time and value %o", arrow12);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref101_4_2.once("value", function(snapshot) {
-    arrow12pre.time = snapshot.val().time
-    arrow12pre.status2 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow12.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow12.time = snapshot.val().time
-    }
-    console.log("arrow change time and value %o", arrow12pre);
-    console.log("arrow change time and value %o", arrow12);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref101_4_3.once("value", function(snapshot) {
-    arrow12pre.time = snapshot.val().time
-    arrow12pre.status3 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow12.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow12.time = snapshot.val().time
-    }
-    arrow12.status = arrow12pre.status1 || arrow12pre.status2 || arrow12pre.status3
-    console.log("arrow change time and value %o", arrow12pre);
-    console.log("arrow change time and value %o", arrow12);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref32_1.once("value", function(snapshot) {
-    arrow9pre.time = snapshot.val().time
-    arrow9pre.value1 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow9.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow9.time = snapshot.val().time
-    }
-    console.log("arrow change time and value %o", arrow9pre);
-    console.log("arrow change time and value %o", arrow9);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref32_2.once("value", function(snapshot) {
-    arrow9pre.time = snapshot.val().time
-    arrow9pre.value2 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow9.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow9.time = snapshot.val().time
-    }
-    console.log("arrow change time and value %o", arrow9pre);
-    console.log("arrow change time and value %o", arrow9);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref32_3.once("value", function(snapshot) {
-    arrow9pre.time = snapshot.val().time
-    arrow9pre.value3 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow9.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow9.time = snapshot.val().time
-    }
-    arrow9.value = arrow9pre.status1 * arrow9pre.value1 + arrow9pre.status2 * arrow9pre.value2 + arrow9pre.status3 * arrow9pre.value3
-    console.log("arrow change time and value %o", arrow9pre);
-    console.log("arrow change time and value %o", arrow9);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref33_1.once("value", function(snapshot) {
-    arrow10pre.time = snapshot.val().time
-    arrow10pre.value1 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow10.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow10.time = snapshot.val().time
-    }
-    console.log("arrow change time and value %o", arrow10pre);
-    console.log("arrow change time and value %o", arrow10);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref33_2.once("value", function(snapshot) {
-    arrow10pre.time = snapshot.val().time
-    arrow10pre.value2 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow10.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow10.time = snapshot.val().time
-    }
-    console.log("arrow change time and value %o", arrow10pre);
-    console.log("arrow change time and value %o", arrow10);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref33_3.once("value", function(snapshot) {
-    arrow10pre.time = snapshot.val().time
-    arrow10pre.value3 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow10.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow10.time = snapshot.val().time
-    }
-    arrow10.value = arrow10pre.status1 * arrow10pre.value1 + arrow10pre.status2 * arrow10pre.value2 + arrow10pre.status3 * arrow10pre.value3
-    console.log("arrow change time and value %o", arrow10pre);
-    console.log("arrow change time and value %o", arrow10);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref34_1.once("value", function(snapshot) {
-    arrow11pre.time = snapshot.val().time
-    arrow11pre.value1 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow11.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow11.time = snapshot.val().time
-    }
-    console.log("arrow change time and value %o", arrow11pre);
-    console.log("arrow change time and value %o", arrow11);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref34_2.once("value", function(snapshot) {
-    arrow11pre.time = snapshot.val().time
-    arrow11pre.value2 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow11.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow11.time = snapshot.val().time
-    }
-    console.log("arrow change time and value %o", arrow11pre);
-    console.log("arrow change time and value %o", arrow11);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref34_3.once("value", function(snapshot) {
-    arrow11pre.time = snapshot.val().time
-    arrow11pre.value3 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow11.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow11.time = snapshot.val().time
-    }
-    arrow11.value = arrow11pre.status1 * arrow11pre.value1 + arrow11pre.status2 * arrow11pre.value2 + arrow11pre.status3 * arrow11pre.value3
-    console.log("arrow change time and value %o", arrow11pre);
-    console.log("arrow change time and value %o", arrow11);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref35_1.once("value", function(snapshot) {
-    arrow12pre.time = snapshot.val().time
-    arrow12pre.value1 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow12.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow12.time = snapshot.val().time
-    }
-    console.log("arrow change time and value %o", arrow12pre);
-    console.log("arrow change time and value %o", arrow12);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref35_2.once("value", function(snapshot) {
-    arrow12pre.time = snapshot.val().time
-    arrow12pre.value2 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow12.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow12.time = snapshot.val().time
-    }
-    console.log("arrow change time and value %o", arrow12pre);
-    console.log("arrow change time and value %o", arrow12);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref35_3.once("value", function(snapshot) {
-    arrow12pre.time = snapshot.val().time
-    arrow12pre.value3 = snapshot.val().value.value
-    var timeCurrent = new Date(arrow12.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrow12.time = snapshot.val().time
-    }
-    arrow12.value = arrow12pre.status1 * arrow12pre.value1 + arrow12pre.status2 * arrow12pre.value2 + arrow12pre.status3 * arrow12pre.value3
-    console.log("arrow change time and value %o", arrow12pre);
-    console.log("arrow change time and value %o", arrow12);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref23_1.once("value", function(snapshot) {
-    cell1.time = snapshot.val().time
-    cell1.value = snapshot.val().value.value
-    console.log("cell change time and value %o", cell1);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref23_2.once("value", function(snapshot) {
-    cell2.time = snapshot.val().time
-    cell2.value = snapshot.val().value.value
-    console.log("cell change time and value %o", cell2);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref23_3.once("value", function(snapshot) {
-    cell3.time = snapshot.val().time
-    cell3.value = snapshot.val().value.value
-    console.log("cell change time and value %o", cell3);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref23_4.once("value", function(snapshot) {
-    cell4.time = snapshot.val().time
-    cell4.value = snapshot.val().value.value
-    console.log("cell change time and value %o", cell4);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref6_1_1.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir1.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir1.time = snapshot.val().time
-    }
-    arrowDir1.value = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir1);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref6_1_2.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir6.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir6.time = snapshot.val().time
-    }
-    arrowDir6.value = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir6);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref6_1_3.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir4.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir4.time = snapshot.val().time
-    }
-    arrowDir4.value = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir4);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref6_2_1.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir1.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir1.time = snapshot.val().time
-    }
-    arrowDir1.value = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir1);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref6_2_2.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir5.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir5.time = snapshot.val().time
-    }
-    arrowDir5.value = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir5);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref6_2_3.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir2.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir2.time = snapshot.val().time
-    }
-    arrowDir2.value = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir2);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref6_3_1.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir4.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir4.time = snapshot.val().time
-    }
-    arrowDir4.value = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir4);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref6_3_2.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir5.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir5.time = snapshot.val().time
-    }
-    arrowDir5.value = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir5);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref6_3_3.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir3.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir3.time = snapshot.val().time
-    }
-    arrowDir3.value = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir3);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref6_4_1.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir3.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir3.time = snapshot.val().time
-    }
-    arrowDir3.value = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir3);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref6_4_2.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir6.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir6.time = snapshot.val().time
-    }
-    arrowDir6.value = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir6);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref6_4_3.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir2.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir2.time = snapshot.val().time
-    }
-    arrowDir2.value = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir2);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref18_1_1.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir1.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir1.time = snapshot.val().time
-    }
-    arrowDir1.directionfrom = snapshot.val().value.seller
-    arrowDir1.directionto = snapshot.val().value.contragent
-    arrowDir1.balance = snapshot.val().value.cost
-    console.log("arrowDir change time and value %o", arrowDir1);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref18_1_4.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir4.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir4.time = snapshot.val().time
-    }
-    arrowDir4.directionfrom = snapshot.val().value.seller
-    arrowDir4.directionto = snapshot.val().value.contragent
-    arrowDir4.balance = snapshot.val().value.cost
-    console.log("arrowDir change time and value %o", arrowDir4);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref18_1_6.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir6.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir6.time = snapshot.val().time
-    }
-    arrowDir6.directionfrom = snapshot.val().value.seller
-    arrowDir6.directionto = snapshot.val().value.contragent
-    arrowDir6.balance = snapshot.val().value.cost
-    console.log("arrowDir change time and value %o", arrowDir6);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref18_2_1.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir1.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir1.time = snapshot.val().time
-    }
-    arrowDir1.directionfrom = snapshot.val().value.seller
-    arrowDir1.directionto = snapshot.val().value.contragent
-    arrowDir1.balance = snapshot.val().value.cost
-    console.log("arrowDir change time and value %o", arrowDir1);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-ref18_2_2.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir2.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir2.time = snapshot.val().time
-    }
-    arrowDir2.directionfrom = snapshot.val().value.seller
-    arrowDir2.directionto = snapshot.val().value.contragent
-    arrowDir2.balance = snapshot.val().value.cost
-    console.log("arrowDir change time and value %o", arrowDir2);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-ref18_2_5.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir5.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir5.time = snapshot.val().time
-    }
-    arrowDir5.directionfrom = snapshot.val().value.seller
-    arrowDir5.directionto = snapshot.val().value.contragent
-    arrowDir5.balance = snapshot.val().value.cost
-    console.log("arrowDir change time and value %o", arrowDir5);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref18_3_3.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir3.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir3.time = snapshot.val().time
-    }
-    arrowDir3.directionfrom = snapshot.val().value.seller
-    arrowDir3.directionto = snapshot.val().value.contragent
-    arrowDir3.balance = snapshot.val().value.cost
-    console.log("arrowDir change time and value %o", arrowDir3);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-ref18_3_4.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir4.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir4.time = snapshot.val().time
-    }
-    arrowDir4.directionfrom = snapshot.val().value.seller
-    arrowDir4.directionto = snapshot.val().value.contragent
-    arrowDir4.balance = snapshot.val().value.cost
-    console.log("arrowDir change time and value %o", arrowDir4);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-ref18_3_5.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir5.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir5.time = snapshot.val().time
-    }
-    arrowDir5.directionfrom = snapshot.val().value.seller
-    arrowDir5.directionto = snapshot.val().value.contragent
-    arrowDir5.balance = snapshot.val().value.cost
-    console.log("arrowDir change time and value %o", arrowDir5);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref18_4_2.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir2.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir2.time = snapshot.val().time
-    }
-    arrowDir2.directionfrom = snapshot.val().value.seller
-    arrowDir2.directionto = snapshot.val().value.contragent
-    arrowDir2.balance = snapshot.val().value.cost
-    console.log("arrowDir change time and value %o", arrowDir2);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-ref18_4_3.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir3.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir3.time = snapshot.val().time
-    }
-    arrowDir3.directionfrom = snapshot.val().value.seller
-    arrowDir3.directionto = snapshot.val().value.contragent
-    arrowDir3.balance = snapshot.val().value.cost
-    console.log("arrowDir change time and value %o", arrowDir3);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-ref18_4_6.once("value", function(snapshot) {
-    var timeCurrent = new Date(arrowDir6.time)
-    var timeFromBd = new Date(snapshot.val().time)
-    if (timeCurrent < timeFromBd) {
-      arrowDir6.time = snapshot.val().time
-    }
-    arrowDir6.directionfrom = snapshot.val().value.seller
-    arrowDir6.directionto = snapshot.val().value.contragent
-    arrowDir6.balance = snapshot.val().value.cost
-    console.log("arrowDir change time and value %o", arrowDir6);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref97_1.once("value", function(snapshot) {
-    arrow1.time = snapshot.val().time
-    arrow1.status = snapshot.val().value.value
-    console.log("arrow change time and value %o", arrow1);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref97_2.once("value", function(snapshot) {
-    arrow2.time = snapshot.val().time
-    arrow2.status = snapshot.val().value.value
-    console.log("arrow change time and value %o", arrow2);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref97_3.once("value", function(snapshot) {
-    arrow3.time = snapshot.val().time
-    arrow3.status = snapshot.val().value.value
-    console.log("arrow change time and value %o", arrow3);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref97_4.once("value", function(snapshot) {
-    arrow4.time = snapshot.val().time
-    arrow4.status = snapshot.val().value.value
-    console.log("arrow change time and value %o", arrow4);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref93_1.once("value", function(snapshot) {
-    arrow5.time = snapshot.val().time
-    arrow5.status = snapshot.val().value.value
-    console.log("arrow change time and value %o", arrow5);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref93_2.once("value", function(snapshot) {
-    arrow6.time = snapshot.val().time
-    arrow6.status = snapshot.val().value.value
-    console.log("arrow change time and value %o", arrow6);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref93_3.once("value", function(snapshot) {
-    arrow7.time = snapshot.val().time
-    arrow7.status = snapshot.val().value.value
-    console.log("arrow change time and value %o", arrow7);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref93_4.once("value", function(snapshot) {
-    arrow8.time = snapshot.val().time
-    arrow8.status = snapshot.val().value.value
-    console.log("arrow change time and value %o", arrow8);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref87_1.once("value", function(snapshot) {
-    arrowDir1.time = snapshot.val().time
-    arrowDir1.status = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir1);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref87_2.once("value", function(snapshot) {
-    arrowDir2.time = snapshot.val().time
-    arrowDir2.status = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir2);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref87_3.once("value", function(snapshot) {
-    arrowDir3.time = snapshot.val().time
-    arrowDir3.status = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir3);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref87_4.once("value", function(snapshot) {
-    arrowDir4.time = snapshot.val().time
-    arrowDir4.status = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir4);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref87_5.once("value", function(snapshot) {
-    arrowDir5.time = snapshot.val().time
-    arrowDir5.status = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir5);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref87_6.once("value", function(snapshot) {
-    arrowDir6.time = snapshot.val().time
-    arrowDir6.status = snapshot.val().value.value
-    console.log("arrowDir change time and value %o", arrowDir6);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref115_1.once("value", function(snapshot) {
-    gen1.time = snapshot.val().time
-    gen1.value = snapshot.val().value.value
-    console.log("gen change time and value %o", gen1);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref115_2.once("value", function(snapshot) {
-    gen2.time = snapshot.val().time
-    gen2.value = snapshot.val().value.value
-    console.log("gen change time and value %o", gen2);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref115_3.once("value", function(snapshot) {
-    gen3.time = snapshot.val().time
-    gen3.value = snapshot.val().value.value
-    console.log("gen change time and value %o", gen3);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
-ref115_4.once("value", function(snapshot) {
-    gen4.time = snapshot.val().time
-    gen4.value = snapshot.val().value.value
-    console.log("gen change time and value %o", gen4);
-  },
-  function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-
 function handler(type, value) {
   console.log("Receive new message %o ", value)
   var date = new Date();
@@ -1467,102 +405,7 @@ function handler(type, value) {
       if (json_msg.agent1 == 'Agent4') {
         cell4.status = true
       }
-/*
-      if (json_msg.count == 0) {
-        if (json_msg.agent1 == 'Agent1') {
-          cell1.status = true
-          cell2.status = false
-          cell3.status = false
-          cell4.status = false
-        }
-        if (json_msg.agent1 == 'Agent2') {
-          cell1.status = false
-          cell2.status = true
-          cell3.status = false
-          cell4.status = false
-        }
-        if (json_msg.agent1 == 'Agent3') {
-          cell1.status = false
-          cell2.status = false
-          cell3.status = true
-          cell4.status = false
-        }
-        if (json_msg.agent1 == 'Agent4') {
-          cell1.status = false
-          cell2.status = false
-          cell3.status = false
-          cell4.status = true
-        }
-      }
-      if (json_msg.count == 1) {
-        if ((json_msg.agent1 == 'Agent1' && json_msg.agent2 == 'Agent2') || (json_msg.agent1 == 'Agent2' && json_msg.agent2 == 'Agent1')) {
-          cell1.status = true
-          cell2.status = true
-          cell3.status = false
-          cell4.status = false
-        }
-        if ((json_msg.agent1 == 'Agent2' && json_msg.agent2 == 'Agent3') || (json_msg.agent1 == 'Agent3' && json_msg.agent2 == 'Agent2')) {
-          cell1.status = false
-          cell2.status = true
-          cell3.status = true
-          cell4.status = false
-        }
-        if ((json_msg.agent1 == 'Agent3' && json_msg.agent2 == 'Agent4') || (json_msg.agent1 == 'Agent4' && json_msg.agent2 == 'Agent3')) {
-          cell1.status = false
-          cell2.status = false
-          cell3.status = true
-          cell4.status = true
-        }
-        if ((json_msg.agent1 == 'Agent3' && json_msg.agent2 == 'Agent1') || (json_msg.agent1 == 'Agent1' && json_msg.agent2 == 'Agent3')) {
-          cell1.status = true
-          cell2.status = false
-          cell3.status = true
-          cell4.status = false
-        }
-        if ((json_msg.agent1 == 'Agent4' && json_msg.agent2 == 'Agent1') || (json_msg.agent1 == 'Agent1' && json_msg.agent2 == 'Agent4')) {
-          cell1.status = true
-          cell2.status = false
-          cell3.status = false
-          cell4.status = true
-        }
-        if ((json_msg.agent1 == 'Agent4' && json_msg.agent2 == 'Agent2') || (json_msg.agent1 == 'Agent2' && json_msg.agent2 == 'Agent4')) {
-          cell1.status = false
-          cell2.status = true
-          cell3.status = false
-          cell4.status = true
-        }
 
-
-      }
-      if (json_msg.count == 2) {
-        cell1.status = false
-        cell2.status = false
-        cell3.status = false
-        cell4.status = false
-        if (json_msg.agent1 == 'Agent1' || json_msg.agent2 == 'Agent1' || json_msg.agent3 == 'Agent1') {
-          cell1.status = true
-        }
-        if (json_msg.agent1 == 'Agent2' || json_msg.agent2 == 'Agent2' || json_msg.agent3 == 'Agent2') {
-          cell2.status = true
-        }
-        if (json_msg.agent1 == 'Agent3' || json_msg.agent2 == 'Agent3' || json_msg.agent3 == 'Agent3') {
-          cell3.status = true
-        }
-        if (json_msg.agent1 == 'Agent4' || json_msg.agent2 == 'Agent4' || json_msg.agent3 == 'Agent4') {
-          cell4.status = true
-        }
-      }
-      if (json_msg.count == 3) {
-        cell1.status = true
-        cell2.status = true
-        cell3.status = true
-        cell4.status = true
-        console.log("cell1 status %o ", cell1)
-        console.log("cell2 status %o ", cell2)
-        console.log("cell3 status %o ", cell3)
-        console.log("cell4 status %o ", cell4)
-      }
-*/
       console.log("cell1 %o ", cell1)
       console.log("cell2 %o ", cell2)
       console.log("cell3 %o ", cell3)
@@ -2243,10 +1086,11 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay'))) {
         console.log("plot1 db %o", plot1)
         let date_hour_min = date.getHours() + ":" + date.getMinutes()
-        refTraditional = database.ref('plot/traditional/' + timestamp).set({
+        traditionalDB.create({
           time: date_hour_min,
-          value: plot1.value
-        });
+          value: plot1.value,
+          timestamp: timestamp
+        })
       }
 
       if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
@@ -2255,10 +1099,13 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
         let date_hour_min = date.getHours() + ":" + date.getMinutes()
-        refDistribution = database.ref('plot/distributed/' + timestamp).set({
-          time: date_hour_min,
-          value: (plot2.value)
-        });
+
+          distributedDB.create({
+            time: date_hour_min,
+            value: plot2.value,
+            timestamp: timestamp
+          })
+
       }
       //115,
       if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
@@ -2269,71 +1116,70 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
         (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
         let date_hour_min = date.getHours() + ":" + date.getMinutes()
-        refInternet = database.ref('plot/internet/' + timestamp).set({
+
+        internetDB.create({
           time: date_hour_min,
-          value: (plot3.value)
-        });
+          value: plot3.value,
+          timestamp: timestamp
+        })
       }
 
-      database.ref('plot/distributed').once("value", function(snapshot) {
-          //console.log(snapshot.numChildren());
 
-          snapshot.forEach((child) => {
-            //console.log("vaaaaalue distributed" + child.key);
-            var date = new Date();
-            var timestamp = date.getTime();
-            // console.log(child.key);
-            if (timestamp - child.key > timeDelete * 1000 * 60) {
-              // console.log("delete " + "");
-              let userRef = database.ref('plot/distributed/' + child.key);
-              userRef.remove()
-            }
-          });
-        },
-        function(errorObject) {
-          console.log("The read failed: " + errorObject.code);
-        });
+      const Op = Sequelize.Op;
+      var date = new Date();
+      var timestamp = date.getTime();
+      var dif = timestamp - timeDelete * 1000 * 60;
+      console.log('Deleted distributed');
+      distributedDB.destroy({
+      where: {
+        timestamp: {
+          [Op.lt]: dif
+        }
+      }
+      }).then(function(timestamp){ // rowDeleted will return number of rows deleted
+        if(timestamp === 1){
+           console.log('Deleted successfully');
+         }
+      }, function(err){
+          console.log(err);
+      });
 
-      database.ref('plot/traditional').once("value", function(snapshot) {
-          //console.log(snapshot.numChildren());
+      var date = new Date();
+      var timestamp = date.getTime();
+      var dif = timestamp - timeDelete * 1000 * 60;
+      console.log('Deleted internetDB');
+      internetDB.destroy({
+      where: {
+        timestamp: {
+          [Op.lt]: dif
+        }
+      }
+      }).then(function(timestamp){ // rowDeleted will return number of rows deleted
+        if(timestamp === 1){
+           console.log('Deleted successfully');
+         }
+      }, function(err){
+          console.log(err);
+      });
 
-          snapshot.forEach((child) => {
-            //console.log("vaaaaalue traditional" + child.key);
-            var date = new Date();
-            var timestamp = date.getTime();
-            // console.log(child.key);
-            if (timestamp - child.key > timeDelete * 1000 * 60) {
-              // console.log("delete " + "");
-              let userRef = database.ref('plot/traditional/' + child.key);
-              userRef.remove()
-            }
-          });
-        },
-        function(errorObject) {
-          console.log("The read failed: " + errorObject.code);
-        });
-
-
-
-      database.ref('plot/internet').once("value", function(snapshot) {
-          //console.log(snapshot.numChildren());
-
-          snapshot.forEach((child) => {
-            //console.log("vaaaaalue internet" + child.key);
-            var date = new Date();
-            var timestamp = date.getTime();
-            // console.log(child.key);
-            if (timestamp - child.key > timeDelete * 1000 * 60) {
-              // console.log("delete " + "");
-              let userRef = database.ref('plot/internet/' + child.key);
-              userRef.remove()
-            }
-          });
-        },
-        function(errorObject) {
-          console.log("The read failed: " + errorObject.code);
-        });
-    }
+      var date = new Date();
+      var timestamp = date.getTime();
+      var dif = timestamp - timeDelete * 1000 * 60;
+      console.log('Deleted traditionalDB');
+      traditionalDB.destroy({
+      where: {
+        timestamp: {
+          [Op.lt]: dif
+        }
+      }
+      }).then(function(timestamp){ // rowDeleted will return number of rows deleted
+        if(timestamp === 1){
+           console.log('Deleted successfully');
+         }
+      }, function(err){
+          console.log(err);
+      });
+      }
   } catch (ex) {
     console.log(ex.toString())
   }
@@ -2394,97 +1240,6 @@ app.ws('/cells', function(ws, req) {
         if (json_msg.agent1 == 'Agent4') {
           cell4.status = true
         }
-/*
-        if (json_msg.count == 0) {
-          if (json_msg.agent1 == 'Agent1') {
-            cell1.status = true
-            cell2.status = false
-            cell3.status = false
-            cell4.status = false
-          }
-          if (json_msg.agent1 == 'Agent2') {
-            cell1.status = false
-            cell2.status = true
-            cell3.status = false
-            cell4.status = false
-          }
-          if (json_msg.agent1 == 'Agent3') {
-            cell1.status = false
-            cell2.status = false
-            cell3.status = true
-            cell4.status = false
-          }
-          if (json_msg.agent1 == 'Agent4') {
-            cell1.status = false
-            cell2.status = false
-            cell3.status = false
-            cell4.status = true
-          }
-        }
-        if (json_msg.count == 1) {
-          if ((json_msg.agent1 == 'Agent1' && json_msg.agent2 == 'Agent2') || (json_msg.agent1 == 'Agent2' && json_msg.agent2 == 'Agent1')) {
-            cell1.status = true
-            cell2.status = true
-            cell3.status = false
-            cell4.status = false
-          }
-          if ((json_msg.agent1 == 'Agent2' && json_msg.agent2 == 'Agent3') || (json_msg.agent1 == 'Agent3' && json_msg.agent2 == 'Agent2')) {
-            cell1.status = false
-            cell2.status = true
-            cell3.status = true
-            cell4.status = false
-          }
-          if ((json_msg.agent1 == 'Agent3' && json_msg.agent2 == 'Agent4') || (json_msg.agent1 == 'Agent4' && json_msg.agent2 == 'Agent3')) {
-            cell1.status = false
-            cell2.status = false
-            cell3.status = true
-            cell4.status = true
-          }
-          if ((json_msg.agent1 == 'Agent3' && json_msg.agent2 == 'Agent1') || (json_msg.agent1 == 'Agent1' && json_msg.agent2 == 'Agent3')) {
-            cell1.status = true
-            cell2.status = false
-            cell3.status = true
-            cell4.status = false
-          }
-          if ((json_msg.agent1 == 'Agent4' && json_msg.agent2 == 'Agent1') || (json_msg.agent1 == 'Agent1' && json_msg.agent2 == 'Agent4')) {
-            cell1.status = true
-            cell2.status = false
-            cell3.status = false
-            cell4.status = true
-          }
-          if ((json_msg.agent1 == 'Agent4' && json_msg.agent2 == 'Agent2') || (json_msg.agent1 == 'Agent2' && json_msg.agent2 == 'Agent4')) {
-            cell1.status = false
-            cell2.status = true
-            cell3.status = false
-            cell4.status = true
-          }
-
-
-        }
-        if (json_msg.count == 2) {
-          cell1.status = false
-          cell2.status = false
-          cell3.status = false
-          cell4.status = false
-          if (json_msg.agent1 == 'Agent1' || json_msg.agent2 == 'Agent1' || json_msg.agent3 == 'Agent1') {
-            cell1.status = true
-          }
-          if (json_msg.agent1 == 'Agent2' || json_msg.agent2 == 'Agent2' || json_msg.agent3 == 'Agent2') {
-            cell2.status = true
-          }
-          if (json_msg.agent1 == 'Agent3' || json_msg.agent2 == 'Agent3' || json_msg.agent3 == 'Agent3') {
-            cell3.status = true
-          }
-          if (json_msg.agent1 == 'Agent4' || json_msg.agent2 == 'Agent4' || json_msg.agent3 == 'Agent4') {
-            cell4.status = true
-          }
-        }
-        if (json_msg.count == 3) {
-          cell1.status = true
-          cell2.status = true
-          cell3.status = true
-          cell4.status = true
-        }*/
       }
 
       ws.send(JSON.stringify(cell1))
@@ -2566,100 +1321,6 @@ app.ws('/agents', function(ws, req) {
           cell4.status = true
         }
 
-/*
-        if (json_msg.count == 0) {
-          if (json_msg.agent1 == 'Agent1') {
-            cell1.status = true
-            cell2.status = false
-            cell3.status = false
-            cell4.status = false
-          }
-          if (json_msg.agent1 == 'Agent2') {
-            cell1.status = false
-            cell2.status = true
-            cell3.status = false
-            cell4.status = false
-          }
-          if (json_msg.agent1 == 'Agent3') {
-            cell1.status = false
-            cell2.status = false
-            cell3.status = true
-            cell4.status = false
-          }
-          if (json_msg.agent1 == 'Agent4') {
-            cell1.status = false
-            cell2.status = false
-            cell3.status = false
-            cell4.status = true
-          }
-        }
-        if (json_msg.count == 1) {
-          if ((json_msg.agent1 == 'Agent1' && json_msg.agent2 == 'Agent2') || (json_msg.agent1 == 'Agent2' && json_msg.agent2 == 'Agent1')) {
-            cell1.status = true
-            cell2.status = true
-            cell3.status = false
-            cell4.status = false
-          }
-          if ((json_msg.agent1 == 'Agent2' && json_msg.agent2 == 'Agent3') || (json_msg.agent1 == 'Agent3' && json_msg.agent2 == 'Agent2')) {
-            cell1.status = false
-            cell2.status = true
-            cell3.status = true
-            cell4.status = false
-          }
-          if ((json_msg.agent1 == 'Agent3' && json_msg.agent2 == 'Agent4') || (json_msg.agent1 == 'Agent4' && json_msg.agent2 == 'Agent3')) {
-            cell1.status = false
-            cell2.status = false
-            cell3.status = true
-            cell4.status = true
-          }
-          if ((json_msg.agent1 == 'Agent3' && json_msg.agent2 == 'Agent1') || (json_msg.agent1 == 'Agent1' && json_msg.agent2 == 'Agent3')) {
-            cell1.status = true
-            cell2.status = false
-            cell3.status = true
-            cell4.status = false
-          }
-          if ((json_msg.agent1 == 'Agent4' && json_msg.agent2 == 'Agent1') || (json_msg.agent1 == 'Agent1' && json_msg.agent2 == 'Agent4')) {
-            cell1.status = true
-            cell2.status = false
-            cell3.status = false
-            cell4.status = true
-          }
-          if ((json_msg.agent1 == 'Agent4' && json_msg.agent2 == 'Agent2') || (json_msg.agent1 == 'Agent2' && json_msg.agent2 == 'Agent4')) {
-            cell1.status = false
-            cell2.status = true
-            cell3.status = false
-            cell4.status = true
-          }
-
-
-        }
-        if (json_msg.count == 2) {
-          cell1.status = false
-          cell2.status = false
-          cell3.status = false
-          cell4.status = false
-          if (json_msg.agent1 == 'Agent1' || json_msg.agent2 == 'Agent1' || json_msg.agent3 == 'Agent1') {
-            cell1.status = true
-          }
-          if (json_msg.agent1 == 'Agent2' || json_msg.agent2 == 'Agent2' || json_msg.agent3 == 'Agent2') {
-            cell2.status = true
-          }
-          if (json_msg.agent1 == 'Agent3' || json_msg.agent2 == 'Agent3' || json_msg.agent3 == 'Agent3') {
-            cell3.status = true
-          }
-          if (json_msg.agent1 == 'Agent4' || json_msg.agent2 == 'Agent4' || json_msg.agent3 == 'Agent4') {
-            cell4.status = true
-          }
-        }
-        if (json_msg.count == 3) {
-          cell1.status = true
-          cell2.status = true
-          cell3.status = true
-          cell4.status = true
-        }
-
-
-*/
         ws.send(JSON.stringify(cell1))
         ws.send(JSON.stringify(cell2))
         ws.send(JSON.stringify(cell3))
@@ -3518,26 +2179,6 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
 });
 
 app.ws('/plot', function(ws, req) {
-  // ws.setKeepAlive(true)
-  // void async function() {
-  //
-  //   let i = 1000;
-  //   do {
-  //     var date = new Date()
-  //     let date_hour_min = date.getHours() + ":" + date.getMinutes()
-  //     plot1.time = date_hour_min
-  //     plot2.time = date_hour_min
-  //     plot3.time = date_hour_min
-  //     console.log("plot1 %o", plot1)
-  //     console.log("plot2 %o", plot2)
-  //     console.log("plot3 %o", plot3)
-  //     ws.send(JSON.stringify(plot1))
-  //     ws.send(JSON.stringify(plot2))
-  //     ws.send(JSON.stringify(plot3))
-  //     await msleep(1000);
-  //   }
-  //   while (i-- > 0)
-  // }();
 
 
   const mqttDATA = new mqtt_cl.ClientMQTT()
@@ -3657,12 +2298,6 @@ app.ws('/router', function(ws, req) {
   });
 });
 
-//TODO logic with socket when it is close
-//TODO make topic
-//TODO topics from AMIGO
-//TODO send comand to AMIGO
-//TODO post from UI
-//TODO bash didn't store
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
@@ -3681,13 +2316,31 @@ app.get('/login', function(req, res) {
 
 app.get('/data', function(req, res) {
   res.set("Access-Control-Allow-Origin", "*")
+  var endJson = "";
+  internetDB.findAll().then(internets => {
+  endJson += internets;
+  console.log(JSON.stringify(internets))
+})
 
-  ref.once("value", function(snapshot) {
-    console.log(snapshot.numChildren());
-    res.send(snapshot.val())
-  }, function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
+traditionalDB.findAll().then(traditionals => {
+endJson += traditionals;
+console.log(JSON.stringify(traditionals))
+})
+
+distributedDB.findAll().then(distributeds => {
+endJson += distributeds;
+console.log(JSON.stringify(distributeds))
+})
+
+console.log("end %o",JSON.stringify(endJson))
+
+ // TODO GIVE DOTS! traditional, internet, distributed (timestamp ( value ,time (hh:mm))
+  // ref.once("value", function(snapshot) {
+  //   console.log(snapshot.numChildren());
+  //   res.send(snapshot.val())
+  // }, function(errorObject) {
+  //   console.log("The read failed: " + errorObject.code);
+  // });
 });
 //
 app.listen(process.env.PORT || config.port, function() {
