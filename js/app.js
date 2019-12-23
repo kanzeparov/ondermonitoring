@@ -129,7 +129,6 @@ internetDB.readAll = async (req, res) => {
 
 
 app.get('/users', User.readAll);
-
 app.get('/internet', internetDB.readAll);
 app.get('/distributed', distributedDB.readAll);
 app.get('/traditional', traditionalDB.readAll);
@@ -2174,10 +2173,13 @@ app.ws('/cells', function(ws, req) {
   const mqttDATACells = new mqtt_cl.ClientMQTT()
   mqttDATACells.add_handler(handlerDATACells)
   mqttDATACells.start()
-  ws.send(JSON.stringify(cell1))
-  ws.send(JSON.stringify(cell2))
-  ws.send(JSON.stringify(cell3))
-  ws.send(JSON.stringify(cell4))
+  // ws.send(JSON.stringify(cell1))
+  // ws.send(JSON.stringify(cell2))
+  // ws.send(JSON.stringify(cell3))
+  // ws.send(JSON.stringify(cell4))
+  const sumCell = {"1": cell1, "2": cell2, "3": cell3, "4": cell4}
+  const objCell ={data: sumCell, type:"cells"}
+  ws.send(sumCell)
 
   function handlerDATACells(type, value) {
     console.log(" cells Receive new message %o", value)
@@ -2226,10 +2228,14 @@ app.ws('/cells', function(ws, req) {
         }
       }
 
-      ws.send(JSON.stringify(cell1))
-      ws.send(JSON.stringify(cell2))
-      ws.send(JSON.stringify(cell3))
-      ws.send(JSON.stringify(cell4))
+      // ws.send(JSON.stringify(cell1))
+      // ws.send(JSON.stringify(cell2))
+      // ws.send(JSON.stringify(cell3))
+      // ws.send(JSON.stringify(cell4))
+      const sumCell = {"1": cell1, "2": cell2, "3": cell3, "4": cell4}
+      const objCell ={data: sumCell, type:"cells"}
+      ws.send(sumCell)
+
 
     } catch (ex) {
       console.log(ex)
