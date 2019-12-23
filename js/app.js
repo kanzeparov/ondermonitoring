@@ -126,6 +126,8 @@ internetDB.readAll = async (req, res) => {
   }
 };
 
+
+
 app.get('/users', User.readAll);
 
 app.get('/internet', internetDB.readAll);
@@ -2314,35 +2316,43 @@ app.get('/login', function(req, res) {
   }
 });
 
-app.get('/data', function(req, res) {
-  res.set("Access-Control-Allow-Origin", "*")
-  var endJson = "";
-  internetDB.findAll().then(internets => {
-  endJson += internets;
-  console.log(JSON.stringify(internets))
-})
 
-traditionalDB.findAll().then(traditionals => {
-endJson += traditionals;
-console.log(JSON.stringify(traditionals))
-})
+const int = internetDB.findAll();
+const trad = traditionalDB.findAll();
+const distrib = distributedDB.findAll();
 
-distributedDB.findAll().then(distributeds => {
-endJson += distributeds;
-console.log(JSON.stringify(distributeds))
-})
+Promise
+    .all([int, trad, distrib])
+    .then(responses => {
+        console.log('**********COMPLETE RESULTS****************');
+        console.log(responses[0]); // user profile
+        console.log(responses[1]); // all reports
+        console.log(responses[2]); // report details
 
+    })
+    .catch(err => {
+        console.log('**********ERROR RESULT****************');
+        console.log(err);
+    });
+
+app.get('/data',async function(req, res) {
+  try {
+ res.set("Access-Control-Allow-Origin", "*")
+  var endJson = "{\"internet\":{\"1577088600150\":{\"time\":\"11:10\",\"value\":31},\"1577088787198\":{\"time\":\"11:13\",\"value\":12}},\"traditional\":{\"1577088600150\":{\"time\":\"11:10\",\"value\":10},\"1577088787198\":{\"time\":\"5:15\",\"value\":18}},\"distributed\":{\"1577088600150\":{\"time\":\"11:10\",\"value\":12},\"1577088787198\":{\"time\":\"11:13\",\"value\":17}}}"
 console.log("end %o",JSON.stringify(endJson))
-
+res.send(JSON.parse(endJson))
+} catch(error) {
+  console.log(error);
+}
  // TODO GIVE DOTS! traditional, internet, distributed (timestamp ( value ,time (hh:mm))
-  // ref.once("value", function(snapshot) {
-  //   console.log(snapshot.numChildren());
-  //   res.send(snapshot.val())
-  // }, function(errorObject) {
-  //   console.log("The read failed: " + errorObject.code);
-  // });
+ //  ref.once("value", function(snapshot) {
+ //    console.log(snapshot.numChildren());
+ //    res.send(snapshot.val())
+ //  }, function(errorObject) {
+ //    console.log("The read failed: " + errorObject.code);
+ //  });
 });
-//
+
 app.listen(process.env.PORT || config.port, function() {
   cell1.status = false;
   cell2.status = false;
