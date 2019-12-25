@@ -2259,7 +2259,7 @@ app.ws('/plot', function(ws, req) {
         console.log("plot3 %o", plot3)
         ws.send(JSON.stringify(plot3))
       }
-
+}
     } catch (ex) {
       console.log(ex)
     }
