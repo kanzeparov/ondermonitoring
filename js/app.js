@@ -7,6 +7,7 @@ let router = new Router()
 let app = express()
 let expressWs = require('express-ws')(app)
 let mqtt_cl = require('./mqtt_client')
+let mqtt_cl_local = require('./mqtt_clientlocal')
 var config = require('./config.json');
 let trunc = require('./trunc.js')
 const sqlite3 = require('sqlite3');
@@ -138,6 +139,9 @@ app.get('/traditional', traditionalDB.readAll);
 const mqtt = new mqtt_cl.ClientMQTT()
 mqtt.add_handler(handler)
 mqtt.start()
+
+const mqttLocal = new mqtt_cl_local.ClientMQTTLocal()
+mqttLocal.start()
 var gen1 = {
   time: "0",
   value: 0,
@@ -1273,9 +1277,8 @@ app.ws('/cells', function(ws, req) {
 
 app.ws('/preset', function(ws, req) {
 
-  const mqttDATA = new mqtt_cl.ClientMQTT()
-  mqttDATA.add_handler(handlerDATA)
-  mqttDATA.start()
+  const mqttLocalData = new mqtt_cl_local.ClientMQTTLocal()
+  mqttLocalData.start()
 
   function handlerDATA(type, value) {
     console.log("Receive new message %o", value)
@@ -1287,7 +1290,7 @@ app.ws('/preset', function(ws, req) {
     var json_msg = data;
     try {
       json_msg = JSON.parse(data)
-      mqttDATA.publish113(json_msg.value)
+      mqttLocalData.publish113(json_msg.value)
     } catch (ex) {
       console.log(ex);
     }
@@ -1295,7 +1298,7 @@ app.ws('/preset', function(ws, req) {
   });
 
   ws.on('close', function() {
-    mqttDATA.stop();
+    mqttLocalData.stop();
     console.log('The connection was closed!');
   });
 });
@@ -1798,19 +1801,19 @@ app.ws('/arrows', function(ws, req) {
     try {
       json_msg = JSON.parse(data)
       if (json_msg.id >= 1 && json_msg.id <= 4) {
-        mqttDATA.publish77(json_msg.id, json_msg.status)
+        mqttLocalData.publish77(json_msg.id, json_msg.status)
       }
       if (json_msg.id == 5) {
-        mqttDATA.publish73(1, json_msg.status)
+        mqttLocalData.publish73(1, json_msg.status)
       }
       if (json_msg.id == 7) {
-        mqttDATA.publish73(3, json_msg.status)
+        mqttLocalData.publish73(3, json_msg.status)
       }
       if (json_msg.id == 9) {
-        mqttDATA.publish73(2, json_msg.status)
+        mqttLocalData.publish73(2, json_msg.status)
       }
       if (json_msg.id == 11) {
-        mqttDATA.publish73(4, json_msg.status)
+        mqttLocalData.publish73(4, json_msg.status)
       }
     } catch (ex) {
       console.log(ex)
@@ -2178,7 +2181,7 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
     try {
       json_msg = JSON.parse(data)
       if (json_msg.id >= 1 && json_msg.id <= 6) {
-        mqttDATA.publish67(json_msg.id, json_msg.status)
+        mqttLocalData.publish67(json_msg.id, json_msg.status)
       }
     } catch (ex) {
       console.log(ex)
@@ -2202,12 +2205,13 @@ app.ws('/plot', function(ws, req) {
     let json_msg = value;
     try {
       json_msg = JSON.parse(value)
-      if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+      if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
+        (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
-        (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay'))) {
-        console.log("plot1 %o", plot1)
-        ws.send(JSON.stringify(plot1))
-      }
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
+      ) {
 
       if (json_msg.port == 'enode1' && json_msg.port2 == "gen") {
         console.log("gen price json %o", value)
@@ -2234,10 +2238,12 @@ app.ws('/plot', function(ws, req) {
         console.log("gen %o", gen4)
       }
 
-      if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+      if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
+        (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
-        (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
         console.log("plot2 %o", plot2)
         ws.send(JSON.stringify(plot2))
@@ -2248,7 +2254,7 @@ app.ws('/plot', function(ws, req) {
         (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
-        (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
+        (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
         console.log("plot3 %o", plot3)
         ws.send(JSON.stringify(plot3))

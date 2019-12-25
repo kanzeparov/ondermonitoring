@@ -246,46 +246,6 @@ console.log(e)
 }
   }
 
-  publish113(value) {
-    console.log("publish113 is hooked " + value)
-    let topic = "/testbed/amigo/case_id"
-    let payload = {
-      value: value,
-      timeStamp: new Date().toISOString()
-    }
-    this.Client.publish(topic, JSON.stringify(payload))
-  }
-
-  publish77(enode, value) {
-    console.log("publish77 is hooked enode " + enode + " " + value)
-    let topic = "/testbed/enode" + String(enode) + "/relay/ac/mode"
-    let payload = {
-      value: value,
-      timeStamp: new Date().toISOString()
-    }
-    this.Client.publish(topic, JSON.stringify(payload))
-  }
-
-  publish73(enode, value) {
-    console.log("publish73 is hooked  enode " + enode + " " + value)
-    let topic = "testbed/enode" + String(enode) + "/relay/der/mode"
-    let payload = {
-      value: value,
-      timeStamp: new Date().toISOString()
-    }
-    this.Client.publish(topic, JSON.stringify(payload))
-  }
-
-  publish67(dc_num, value) {
-    console.log("publish67 is hooked dc_num " + dc_num + " " + value)
-    let topic = "/testbed/relay/dc" + String(dc_num) + "/mode"
-    let payload = {
-      value: value,
-      timeStamp: new Date().toISOString()
-    }
-    this.Client.publish(topic, JSON.stringify(payload))
-  }
-
   connected() {
     this.started = 1
     console.log("Connected to the broker!")
