@@ -2047,9 +2047,13 @@ app.ws('/', function(ws, req) {
         const objArrowDirection ={data: sumCell, type:"arrowDirections"}
         ws.send(objArrowDirection)
         //DESCRIPTION PLOT
-        if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+        if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
+          (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
+          (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
           (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
-          (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay'))) {
+          (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
+          (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
+        ) {
           console.log("plot1 %o", plot1)
           const objPlot1 ={data: plot1, type:"plot"}
           ws.send(objPlot1)
@@ -2080,7 +2084,9 @@ app.ws('/', function(ws, req) {
           console.log("gen %o", gen4)
         }
 
-        if ((json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+        if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
+          (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
+          (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
           (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
           (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
           (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
