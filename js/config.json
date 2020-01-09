@@ -1,5 +1,5 @@
 {
-    "port" : 80,
+    "port" : 3005,
     "minutes" : 30,
     "apiKey": "AIzaSyBRIH183Wyi-24ZsHUMPAeGjXFd04uzQ3w",
     "authDomain": "monitoring-77e75.firebaseapp.com",
