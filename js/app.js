@@ -2142,6 +2142,15 @@ app.ws('/', function(ws, req) {
 
     ws.on('message', function incoming(data) {
       console.log(data);
+
+      if (data.type === 'preset') {
+          console.log('Received Message: preset');
+      }
+      
+    });
+
+    ws.on('message', function incoming(data) {
+      console.log(data);
       var json_msg = data;
       try {
         //DESCRIPTION PRESET
@@ -2278,6 +2287,7 @@ app.ws('/preset', function(ws, req) {
 
   ws.on('message', function incoming(data) {
     console.log(data);
+
     var json_msg = data;
     try {
       json_msg = JSON.parse(data)
