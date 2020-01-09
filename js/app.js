@@ -1197,6 +1197,7 @@ app.ws('/', function(ws, req) {
   const mqttDATAMain = new mqtt_cl.ClientMQTT()
   mqttDATAMain.add_handler(handlerDATAMain)
   mqttDATAMain.start()
+  console.log('/ ws')
   //const sumCell = {"1": cell1, "2": cell2, "3": cell3, "4": cell4}
   const sumCell = {cell1, cell2, cell3, cell4}
   const objCell ={data: sumCell, type:"cells"}
