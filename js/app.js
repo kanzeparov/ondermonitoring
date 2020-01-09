@@ -1091,7 +1091,7 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
-        let date_hour_min = date.getHours() + ":" + date.getMinutes()
+        date_hour_min = date.getHours() + ":" + date.getMinutes()
         traditionalDB.create({
           time: date_hour_min,
           value: plot1.value,
@@ -1106,7 +1106,7 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
-        let date_hour_min = date.getHours() + ":" + date.getMinutes()
+        date_hour_min = date.getHours() + ":" + date.getMinutes()
 
           distributedDB.create({
             time: date_hour_min,
@@ -1123,7 +1123,7 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
         (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
       ) {
-        let date_hour_min = date.getHours() + ":" + date.getMinutes()
+        date_hour_min = date.getHours() + ":" + date.getMinutes()
 
         internetDB.create({
           time: date_hour_min,
@@ -1577,7 +1577,7 @@ app.ws('/', function(ws, req) {
         arrow11.value = arrow11pre.value1 * arrow11pre.status1 + arrow11pre.value2 * arrow11pre.status2 + arrow11pre.value3 * arrow11pre.status3
         arrow12.value = arrow12pre.value1 * arrow12pre.status1 + arrow12pre.value2 * arrow12pre.status2 + arrow12pre.value3 * arrow12pre.status3
         var date = new Date()
-        let date_hour_min = date.getHours() + ":" + date.getMinutes()
+        date_hour_min = date.getHours() + ":" + date.getMinutes()
         plot1.time = date_hour_min
         console.log("plot1 (1637_) - " + plot1.value)
         plot1.value = (arrow9.value + arrow10.value + arrow11.value + arrow12.value) * rout.balance
@@ -2017,7 +2017,7 @@ app.ws('/', function(ws, req) {
           pricePowerSellEnode3 = pricePowerSellEnode3 + arrowDir3.value * arrowDir3.balance
         }
         var date = new Date()
-        let date_hour_min = date.getHours() + ":" + date.getMinutes()
+        date_hour_min = date.getHours() + ":" + date.getMinutes()
         plot3.time = date_hour_min
         if (arrow7.value > 0) {
           plot3.value = (arrow9.value - arrow5.value - powerBuyEnode1) * rout.balance + arrow5.value * gen1.value + pricePowerBuyEnode1 - pricePowerSellEnode1 +
@@ -2627,7 +2627,7 @@ app.ws('/arrows', function(ws, req) {
       arrow11.value = arrow11pre.value1 * arrow11pre.status1 + arrow11pre.value2 * arrow11pre.status2 + arrow11pre.value3 * arrow11pre.status3
       arrow12.value = arrow12pre.value1 * arrow12pre.status1 + arrow12pre.value2 * arrow12pre.status2 + arrow12pre.value3 * arrow12pre.status3
       var date = new Date()
-      let date_hour_min = date.getHours() + ":" + date.getMinutes()
+      date_hour_min = date.getHours() + ":" + date.getMinutes()
       plot1.time = date_hour_min
       console.log("plot1 (1637_) - " + plot1.value)
       plot1.value = (arrow9.value + arrow10.value + arrow11.value + arrow12.value) * rout.balance
@@ -3126,7 +3126,7 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
         pricePowerSellEnode3 = pricePowerSellEnode3 + arrowDir3.value * arrowDir3.balance
       }
       var date = new Date()
-      let date_hour_min = date.getHours() + ":" + date.getMinutes()
+      date_hour_min = date.getHours() + ":" + date.getMinutes()
       plot3.time = date_hour_min
       if (arrow7.value > 0) {
         plot3.value = (arrow9.value - arrow5.value - powerBuyEnode1) * rout.balance + arrow5.value * gen1.value + pricePowerBuyEnode1 - pricePowerSellEnode1 +
