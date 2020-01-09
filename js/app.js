@@ -1,5 +1,6 @@
 'use strict'
-
+//TODO MAYBE MAKE CRON TO ANOTHER TOPICS LIKE PLOTS!
+//TODO ЕСЛИ ВСЕ РАВНО БУДЕТ ТУПИТЬ ТО ДОБАВИТЬ КРОНЫ ТАМ, ГДЕ ОЧЕНЬ ЧАСТО ОБНОВЛЯЕТСЯ!
 
 const express = require('express')
 const Router = require('./router')
@@ -391,14 +392,8 @@ var rout = {
 
 //TODO CONNECT PLOT-WS WITH DB-LOT
 
-var task = cron.schedule('*/5 * * * * *', () =>  {
-  console.log('Sending plot 1 2 3')
-}, {
-  scheduled: false
-});
 
-
-var taskBD = cron.schedule('*/3 * * * * *', () =>  {
+var taskBD = cron.schedule('*/10 * * * * *', () =>  {
   var date = new Date();
   var timestamp = date.getTime();
 
@@ -1135,71 +1130,6 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
     console.log("plot3 %o", plot3)
     //TOPICS WHICH CONNECT WITH GRAPH
     if (true) {
-      //
-      // if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
-      //   (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
-      //   (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
-      //   (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
-      //   (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
-      //   (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
-      // ) {
-      //   // date_hour_min = date.getHours() + ":" + date.getMinutes()
-      //   // traditionalDB.create({
-      //   //   time: date_hour_min,
-      //   //   value: plot1.value,
-      //   //   timestamp: timestamp
-      //   // })
-      // }
-      //
-      // if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
-      //   (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
-      //   (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
-      //   (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
-      //   (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
-      //   (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
-      // ) {
-      //   // date_hour_min = date.getHours() + ":" + date.getMinutes()
-      //   //
-      //   // traditionalDB.create({
-      //   //   time: date_hour_min,
-      //   //   value: plot1.value,
-      //   //   timestamp: timestamp
-      //   // })
-      //   //   distributedDB.create({
-      //   //     time: date_hour_min,
-      //   //     value: plot2.value,
-      //   //     timestamp: timestamp
-      //   //   })
-      //
-      // }
-      // //115,
-      // if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
-      //   (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
-      //   (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
-      //   (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
-      //   (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
-      //   (json_msg.port.toString().includes('enode') && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
-      // ) {
-      //   // date_hour_min = date.getHours() + ":" + date.getMinutes()
-      //   // date_hour_min = date.getHours() + ":" + date.getMinutes()
-      //   //
-      //   // traditionalDB.create({
-      //   //   time: date_hour_min,
-      //   //   value: plot1.value,
-      //   //   timestamp: timestamp
-      //   // })
-      //   //   distributedDB.create({
-      //   //     time: date_hour_min,
-      //   //     value: plot2.value,
-      //   //     timestamp: timestamp
-      //   //   })
-      //   // internetDB.create({
-      //   //   time: date_hour_min,
-      //   //   value: plot3.value,
-      //   //   timestamp: timestamp
-      //   // })
-      // }
-
 
       const Op = Sequelize.Op;
       var date = new Date();
@@ -1267,11 +1197,10 @@ app.ws('/', function(ws, req) {
   mqttDATAMain.start()
   console.log('/ ws')
 
-  var task = cron.schedule('*/2 * * * * *', () =>  {
+  var task = cron.schedule('*/10 * * * * *', () =>  {
     console.log('Sending plot 1 2 3')
     const objPlot ={plot1, plot2, plot3}
     ws.send(JSON.stringify({type:'plot', data:objPlot}));
-
   }, {
     scheduled: false
   });
@@ -1282,18 +1211,7 @@ app.ws('/', function(ws, req) {
   const objAgents ={data: sumCell, type:"agents"}
   ws.send(JSON.stringify({type:'agents', data:sumCell}));
 
-  //ws.send(objAgents)
-  //TODO optimize it cell
-  // ws.send(JSON.stringify(cell1))
-  // ws.send(JSON.stringify(cell2))
-  // ws.send(JSON.stringify(cell3))
-  // ws.send(JSON.stringify(cell4))
-  //TODO optimize it agents
-  // ws.send(JSON.stringify(cell1))
-  // ws.send(JSON.stringify(cell2))
-  // ws.send(JSON.stringify(cell3))
-  // ws.send(JSON.stringify(cell4))
-  //TODO optimize it arrows
+
   arrow9.value = arrow9pre.value1 * arrow9pre.status1 + arrow9pre.value2 * arrow9pre.status2 + arrow9pre.value3 * arrow9pre.status3
   arrow10.value = arrow10pre.value1 * arrow10pre.status1 + arrow10pre.value2 * arrow10pre.status2 + arrow10pre.value3 * arrow10pre.status3
   arrow11.value = arrow11pre.value1 * arrow11pre.status1 + arrow11pre.value2 * arrow11pre.status2 + arrow11pre.value3 * arrow11pre.status3
@@ -1306,34 +1224,11 @@ app.ws('/', function(ws, req) {
   const sumArrow = {arrow1, arrow2, arrow3,arrow4, arrow5, arrow6, arrow7, arrow8,arrow9, arrow10, arrow11, arrow12}
   const objArrow ={data: sumCell, type:"arrows"}
   ws.send(JSON.stringify({type:'arrows', data:sumCell}));
-  //ws.send(objArrow)
-  // ws.send(JSON.stringify(arrow1))
-  // ws.send(JSON.stringify(arrow2))
-  // ws.send(JSON.stringify(arrow3))
-  // ws.send(JSON.stringify(arrow4))
-  // ws.send(JSON.stringify(arrow5))
-  // ws.send(JSON.stringify(arrow6))
-  // ws.send(JSON.stringify(arrow7))
-  // ws.send(JSON.stringify(arrow8))
-  // ws.send(JSON.stringify(arrow9))
-  // ws.send(JSON.stringify(arrow10))
-  // ws.send(JSON.stringify(arrow11))
-  // ws.send(JSON.stringify(arrow12))
-//TODO optimize it arrowDIRECTIONS
-  //const sumArrowDirection = {"1": arrowDir1, "2": arrowDir2, "3": arrowDir3, "4": arrowDir4,"5": arrowDir5, "6": arrowDir6}
+
     const sumArrowDirection = {arrowDir1, arrowDir2, arrowDir3, arrowDir4, arrowDir5, arrowDir6}
   const objArrowDirection ={data: sumCell, type:"arrowDirections"}
   ws.send(JSON.stringify({type:'arrowDirections', data:sumCell}));
-  //ws.send(objArrowDirection)
-  // ws.send(JSON.stringify(arrowDir1))
-  // ws.send(JSON.stringify(arrowDir2))
-  // ws.send(JSON.stringify(arrowDir3))
-  // ws.send(JSON.stringify(arrowDir4))
-  // ws.send(JSON.stringify(arrowDir5))
-  // ws.send(JSON.stringify(arrowDir6))
-  //
-//  ws.send(JSON.stringify(plot1))
-  //
+
   const objRouter ={data: rout, type:"router"}
   ws.send(JSON.stringify({type:'router', data:rout}));
   //ws.send(objRouter)
@@ -2169,45 +2064,6 @@ app.ws('/', function(ws, req) {
           console.log("gen %o", gen4)
         }
 
-        // if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
-        //   (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
-        //   (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
-        //   (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
-        //   (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
-        //   (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
-        // ) {
-        //   console.log("plot1 %o", plot1)
-        //   const objPlot1 ={data: plot1, type:"plot"}
-        //   ws.send(JSON.stringify({type:'plot', data:plot1}));
-        //   //ws.send(objPlot1)
-        // }
-        //
-        // if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
-        //   (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
-        //   (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
-        //   (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
-        //   (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
-        //   (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
-        // ) {
-        //   console.log("plot2 %o", plot2)
-        //   const objPlot2 ={data: plot2, type:"plot"}
-        //   ws.send(JSON.stringify({type:'plot', data:plot2}));
-        //   //ws.send(objPlot2)
-        // }
-        //
-        // if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
-        //   (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
-        //   (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
-        //   (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
-        //   (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
-        //   (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
-        // ) {
-        //   console.log("plot3 %o", plot3)
-        //   const objPlot3 ={data: plot3, type:"plot"}
-        //   ws.send(JSON.stringify({type:'plot', data:plot3}));
-        //   //ws.send(objPlot3)
-        // }
-
         //DESCRIPTION ROUTER
         if (json_msg.port == 'amigo' && json_msg.port2 == "set_price") {
           console.log("router balance %o", value)
@@ -2233,8 +2089,10 @@ app.ws('/', function(ws, req) {
         //ws.send(objRouter)
       }
     } catch (ex) {
-      console.log(ex)
+      // mqttDATAMain.stop();
+      // console.log(ex)
     }
+  }
 
 
     ws.on('message', function incoming(data) {
@@ -2283,13 +2141,8 @@ app.ws('/', function(ws, req) {
       mqttDATAMain.stop();
       console.log('The connection was closed!');
     });
-  }
+
 });
-
-
-
-
-
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
@@ -2311,27 +2164,13 @@ const int = internetDB.findAll();
 const trad = traditionalDB.findAll();
 const distrib = distributedDB.findAll();
 
-// Promise
-//     .all([int, trad, distrib])
-//     .then(responses => {
-//         console.log('**********COMPLETE RESULTS****************');
-//         console.log(responses[0]); // user profile
-//         console.log(responses[1]); // all reports
-//         console.log(responses[2]); // report details
-//
-//     })
-//     .catch(err => {
-//         console.log('**********ERROR RESULT****************');
-//         console.log(err);
-//     });
-
 app.get('/data',async function(req, res) {
   try {
     res.set("Access-Control-Allow-Origin", "*")
     try {
-      const internet_old = await internetDB.findAll();
-      const distributed_old = await distributedDB.findAll();
-      const traditional_old = await traditionalDB.findAll();
+      const internet_old = await internetDB.findAll({order: [['timestamp', 'ASC']]});
+      const distributed_old = await distributedDB.findAll({order: [['timestamp', 'ASC']]});
+      const traditional_old = await traditionalDB.findAll({order: [['timestamp', 'ASC']]});
       let internet = {};
       for (const value of internet_old) {
         Object.assign(internet, {
@@ -2364,19 +2203,9 @@ app.get('/data',async function(req, res) {
     } catch (error) {
       return res.send(error);
     }
-
-    // console.log("end %o",JSON.stringify(endJson))
-    // res.send(JSON.parse(endJson))
   } catch(error) {
     console.log(error);
   }
- // TODO GIVE DOTS! traditional, internet, distributed (timestamp ( value ,time (hh:mm))
- //  ref.once("measure", function(snapshot) {
- //    console.log(snapshot.numChildren());
- //    res.send(snapshot.val())
- //  }, function(errorObject) {
- //    console.log("The read failed: " + errorObject.code);
- //  });
 });
 
 app.listen(process.env.PORT || config.port, function() {
