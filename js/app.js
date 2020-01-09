@@ -12,6 +12,7 @@ let trunc = require('./trunc.js')
 const sqlite3 = require('sqlite3');
 let timeDelete = config.minutes;
 var password_str = "123456789"
+var date_hour_min = "";
 
 const Sequelize = require('sequelize');
 // your credentials
@@ -932,7 +933,7 @@ console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
       console.log("router energy %o", rout)
     }
     var date = new Date()
-    let date_hour_min = date.getHours() + ":" + date.getMinutes()
+    date_hour_min = date.getHours() + ":" + date.getMinutes()
     plot1.time = date_hour_min
     console.log("plot1 938- " + plot1.value)
     plot1.value = (arrow9.value + arrow10.value + arrow11.value + arrow12.value) * rout.balance
@@ -2146,7 +2147,7 @@ app.ws('/', function(ws, req) {
       if (data.type === 'preset') {
           console.log('Received Message: preset');
       }
-      
+
     });
 
     ws.on('message', function incoming(data) {
