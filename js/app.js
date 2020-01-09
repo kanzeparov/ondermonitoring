@@ -1,5 +1,6 @@
 'use strict'
 
+
 const express = require('express')
 const Router = require('./router')
 
@@ -9,6 +10,8 @@ let expressWs = require('express-ws')(app)
 let mqtt_cl = require('./mqtt_client')
 var config = require('./config.json');
 let trunc = require('./trunc.js')
+var cron = require('node-cron');
+
 const sqlite3 = require('sqlite3');
 let timeDelete = config.minutes;
 var password_str = "123456789"
@@ -19,6 +22,8 @@ const Sequelize = require('sequelize');
 const DATABASE_URL = 'postgres://postgres:postgres@localhost:5432/monitoring';
 
 const database = new Sequelize(DATABASE_URL);
+
+
 
 app.use(express.json());
 app.use(express.urlencoded({
@@ -1202,9 +1207,10 @@ app.ws('/', function(ws, req) {
   //const sumCell = {"1": cell1, "2": cell2, "3": cell3, "4": cell4}
   const sumCell = {cell1, cell2, cell3, cell4}
   const objCell ={data: sumCell, type:"cells"}
-  ws.send(objCell)
+  ws.send(JSON.stringify({type:'cells', data:sumCell}));
   const objAgents ={data: sumCell, type:"agents"}
-  ws.send(objAgents)
+  ws.send(JSON.stringify({type:'agents', data:sumCell}));
+  //ws.send(objAgents)
   //TODO optimize it cell
   // ws.send(JSON.stringify(cell1))
   // ws.send(JSON.stringify(cell2))
@@ -1227,7 +1233,8 @@ app.ws('/', function(ws, req) {
   //const sumArrow = {"1": arrow1, "2": arrow2, "3": arrow3, "4": arrow4,"5": arrow5, "6": arrow6, "7": arrow7, "8": arrow8,"9": arrow9, "10": arrow10, "11": arrow11, "12": arrow12}
   const sumArrow = {arrow1, arrow2, arrow3,arrow4, arrow5, arrow6, arrow7, arrow8,arrow9, arrow10, arrow11, arrow12}
   const objArrow ={data: sumCell, type:"arrows"}
-  ws.send(objArrow)
+  ws.send(JSON.stringify({type:'arrows', data:sumCell}));
+  //ws.send(objArrow)
   // ws.send(JSON.stringify(arrow1))
   // ws.send(JSON.stringify(arrow2))
   // ws.send(JSON.stringify(arrow3))
@@ -1244,7 +1251,8 @@ app.ws('/', function(ws, req) {
   //const sumArrowDirection = {"1": arrowDir1, "2": arrowDir2, "3": arrowDir3, "4": arrowDir4,"5": arrowDir5, "6": arrowDir6}
     const sumArrowDirection = {arrowDir1, arrowDir2, arrowDir3, arrowDir4, arrowDir5, arrowDir6}
   const objArrowDirection ={data: sumCell, type:"arrowDirections"}
-  ws.send(objArrowDirection)
+  ws.send(JSON.stringify({type:'arrowDirections', data:sumCell}));
+  //ws.send(objArrowDirection)
   // ws.send(JSON.stringify(arrowDir1))
   // ws.send(JSON.stringify(arrowDir2))
   // ws.send(JSON.stringify(arrowDir3))
@@ -1255,7 +1263,12 @@ app.ws('/', function(ws, req) {
 //  ws.send(JSON.stringify(plot1))
   //
   const objRouter ={data: rout, type:"router"}
-  ws.send(objRouter)
+  ws.send(JSON.stringify({type:'router', data:rout}));
+  //ws.send(objRouter)
+  // cron.schedule('/2 * * * * * *', () => {
+  //   console.log('Sending plot 1 2 3')
+  // })
+
   function handlerDATAMain(type, value) {
     //DESCRIPTION CELL
     console.log(" cells Receive new message %o", value)
@@ -1304,11 +1317,10 @@ app.ws('/', function(ws, req) {
         }
       }
       //TODO optimize it
-      //const sumCell = {"1": cell1, "2": cell2, "3": cell3, "4": cell4}
-      const sumCell = {cell1, cell2, cell3, cell4}
+      const sumCell = {"1": cell1, "2": cell2, "3": cell3, "4": cell4}
+      //const sumCell = {cell1, cell2, cell3, cell4}
       const objCell ={type:"cells", data: sumCell}
       console.log(objCell);
-
       ws.send(JSON.stringify({type:'cells', data:sumCell}));
       //ws.send(objCell)
 
@@ -1330,7 +1342,8 @@ app.ws('/', function(ws, req) {
         //const sumCell = {"1": cell1, "2": cell2, "3": cell3, "4": cell4}
         const sumCell = {cell1, cell2, cell3, cell4}
         const objAgents ={data: sumCell, type:"agents"}
-        ws.send(objAgents)
+        ws.send(JSON.stringify({type:'agents', data:sumCell}));
+        //ws.send(objAgents)
 
         //DESCRIPTION ARROWS
         if (json_msg.port == 'emeter1' && json_msg.port2 == 'power') {
@@ -1728,7 +1741,8 @@ app.ws('/', function(ws, req) {
         //const sumArrow = {"1": arrow1, "2": arrow2, "3": arrow3, "4": arrow4,"5": arrow5, "6": arrow6, "7": arrow7, "8": arrow8,"9": arrow9, "10": arrow10, "11": arrow11, "12": arrow12}
         const sumArrow = {arrow1, arrow2,  arrow3,  arrow4, arrow5,  arrow6, arrow7, arrow8,arrow9,  arrow10,  arrow11, arrow12}
         const objArrow ={data: sumCell, type:"arrows"}
-        ws.send(objArrow)
+        ws.send(JSON.stringify({type:'arrows', data:sumCell}));
+        //ws.send(objArrow)
         //DESCRIPTION arrowDIRECTIONS
         if (json_msg.port == 'enode1' && json_msg.portX == 1 && json_msg.port3 == "power") {
           console.log("allowDir json %o", value)
@@ -2055,19 +2069,10 @@ app.ws('/', function(ws, req) {
         //const sumArrowDirection = {"1": arrowDir1, "2": arrowDir2, "3": arrowDir3, "4": arrowDir4,"5": arrowDir5, "6": arrowDir6}
         const sumArrowDirection = {arrowDir1, arrowDir2, arrowDir3, arrowDir4, arrowDir5, arrowDir6}
         const objArrowDirection ={data: sumCell, type:"arrowDirections"}
-        ws.send(objArrowDirection)
+        ws.send(JSON.stringify({type:'arrowDirections', data:sumCell}));
+        //ws.send(objArrowDirection)
         //DESCRIPTION PLOT
-        if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
-          (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
-          (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
-          (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
-          (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
-          (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
-        ) {
-          console.log("plot1 %o", plot1)
-          const objPlot1 ={data: plot1, type:"plot"}
-          ws.send(objPlot1)
-        }
+
 
         if (json_msg.port == 'enode1' && json_msg.port2 == "gen") {
           console.log("gen price json %o", value)
@@ -2101,9 +2106,23 @@ app.ws('/', function(ws, req) {
           (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
           (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
         ) {
+          console.log("plot1 %o", plot1)
+          const objPlot1 ={data: plot1, type:"plot"}
+          ws.send(JSON.stringify({type:'plot', data:plot1}));
+          //ws.send(objPlot1)
+        }
+
+        if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
+          (json_msg.port.toString().includes('enode') && json_msg.port2 == "contracts") ||
+          (json_msg.port == 'amigo' && json_msg.port2 == "set_price") ||
+          (json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('load') && json_msg.port3 == "measure") ||
+          (json_msg.port.toString().includes('enode') && json_msg.port2 == "load" && json_msg.port3.toString().includes('relay')) ||
+          (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") || (json_msg.port.toString().includes('enode') && json_msg.port2 == "gen")
+        ) {
           console.log("plot2 %o", plot2)
           const objPlot2 ={data: plot2, type:"plot"}
-          ws.send(objPlot2)
+          ws.send(JSON.stringify({type:'plot', data:plot2}));
+          //ws.send(objPlot2)
         }
 
         if ((json_msg.port.toString().includes('enode') && json_msg.port2.toString().includes('port') && json_msg.port3 == "power") ||
@@ -2115,8 +2134,10 @@ app.ws('/', function(ws, req) {
         ) {
           console.log("plot3 %o", plot3)
           const objPlot3 ={data: plot3, type:"plot"}
-          ws.send(objPlot3)
+          ws.send(JSON.stringify({type:'plot', data:plot3}));
+          //ws.send(objPlot3)
         }
+
         //DESCRIPTION ROUTER
         if (json_msg.port == 'amigo' && json_msg.port2 == "set_price") {
           console.log("router balance %o", value)
@@ -2138,7 +2159,8 @@ app.ws('/', function(ws, req) {
           console.log("router %o", rout)
         }
         const objRouter ={data: rout, type:"router"}
-        ws.send(objRouter)
+        ws.send(JSON.stringify({type:'router', data:rout}));
+        //ws.send(objRouter)
       }
     } catch (ex) {
       console.log(ex)
