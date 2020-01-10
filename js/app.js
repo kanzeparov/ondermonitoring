@@ -368,7 +368,7 @@ var rout = {
   energy: 0
 }
 
-var taskBD = cron.schedule('*/10 * * * * *', () => {
+var taskBD = cron.schedule('*/2 * * * * *', () => {
   var date = new Date();
   var timestamp = date.getTime();
 
@@ -1137,7 +1137,7 @@ app.ws('/', function(ws, req) {
   mqttDATAMain.start()
   console.log('/ ws')
 
-  var task = cron.schedule('*/10 * * * * *', () => {
+  var task = cron.schedule('*/2 * * * * *', () => {
     console.log('Sending plot 1 2 3')
     // const objPlot = {
     //   plot1,
