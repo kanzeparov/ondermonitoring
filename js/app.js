@@ -394,7 +394,6 @@ var taskBD = cron.schedule('*/{cronTimer} * * * * *', () => {
     value: plot3.value,
     timestamp: timestamp
   })
-
   console.log('plot3.value - ' + plot3.value)
 }, {
   scheduled: false
@@ -403,7 +402,7 @@ var taskBD = cron.schedule('*/{cronTimer} * * * * *', () => {
 
 taskBD.start();
 
-cron.schedule('*/50 * * * *', () => {
+cron.schedule('*/30 * * * *', () => {
   const Op = Sequelize.Op;
   var date = new Date();
   var timestamp = date.getTime();
@@ -1138,6 +1137,7 @@ app.ws('/', function(ws, req) {
   const mqttDATAMain = new mqtt_cl.ClientMQTT()
   mqttDATAMain.add_handler(handlerDATAMain)
   mqttDATAMain.start()
+  taskBD.stop()
   console.log('/ ws')
 
   //TODO часто меняющиеся значения засунуть сюда
@@ -1158,6 +1158,25 @@ app.ws('/', function(ws, req) {
     plot1.time = date_hour_min;
     plot2.time = date_hour_min;
     plot3.time = date_hour_min;
+
+    traditionalDB.create({
+      time: date_hour_min,
+      value: plot1.value,
+      timestamp: timestamp
+    })
+    console.log('ws - plot1.value - ' + plot1.value)
+    distributedDB.create({
+      time: date_hour_min,
+      value: plot2.value,
+      timestamp: timestamp
+    })
+    console.log('ws - plot2.value - ' + plot2.value)
+    internetDB.create({
+      time: date_hour_min,
+      value: plot3.value,
+      timestamp: timestamp
+    })
+    console.log('ws - plot3.value - ' + plot3.value)
 
     const objPlot = {
       traditional: plot1,
@@ -2090,6 +2109,7 @@ app.ws('/', function(ws, req) {
   ws.on('close', function() {
     task.destroy();
     mqttDATAMain.stop();
+    taskBD.start();
     console.log('The connection was closed!');
   });
 
