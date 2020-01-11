@@ -1168,32 +1168,62 @@ app.ws('/', function(ws, req) {
       type: 'plot',
       data: objPlot
     }));
+
+    const sumCell = {
+      cell1,
+      cell2,
+      cell3,
+      cell4
+    }
+    ws.send(JSON.stringify({
+      type: 'cells',
+      data: sumCell
+    }));
+
+    const sumArrow = {
+      arrow1,
+      arrow2,
+      arrow3,
+      arrow4,
+      arrow5,
+      arrow6,
+      arrow7,
+      arrow8,
+      arrow9,
+      arrow10,
+      arrow11,
+      arrow12
+    }
+    ws.send(JSON.stringify({
+      type: 'arrows',
+      data: sumArrow
+    }));
+
+    const sumArrowDirection = {
+      arrowDir1,
+      arrowDir2,
+      arrowDir3,
+      arrowDir4,
+      arrowDir5,
+      arrowDir6
+    }
+    ws.send(JSON.stringify({
+      type: 'arrowDirections',
+      data: sumArrowDirection
+    }));
+
+    const objRouter = {
+      data: rout,
+      type: "router"
+    }
+    ws.send(JSON.stringify({
+      type: 'router',
+      data: objRouter
+    }));
+
   }, {
     scheduled: false
   });
-  //const sumCell = {"1": cell1, "2": cell2, "3": cell3, "4": cell4}
-  const sumCell = {
-    cell1,
-    cell2,
-    cell3,
-    cell4
-  }
-  const objCell = {
-    data: sumCell,
-    type: "cells"
-  }
-  ws.send(JSON.stringify({
-    type: 'cells',
-    data: sumCell
-  }));
-  const objAgents = {
-    data: sumCell,
-    type: "agents"
-  }
-  ws.send(JSON.stringify({
-    type: 'agents',
-    data: sumCell
-  }));
 
   arrow9.value = arrow9pre.value1 * arrow9pre.status1 + arrow9pre.value2 * arrow9pre.status2 + arrow9pre.value3 * arrow9pre.status3
   arrow10.value = arrow10pre.value1 * arrow10pre.status1 + arrow10pre.value2 * arrow10pre.status2 + arrow10pre.value3 * arrow10pre.status3
@@ -1203,55 +1233,7 @@ app.ws('/', function(ws, req) {
   arrow10.status = arrow10pre.status1 || arrow10pre.status2 || arrow10pre.status3
   arrow11.status = arrow11pre.status1 || arrow11pre.status2 || arrow11pre.status3
   arrow12.status = arrow12pre.status1 || arrow12pre.status2 || arrow12pre.status3
-  //const sumArrow = {"1": arrow1, "2": arrow2, "3": arrow3, "4": arrow4,"5": arrow5, "6": arrow6, "7": arrow7, "8": arrow8,"9": arrow9, "10": arrow10, "11": arrow11, "12": arrow12}
-  const sumArrow = {
-    arrow1,
-    arrow2,
-    arrow3,
-    arrow4,
-    arrow5,
-    arrow6,
-    arrow7,
-    arrow8,
-    arrow9,
-    arrow10,
-    arrow11,
-    arrow12
-  }
-  const objArrow = {
-    data: sumCell,
-    type: "arrows"
-  }
-  ws.send(JSON.stringify({
-    type: 'arrows',
-    data: sumArrow
-  }));
 
-  const sumArrowDirection = {
-    arrowDir1,
-    arrowDir2,
-    arrowDir3,
-    arrowDir4,
-    arrowDir5,
-    arrowDir6
-  }
-  const objArrowDirection = {
-    data: sumCell,
-    type: "arrowDirections"
-  }
-  ws.send(JSON.stringify({
-    type: 'arrowDirections',
-    data: sumArrowDirection
-  }));
-
-  const objRouter = {
-    data: rout,
-    type: "router"
-  }
-  ws.send(JSON.stringify({
-    type: 'router',
-    data: objRouter
-  }));
 
   task.start();
 
@@ -1301,22 +1283,6 @@ app.ws('/', function(ws, req) {
           cell4.status = true
         }
       }
-      //const sumCell = {"1": cell1, "2": cell2, "3": cell3, "4": cell4}
-      const sumCell = {
-        cell1,
-        cell2,
-        cell3,
-        cell4
-      }
-      const objCell = {
-        type: "cells",
-        data: sumCell
-      }
-      console.log(objCell);
-      ws.send(JSON.stringify({
-        type: 'cells',
-        data: sumCell
-      }));
 
       //DESCRIPTION AGENTS
       if (json_msg.port2 == 'known_agents') {
@@ -1340,15 +1306,6 @@ app.ws('/', function(ws, req) {
           cell3,
           cell4
         }
-        const objAgents = {
-          data: sumCell,
-          type: "agents"
-        }
-        ws.send(JSON.stringify({
-          type: 'agents',
-          data: sumCell
-        }));
-        //ws.send(objAgents)
 
         //DESCRIPTION ARROWS
         if (json_msg.port == 'emeter1' && json_msg.port2 == 'power') {
@@ -1721,30 +1678,7 @@ app.ws('/', function(ws, req) {
         console.log("arrowDir4 %o", arrowDir4)
         console.log("arrowDir5 %o", arrowDir5)
         console.log("arrowDir6 %o", arrowDir6)
-        //const sumArrow = {"1": arrow1, "2": arrow2, "3": arrow3, "4": arrow4,"5": arrow5, "6": arrow6, "7": arrow7, "8": arrow8,"9": arrow9, "10": arrow10, "11": arrow11, "12": arrow12}
-        const sumArrow = {
-          arrow1,
-          arrow2,
-          arrow3,
-          arrow4,
-          arrow5,
-          arrow6,
-          arrow7,
-          arrow8,
-          arrow9,
-          arrow10,
-          arrow11,
-          arrow12
-        }
-        const objArrow = {
-          data: sumCell,
-          type: "arrows"
-        }
-        ws.send(JSON.stringify({
-          type: 'arrows',
-          data: sumCell
-        }));
-        //ws.send(objArrow)
+
         //DESCRIPTION arrowDIRECTIONS
         if (json_msg.port == 'enode1' && json_msg.portX == 1 && json_msg.port3 == "power") {
           console.log("allowDir json %o", value)
@@ -2058,26 +1992,8 @@ app.ws('/', function(ws, req) {
         console.log("arrowDir4 %o", arrowDir4)
         console.log("arrowDir5 %o", arrowDir5)
         console.log("arrowDir6 %o", arrowDir6)
-        //const sumArrowDirection = {"1": arrowDir1, "2": arrowDir2, "3": arrowDir3, "4": arrowDir4,"5": arrowDir5, "6": arrowDir6}
-        const sumArrowDirection = {
-          arrowDir1,
-          arrowDir2,
-          arrowDir3,
-          arrowDir4,
-          arrowDir5,
-          arrowDir6
-        }
-        const objArrowDirection = {
-          data: sumCell,
-          type: "arrowDirections"
-        }
-        ws.send(JSON.stringify({
-          type: 'arrowDirections',
-          data: sumCell
-        }));
 
         //DESCRIPTION PLOT
-
         if (json_msg.port == 'enode1' && json_msg.port2 == "gen") {
           console.log("gen price json %o", value)
           gen1.value = json_msg.value;
@@ -2122,15 +2038,6 @@ app.ws('/', function(ws, req) {
           rout.time = json_msg.time;
           console.log("router %o", rout)
         }
-        const objRouter = {
-          data: rout,
-          type: "router"
-        }
-        ws.send(JSON.stringify({
-          type: 'router',
-          data: rout
-        }));
-        //ws.send(objRouter)
       }
     } catch (ex) {
       // mqttDATAMain.stop();
