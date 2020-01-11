@@ -10,8 +10,10 @@ let mqtt_cl = require('./mqtt_client')
 var config = require('./config.json');
 let trunc = require('./trunc.js')
 var cron = require('node-cron');
+
 const sqlite3 = require('sqlite3');
 let timeDelete = config.minutes;
+let cronTimer = 2;
 var password_str = "123456789"
 var date_hour_min = "";
 const Sequelize = require('sequelize');
@@ -368,7 +370,7 @@ var rout = {
   energy: 0
 }
 
-var taskBD = cron.schedule('*/2 * * * * *', () => {
+var taskBD = cron.schedule('*/{cronTimer} * * * * *', () => {
   var date = new Date();
   var timestamp = date.getTime();
 
@@ -401,6 +403,65 @@ var taskBD = cron.schedule('*/2 * * * * *', () => {
 
 taskBD.start();
 
+cron.schedule('*/50 * * * *', () => {
+  const Op = Sequelize.Op;
+  var date = new Date();
+  var timestamp = date.getTime();
+  var dif = timestamp - timeDelete * 1000 * 60;
+  console.log('Deleted distributed');
+
+  distributedDB.destroy({
+    where: {
+      timestamp: {
+        [Op.lt]: dif
+      }
+    }
+  }).then(function(timestamp) { // rowDeleted will return number of rows deleted
+    if (timestamp === 1) {
+      console.log('Deleted successfully');
+    }
+  }, function(err) {
+    console.log(err);
+  });
+
+  var date = new Date();
+  var timestamp = date.getTime();
+  var dif = timestamp - timeDelete * 1000 * 60;
+  console.log('Deleted internetDB');
+
+  internetDB.destroy({
+    where: {
+      timestamp: {
+        [Op.lt]: dif
+      }
+    }
+  }).then(function(timestamp) { // rowDeleted will return number of rows deleted
+    if (timestamp === 1) {
+      console.log('Deleted successfully');
+    }
+  }, function(err) {
+    console.log(err);
+  });
+
+  var date = new Date();
+  var timestamp = date.getTime();
+  var dif = timestamp - timeDelete * 1000 * 60;
+  console.log('Deleted traditionalDB');
+
+  traditionalDB.destroy({
+    where: {
+      timestamp: {
+        [Op.lt]: dif
+      }
+    }
+  }).then(function(timestamp) { // rowDeleted will return number of rows deleted
+    if (timestamp === 1) {
+      console.log('Deleted successfully');
+    }
+  }, function(err) {
+    console.log(err);
+  });
+});
 
 function handler(type, value) {
   console.log("Receive new message %o ", value)
@@ -1067,65 +1128,7 @@ function handler(type, value) {
     console.log("plot2 %o", plot2)
     console.log("plot3 %o", plot3)
 
-    if (true) {
-      const Op = Sequelize.Op;
-      var date = new Date();
-      var timestamp = date.getTime();
-      var dif = timestamp - timeDelete * 1000 * 60;
-      console.log('Deleted distributed');
 
-      distributedDB.destroy({
-        where: {
-          timestamp: {
-            [Op.lt]: dif
-          }
-        }
-      }).then(function(timestamp) { // rowDeleted will return number of rows deleted
-        if (timestamp === 1) {
-          console.log('Deleted successfully');
-        }
-      }, function(err) {
-        console.log(err);
-      });
-
-      var date = new Date();
-      var timestamp = date.getTime();
-      var dif = timestamp - timeDelete * 1000 * 60;
-      console.log('Deleted internetDB');
-
-      internetDB.destroy({
-        where: {
-          timestamp: {
-            [Op.lt]: dif
-          }
-        }
-      }).then(function(timestamp) { // rowDeleted will return number of rows deleted
-        if (timestamp === 1) {
-          console.log('Deleted successfully');
-        }
-      }, function(err) {
-        console.log(err);
-      });
-
-      var date = new Date();
-      var timestamp = date.getTime();
-      var dif = timestamp - timeDelete * 1000 * 60;
-      console.log('Deleted traditionalDB');
-
-      traditionalDB.destroy({
-        where: {
-          timestamp: {
-            [Op.lt]: dif
-          }
-        }
-      }).then(function(timestamp) { // rowDeleted will return number of rows deleted
-        if (timestamp === 1) {
-          console.log('Deleted successfully');
-        }
-      }, function(err) {
-        console.log(err);
-      });
-    }
   } catch (ex) {
     console.log(ex.toString())
   }
@@ -1137,6 +1140,7 @@ app.ws('/', function(ws, req) {
   mqttDATAMain.start()
   console.log('/ ws')
 
+  //TODO часто меняющиеся значения засунуть сюда
   var task = cron.schedule('*/2 * * * * *', () => {
     console.log('Sending plot 1 2 3')
     // const objPlot = {
@@ -1145,6 +1149,16 @@ app.ws('/', function(ws, req) {
     //   plot3
     // }
     //const arrPlot = [plot1, plot2, plot3]
+    var date = new Date();
+    var timestamp = date.getTime();
+
+    console.log('Bd - dots')
+    date_hour_min = date.getHours() + ":" + date.getMinutes()
+
+    plot1.time = date_hour_min;
+    plot2.time = date_hour_min;
+    plot3.time = date_hour_min;
+
     const objPlot = {
       traditional: plot1,
       distributed: plot2,
@@ -1210,7 +1224,7 @@ app.ws('/', function(ws, req) {
   }
   ws.send(JSON.stringify({
     type: 'arrows',
-    data: sumCell
+    data: sumArrow
   }));
 
   const sumArrowDirection = {
@@ -1227,7 +1241,7 @@ app.ws('/', function(ws, req) {
   }
   ws.send(JSON.stringify({
     type: 'arrowDirections',
-    data: sumCell
+    data: sumArrowDirection
   }));
 
   const objRouter = {
@@ -1236,7 +1250,7 @@ app.ws('/', function(ws, req) {
   }
   ws.send(JSON.stringify({
     type: 'router',
-    data: rout
+    data: objRouter
   }));
 
   task.start();
@@ -2192,16 +2206,19 @@ app.get('/data', async function(req, res) {
     res.set("Access-Control-Allow-Origin", "*")
     try {
       const internet_old = await internetDB.findAll({
+        limit: timeDelete*60/cronTimer,
         order: [
           ['timestamp', 'ASC']
         ]
       });
       const distributed_old = await distributedDB.findAll({
+        limit: timeDelete*60/cronTimer,
         order: [
           ['timestamp', 'ASC']
         ]
       });
       const traditional_old = await traditionalDB.findAll({
+        limit: timeDelete*60/cronTimer,
         order: [
           ['timestamp', 'ASC']
         ]
