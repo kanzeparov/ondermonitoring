@@ -1,0 +1,60 @@
+Windows
+1. Install git - https://git-scm.com/download/win 
+2. Clone repositroty - git clone https://github.com/kanzeparov/ondermonitoring.git; cd ./ondermonitoring
+3. Change the branch - git checkout second_solution_optimize_ws; git fetch; git pull;
+
+7. Перейдите в папку с проектом, удалите папку node_modules и выполните следующие команды: npm install; npm start
+
+4. Install postgresql 12.1 - https://www.postgresql.org/download/windows/ 
+5. Set up password postgres - postgres, port - 5432;
+6. Create new database - create database monitoring;
+7. 
+DELETE tables - 
+DROP TABLE INTERNETDBS;
+DROP TABLE DISTRIBUTEDDBS;
+DROP TABLE TRADITIONALDBS;
+Create new tables - 
+CREATE TABLE internetDBs(
+id bigint,
+   TIME TEXT    NOT NULL,
+   VALUE            double precision    NOT NULL,
+   TIMESTAMP        bigint
+);
+CREATE TABLE distributedDBs(
+id bigint ,
+   TIME TEXT    NOT NULL,
+   VALUE            double precision    NOT NULL,
+   TIMESTAMP        bigint
+);
+CREATE TABLE traditionalDBs(
+id bigint ,
+   TIME TEXT    NOT NULL,
+   VALUE            double precision    NOT NULL,
+   TIMESTAMP        bigint
+);
+6. Clone repositroty - git clone https://github.com/shinnik/startblock-frontend-monitoring.git; cd ./startblock-frontend-monitoring/
+7. Change the branch - git checkout fix-websockets; git fetch; git pull;
+
+
+1. Для запуска необходима установленная среда Node.js
+
+Для Ubuntu Node.js можно установить через менеджер пакетов. Откройте терминал и введите следующие команды: curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - sudo apt-get install -y nodejs
+Для Windows нужно перейти по ссылке https://nodejs.org/en/download/ и скачать, следуя инструкциям
+Перезагрузите компьютер
+2. Проверьте, что Node.js установлен с помощью команды node -v в терминале Ubuntu или в консоли Windows
+
+3. Проверьте, что менеджер пакетов npm установлен с помощью команды npm -v (Устанавливается вместе с Node.js)
+
+4. Также необходим менеджер пакетов yarn
+
+Для Ubuntu нужно выполнить в терминале следующие команды:
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn
+Для Windows нужно проследовать инструкции по ссылке: https://yarnpkg.com/lang/en/docs/install/#windows-stable
+5. Проверьте, установлен ли yarn с помощью команды yarn --version в терминале Ubuntu или в консоли Windows
+6. Зайдите в папку C:\Users\ioen\Desktop\startblock-frontend-monitoring\src\constants, откройте файл endpoints.js и измените 1 строчку export const BACKEND_IP = '35.224.69.237:80'; на export const BACKEND_IP = 'localhost:3005'; 
+7. Перейдите в папку с проектом и выполните следующие команды: sudo yarn install yarn start
+
+8. Проект должен открыться в браузере по адресу localhost:3000
+Пароль 123456789
