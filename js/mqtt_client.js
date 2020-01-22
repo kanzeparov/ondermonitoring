@@ -252,6 +252,12 @@ console.log(e)
       timeStamp: new Date().toISOString()
     }
     this.Client.publish(topic, JSON.stringify(payload))
+    let topic1 = "/testbed/amigo/case_run"
+    let payload1 = {
+      value: true,
+      timeStamp: new Date().toISOString()
+    }
+    this.Client.publish(topic, JSON.stringify(payload))
   }
 
   publish77(enode, value) {
