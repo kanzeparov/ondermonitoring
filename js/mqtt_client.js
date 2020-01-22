@@ -14,10 +14,8 @@ class ClientMQTT {
   constructor() {
     this.options = {
       port: 1883,
-      host: "35.223.170.49",
+      host: "192.168.0.10",
       clientId: makeid(20),
-      username: "user",
-     password: "ZW8W3dQa",
       keepalive: 60,
       reconnectPeriod: 1000,
       rejectUnauthorized: true,
