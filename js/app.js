@@ -973,7 +973,7 @@ function handler(type, value) {
     }
     if (json_msg.port == 'erouter' && json_msg.port2 == "setpower_out") {
       console.log("router energy %o", value)
-      rout.energy = json_msg.value;
+      rout.energy = json_msg.value/1000; //kWT
       rout.time = json_msg.time;
       console.log("router energy %o", rout)
     }
@@ -2046,7 +2046,7 @@ app.ws('/', function(ws, req) {
         }
         if (json_msg.port == 'erouter' && json_msg.port2 == "setpower_out") {
           console.log("router energy %o", value)
-          rout.energy = json_msg.value;
+          rout.energy = json_msg.value/1000; //kWT
           rout.time = json_msg.time;
           console.log("router energy %o", rout)
         }
