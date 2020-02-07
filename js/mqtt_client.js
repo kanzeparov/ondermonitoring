@@ -26,7 +26,7 @@ class ClientMQTT {
 
   topic_handler(topic, message) {
 	try {
-    console.log("Rhandlereceived a new message from %o - %o", topic.toString(), message.toString())
+    //console.log("Rhandlereceived a new message from %o - %o", topic.toString(), message.toString())
     let json_msg = JSON.parse(message)
     var topicMas = topic.split('/')
     var msg_type = topic.split('/')[3]
@@ -35,7 +35,7 @@ class ClientMQTT {
     if (topic.split('/')[5] == 'status' && (topic.split('/')[4] == 'ac' ||
         topic.split('/')[4] == 'der') &&
       topic.split('/')[2].toString().includes('enode')) {
-      console.log("97,93 topic")
+      //console.log("97,93 topic")
       var power_value = {
 
         // For example, enodeX
@@ -56,7 +56,7 @@ class ClientMQTT {
 
     if (topic.split('/')[5] == 'status' && topic.split('/')[4].toString().includes('relay') &&
       topic.split('/')[2].toString().includes('enode')) {
-      console.log("101 topic")
+      //console.log("101 topic")
       var power_value = {
 
         // For example, enodeX
@@ -75,7 +75,7 @@ class ClientMQTT {
 
     //18
     if (topic.split('/')[5] == 'init' && topic.split('/')[3] == 'contracts') {
-      console.log("18 topic")
+      //console.log("18 topic")
       var power_value = {
 
         // For example, enodeX
@@ -99,12 +99,12 @@ class ClientMQTT {
 /////////////////////////////////////////////////////////////////////// READY
     //22
     if (topic.split('/')[3] == 'known_agents' && topic.split('/')[2].toString().includes('enode')) {
-      console.log("22 topic")
+      //console.log("22 topic")
       var i = 0
       for (i in json_msg.known_agents) {
         i++
       }
-      console.log("i - " + i)
+      //console.log("i - " + i)
       var count = i
       var power_value = {
         // For example, enodeX
@@ -156,13 +156,13 @@ class ClientMQTT {
           agent4: json_msg.known_agents[2].agentId
         }
       }
-console.log("power - %o", power_value)
+//console.log("power - %o", power_value)
       this.handler(msg_type, JSON.stringify(power_value))
     }
 
     //115
     if (topic.split('/')[4] == 'parameter0' && topic.split('/')[2].toString().includes('enode')) {
-      console.log("115 topic")
+      //console.log("115 topic")
       var power_value = {
         // For example, enodeX
         node: topic.split('/')[1],
@@ -178,7 +178,7 @@ console.log("power - %o", power_value)
 
     //87
     if (topic.split('/')[4] == 'status' && topic.split('/')[3].toString().includes('dc')) {
-      console.log("87 topic")
+      //console.log("87 topic")
       var power_value = {
         // For example, enodeX
         node: topic.split('/')[1],
@@ -202,7 +202,7 @@ console.log("power - %o", power_value)
         topic.split('/')[4] == 'measure')
     ) {
 
-      console.log("16, 6, 32,33,34,35 topic")
+      //console.log("16, 6, 32,33,34,35 topic")
       var power_value = {
         // For example, enodeX
         node: topic.split('/')[1],
@@ -226,7 +226,7 @@ console.log("power - %o", power_value)
       msg_type == 'set_price' && topic.split('/')[2] == 'amigo' ||
       msg_type == 'setpower_out' && topic.split('/')[2] == 'erouter' ||
       msg_type == 'freq' || msg_type == 'power') {
-      console.log("113,107,57,40,23,random topic")
+      //console.log("113,107,57,40,23,random topic")
       var power_value = {
         // For example, enodeX
         node: topic.split('/')[1],
@@ -240,28 +240,32 @@ console.log("power - %o", power_value)
       this.handler(msg_type, JSON.stringify(power_value))
     }
 } catch(e) {
-console.log(e)
+//console.log(e)
 }
   }
 
   publish113(value) {
     console.log("publish113 is hooked " + value)
+
     let topic = "/testbed/amigo/case_id"
     let payload = {
       value: value,
       timeStamp: new Date().toISOString()
     }
     this.Client.publish(topic, JSON.stringify(payload))
+    
     let topic1 = "/testbed/amigo/case_run"
     let payload1 = {
       value: true,
       timeStamp: new Date().toISOString()
     }
-    this.Client.publish(topic, JSON.stringify(payload))
+    this.Client.publish(topic1, JSON.stringify(payload1))
   }
 
+
+
   publish77(enode, value) {
-    console.log("publish77 is hooked enode " + enode + " " + value)
+    //console.log("publish77 is hooked enode " + enode + " " + value)
     let topic = "/testbed/enode" + String(enode) + "/relay/ac/mode"
     let payload = {
       value: value,
@@ -271,7 +275,7 @@ console.log(e)
   }
 
   publish73(enode, value) {
-    console.log("publish73 is hooked  enode " + enode + " " + value)
+    //console.log("publish73 is hooked  enode " + enode + " " + value)
     let topic = "testbed/enode" + String(enode) + "/relay/der/mode"
     let payload = {
       value: value,
@@ -281,7 +285,7 @@ console.log(e)
   }
 
   publish67(dc_num, value) {
-    console.log("publish67 is hooked dc_num " + dc_num + " " + value)
+    //console.log("publish67 is hooked dc_num " + dc_num + " " + value)
     let topic = "/testbed/relay/dc" + String(dc_num) + "/mode"
     let payload = {
       value: value,
@@ -292,7 +296,7 @@ console.log(e)
 
   connected() {
     this.started = 1
-    console.log("Connected to the broker!")
+    //console.log("Connected to the broker!")
     //TODO change to topic, # for
     this.Client.subscribe("/testbed/+/finance")
     this.Client.subscribe("/testbed/emeter1/power")
@@ -321,7 +325,7 @@ console.log(e)
   }
 
   start() {
-    console.log("Starting MQTT client")
+    //console.log("Starting MQTT client")
     this.Client = mqtt.connect(this.options)
     this.Client.on('connect', this.connected.bind(this))
   }
