@@ -543,30 +543,30 @@ function handler(type, value) {
     }
     if (json_msg.port == 'emeter1' && json_msg.port2 == "power") {
       //console.log("arrow json %o", value)
-      arrow1.value = json_msg.value;
+      arrow1.value = json_msg.value/1000; //kWT;
       arrow1.time = json_msg.time;
-      rout.power = arrow1.value + arrow2.value + arrow3.value + arrow4.value
+      rout.power = (arrow1.value + arrow2.value + arrow3.value + arrow4.value); //kWT
       //console.log("arrow %o", arrow1)
     }
     if (json_msg.port == 'emeter2' && json_msg.port2 == "power") {
       //console.log("arrow json %o", value)
-      arrow2.value = json_msg.value;
+      arrow2.value = json_msg.value/1000; //kWT;
       arrow2.time = json_msg.time;
-      rout.power = arrow1.value + arrow2.value + arrow3.value + arrow4.value
+      rout.power = (arrow1.value + arrow2.value + arrow3.value + arrow4.value); //kWT
       //console.log("arrow %o", arrow2)
     }
     if (json_msg.port == 'emeter3' && json_msg.port2 == "power") {
       //console.log("arrow json %o", value)
-      arrow3.value = json_msg.value;
+      arrow3.value = json_msg.value/1000; //kWT;
       arrow3.time = json_msg.time;
-      rout.power = arrow1.value + arrow2.value + arrow3.value + arrow4.value
+      rout.power = (arrow1.value + arrow2.value + arrow3.value + arrow4.value); //kWT
       //console.log("arrow %o", arrow3)
     }
     if (json_msg.port == 'emeter4' && json_msg.port2 == "power") {
       //console.log("arrow json %o", value)
-      arrow4.value = json_msg.value;
+      arrow4.value = json_msg.value/1000; //kWT;
       arrow4.time = json_msg.time;
-      rout.power = arrow1.value + arrow2.value + arrow3.value + arrow4.value
+      rout.power = (arrow1.value + arrow2.value + arrow3.value + arrow4.value); //kWT
       //console.log("arrow %o", arrow4)
     }
     if (json_msg.port == 'enode1' && json_msg.port3 == 'ac' && json_msg.port2 == "relay") {
@@ -591,25 +591,25 @@ function handler(type, value) {
     }
     if (json_msg.port == 'enode1' && json_msg.port2 == "ext_battery") {
       //console.log("arrow58 json %o", value)
-      arrow5.value = json_msg.value;
+      arrow5.value = json_msg.value/1000; //kWT;
       arrow5.time = json_msg.time;
       //console.log("arrow58 %o", arrow5)
     }
     if (json_msg.port == 'enode2' && json_msg.port2 == "ext_battery") {
       //console.log("arrow58 json %o", json_msg.value)
-      arrow6.value = json_msg.value;
+      arrow6.value = json_msg.value/1000; //kWT;
       arrow6.time = json_msg.time;
       //console.log("arrow58 %o", arrow6)
     }
     if (json_msg.port == 'enode3' && json_msg.port2 == "ext_battery") {
       //console.log("arrow58 json %o", value)
-      arrow7.value = json_msg.value;
+      arrow7.value = json_msg.value/1000; //kWT;
       arrow7.time = json_msg.time;
       //console.log("arrow58 %o", arrow7)
     }
     if (json_msg.port == 'enode4' && json_msg.port2 == "ext_battery") {
       //console.log("arrow58 json %o", value)
-      arrow8.value = json_msg.value;
+      arrow8.value = json_msg.value/1000; //kWT;
       arrow8.time = json_msg.time;
       //console.log("arrow58 %o", arrow8)
     }
@@ -769,10 +769,10 @@ function handler(type, value) {
     arrow10.status = arrow10pre.status1 || arrow10pre.status2 || arrow10pre.status3
     arrow11.status = arrow11pre.status1 || arrow11pre.status2 || arrow11pre.status3
     arrow12.status = arrow12pre.status1 || arrow12pre.status2 || arrow12pre.status3
-    arrow9.value = arrow9pre.value1 * arrow9pre.status1 + arrow9pre.value2 * arrow9pre.status2 + arrow9pre.value3 * arrow9pre.status3
-    arrow10.value = arrow10pre.value1 * arrow10pre.status1 + arrow10pre.value2 * arrow10pre.status2 + arrow10pre.value3 * arrow10pre.status3
-    arrow11.value = arrow11pre.value1 * arrow11pre.status1 + arrow11pre.value2 * arrow11pre.status2 + arrow11pre.value3 * arrow11pre.status3
-    arrow12.value = arrow12pre.value1 * arrow12pre.status1 + arrow12pre.value2 * arrow12pre.status2 + arrow12pre.value3 * arrow12pre.status3
+    arrow9.value = (arrow9pre.value1 * arrow9pre.status1 + arrow9pre.value2 * arrow9pre.status2 + arrow9pre.value3 * arrow9pre.status3)/1000; //kWT
+    arrow10.value = (arrow10pre.value1 * arrow10pre.status1 + arrow10pre.value2 * arrow10pre.status2 + arrow10pre.value3 * arrow10pre.status3)/1000; //kWT
+    arrow11.value = (arrow11pre.value1 * arrow11pre.status1 + arrow11pre.value2 * arrow11pre.status2 + arrow11pre.value3 * arrow11pre.status3)/1000; //kWT
+    arrow12.value = (arrow12pre.value1 * arrow12pre.status1 + arrow12pre.value2 * arrow12pre.status2 + arrow12pre.value3 * arrow12pre.status3)/1000; //kWT
     //console.log("arrow9 %o", arrow9)
     //console.log("arrow10 %o", arrow10)
     //console.log("arrow11 %o", arrow11)
@@ -780,73 +780,73 @@ function handler(type, value) {
 
     if (json_msg.port == 'enode1' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir1.value = json_msg.value;
+      arrowDir1.value = json_msg.value/1000; //kWT;
       arrowDir1.time = json_msg.time;
       //console.log("allowDir %o", arrowDir1)
     }
     if (json_msg.port == 'enode1' && json_msg.port2 == "port2" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir6.value = json_msg.value;
+      arrowDir6.value = json_msg.value/1000; //kWT;
       arrowDir6.time = json_msg.time;
       //console.log("allowDir %o", arrowDir6)
     }
     if (json_msg.port == 'enode1' && json_msg.port2 == "port3" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir4.value = json_msg.value;
+      arrowDir4.value = json_msg.value/1000; //kWT;
       arrowDir4.time = json_msg.time;
       //console.log("allowDir %o", arrowDir4)
     }
     if (json_msg.port == 'enode2' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir1.value = json_msg.value;
+      arrowDir1.value = json_msg.value/1000; //kWT;
       arrowDir1.time = json_msg.time;
       //console.log("allowDir %o", arrowDir1)
     }
     if (json_msg.port == 'enode2' && json_msg.port2 == "port2" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir5.value = json_msg.value;
+      arrowDir5.value = json_msg.value/1000; //kWT;
       arrowDir5.time = json_msg.time;
       //console.log("allowDir %o", arrowDir5)
     }
     if (json_msg.port == 'enode2' && json_msg.port2 == "port3" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir2.value = json_msg.value;
+      arrowDir2.value = json_msg.value/1000; //kWT;
       arrowDir2.time = json_msg.time;
       //console.log("allowDir %o", arrowDir2)
     }
     if (json_msg.port == 'enode3' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir4.value = json_msg.value;
+      arrowDir4.value = json_msg.value/1000; //kWT;
       arrowDir4.time = json_msg.time;
       //console.log("allowDir %o", arrowDir4)
     }
     if (json_msg.port == 'enode3' && json_msg.port2 == "port2" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir5.value = json_msg.value;
+      arrowDir5.value = json_msg.value/1000; //kWT;
       arrowDir5.time = json_msg.time;
       //console.log("allowDir %o", arrowDir5)
     }
     if (json_msg.port == 'enode3' && json_msg.port2 == "port3" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir3.value = json_msg.value;
+      arrowDir3.value = json_msg.value/1000; //kWT;
       arrowDir3.time = json_msg.time;
       //console.log("allowDir %o", arrowDir3)
     }
     if (json_msg.port == 'enode4' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir3.value = json_msg.value;
+      arrowDir3.value = json_msg.value/1000; //kWT;
       arrowDir3.time = json_msg.time;
       //console.log("allowDir %o", arrowDir3)
     }
     if (json_msg.port == 'enode4' && json_msg.port2 == "port2" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir6.value = json_msg.value;
+      arrowDir6.value = json_msg.value/1000; //kWT
       arrowDir6.time = json_msg.time;
       //console.log("allowDir %o", arrowDir6)
     }
     if (json_msg.port == 'enode4' && json_msg.port2 == "port3" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir2.value = json_msg.value;
+      arrowDir2.value = json_msg.value/1000; //kWT;
       arrowDir2.time = json_msg.time;
       //console.log("allowDir %o", arrowDir2)
     }
@@ -2053,7 +2053,7 @@ app.ws('/', function(ws, req) {
         if ((json_msg.port == 'emeter1' || json_msg.port == 'emeter2' ||
             json_msg.port == 'emeter3' || json_msg.port == 'emeter4') && json_msg.port2 == "power") {
           //console.log("router json %o", value)
-          rout.power = arrow1.value + arrow2.value + arrow3.value + arrow4.value
+          rout.power = (arrow1.value + arrow2.value + arrow3.value + arrow4.value)/1000; //kWT
           rout.time = json_msg.time;
           //console.log("router %o", rout)
         }
