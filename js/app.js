@@ -786,14 +786,14 @@ function handler(type, value) {
     }
     if (json_msg.port == 'enode1' && json_msg.port2 == "port2" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir6.value = json_msg.value/1000; //kWT;
-      arrowDir6.time = json_msg.time;
+      arrowDir4.value = json_msg.value/1000; //kWT;
+      arrowDir4.time = json_msg.time;
       //console.log("allowDir %o", arrowDir6)
     }
     if (json_msg.port == 'enode1' && json_msg.port2 == "port3" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir4.value = json_msg.value/1000; //kWT;
-      arrowDir4.time = json_msg.time;
+      arrowDir6.value = json_msg.value/1000; //kWT;
+      arrowDir6.time = json_msg.time;
       //console.log("allowDir %o", arrowDir4)
     }
     if (json_msg.port == 'enode2' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
@@ -834,20 +834,20 @@ function handler(type, value) {
     }
     if (json_msg.port == 'enode4' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir3.value = json_msg.value/1000; //kWT;
-      arrowDir3.time = json_msg.time;
+      arrowDir6.value = json_msg.value/1000; //kWT;
+      arrowDir6.time = json_msg.time;
       //console.log("allowDir %o", arrowDir3)
     }
     if (json_msg.port == 'enode4' && json_msg.port2 == "port2" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir6.value = json_msg.value/1000; //kWT
-      arrowDir6.time = json_msg.time;
+      arrowDir2.value = json_msg.value/1000; //kWT
+      arrowDir2.time = json_msg.time;
       //console.log("allowDir %o", arrowDir6)
     }
     if (json_msg.port == 'enode4' && json_msg.port2 == "port3" && json_msg.port3 == "power") {
       //console.log("allowDir json %o", value)
-      arrowDir2.value = json_msg.value/1000; //kWT;
-      arrowDir2.time = json_msg.time;
+      arrowDir3.value = json_msg.value/1000; //kWT;
+      arrowDir3.time = json_msg.time;
       //console.log("allowDir %o", arrowDir2)
     }
     if (json_msg.port == 'relay' && json_msg.port2 == "dc1" && json_msg.port3 == "status") {
@@ -1707,14 +1707,14 @@ app.ws('/', function(ws, req) {
         }
         if (json_msg.port == 'enode1' && json_msg.portX == 2 && json_msg.port3 == "power") {
           //console.log("allowDir json %o", value)
-          arrowDir6.value = json_msg.value;
-          arrowDir6.time = json_msg.time;
+          arrowDir4.value = json_msg.value;
+          arrowDir4.time = json_msg.time;
           //console.log("allowDir %o", arrowDir6)
         }
         if (json_msg.port == 'enode1' && json_msg.portX == 3 && json_msg.port3 == "power") {
           //console.log("allowDir json %o", value)
-          arrowDir4.value = json_msg.value;
-          arrowDir4.time = json_msg.time;
+          arrowDir6.value = json_msg.value;
+          arrowDir6.time = json_msg.time;
           //console.log("allowDir %o", arrowDir4)
         }
         if (json_msg.port == 'enode2' && json_msg.portX == 1 && json_msg.port3 == "power") {
@@ -1751,24 +1751,22 @@ app.ws('/', function(ws, req) {
           //console.log("allowDir json %o", value)
           arrowDir3.value = json_msg.value;
           arrowDir3.time = json_msg.time;
-          //console.log("allowDir %o", arrowDir3)
         }
         if (json_msg.port == 'enode4' && json_msg.port2 == "port1" && json_msg.port3 == "power") {
           //console.log("allowDir json %o", value)
-          arrowDir3.value = json_msg.value;
-          arrowDir3.time = json_msg.time;
-          //console.log("allowDir %o", arrowDir3)
+          arrowDir6.value = json_msg.value;
+          arrowDir6.time = json_msg.time;
         }
         if (json_msg.port == 'enode4' && json_msg.port2 == "port2" && json_msg.port3 == "power") {
           //console.log("allowDir json %o", value)
-          arrowDir6.value = json_msg.value;
-          arrowDir6.time = json_msg.time;
+          arrowDir2.value = json_msg.value;
+          arrowDir2.time = json_msg.time;
           //console.log("allowDir %o", arrowDir6)
         }
         if (json_msg.port == 'enode4' && json_msg.port2 == "port3" && json_msg.port3 == "power") {
           //console.log("allowDir json %o", value)
-          arrowDir2.value = json_msg.value;
-          arrowDir2.time = json_msg.time;
+          arrowDir3.value = json_msg.value;
+          arrowDir3.time = json_msg.time;
           //console.log("allowDir %o", arrowDir2)
         }
         if (json_msg.port == 'relay' && json_msg.port2 == "dc1" && json_msg.port3 == "status") {
@@ -1787,7 +1785,6 @@ app.ws('/', function(ws, req) {
           //console.log("allowDir status json %o", value)
           arrowDir3.status = json_msg.value;
           arrowDir3.time = json_msg.time;
-          //console.log("allowDir %o", arrowDir3)
         }
         if (json_msg.port == 'relay' && json_msg.port2 == "dc4" && json_msg.port3 == "status") {
           //console.log("allowDir status json %o", value)
@@ -1859,13 +1856,10 @@ app.ws('/', function(ws, req) {
             arrowDir5.balance = json_msg.cost;
           }
           if (json_msg.seller == 'Agent4' || json_msg.contragent == 'Agent4') {
-            //console.log("arrowDir3.directionfrom %o", arrowDir3.directionfrom)
-            //console.log("arrowDir3.directionfrom %o", arrowDir3.directionto)
             arrowDir3.directionfrom = json_msg.seller;
             arrowDir3.directionto = json_msg.contragent;
             arrowDir3.balance = json_msg.cost;
           }
-          //console.log("arrow direction %o %o %o", arrowDir4, arrowDir5, arrowDir3)
         }
         if (json_msg.port == 'enode4' && json_msg.port2 == "contracts") {
           //console.log("ENODE4 arrow direction json %o", json_msg)
@@ -1884,7 +1878,6 @@ app.ws('/', function(ws, req) {
             arrowDir2.directionto = json_msg.contragent;
             arrowDir2.balance = json_msg.cost;
           }
-          //console.log("arrow direction %o %o %o", arrowDir3, arrowDir6, arrowDir2)
         }
         var powerBuyEnode1 = 0
         var pricePowerBuyEnode1 = 0
